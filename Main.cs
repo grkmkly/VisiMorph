@@ -108,7 +108,8 @@ namespace VisiMorph
             }
             else
             {
-                imageBox.Image = ImageFunctions.grayTransformation(image);
+                image = ImageFunctions.grayTransformation(image);
+                imageBox.Image = image;
             }
         }
 
