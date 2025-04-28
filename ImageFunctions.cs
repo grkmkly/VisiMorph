@@ -189,7 +189,147 @@ namespace VisiMorph
             }
             return newImage;
         }
-       
+        public static Bitmap Convolution(Bitmap image, double[,] kernel, bool isAddEdge)
+        {
+            int kernelWidth = kernel.GetLength(0);
+            int kernelHeight = kernel.GetLength(1);
+
+            int halfKernelWidth = kernelWidth / 2;
+            int halfKernelHeight = kernelHeight / 2;
+            // Kenarları doldurma
+            if (!isAddEdge)
+            {
+                Bitmap newImage = new Bitmap(image.Width, image.Height);
+                for (int y = halfKernelHeight; y < image.Height - halfKernelHeight; y++)
+                {
+                    for (int x = halfKernelWidth; x < image.Width - halfKernelWidth; x++)
+                    {
+                        int sumR = 0;
+                        int sumG = 0;
+                        int sumB = 0;
+                        int R, G, B = 0;
+                        for (int tX = 0; tX < kernelHeight; tX++)
+                        {
+                            for (int tY = 0; tY < kernelWidth; tY++)
+                            {
+
+                                int pixelX = x + (tX - halfKernelWidth);
+                                int pixelY = y + (tY - halfKernelHeight);
+
+                                Color currentPixel = image.GetPixel(pixelX, pixelY);
+                                R = (int)(currentPixel.R * kernel[tX, tY]);
+                                G = (int)(currentPixel.G * kernel[tX, tY]);
+                                B = (int)(currentPixel.B * kernel[tX, tY]);
+                                sumR += R;
+                                sumG += G;
+                                sumB += B;
+                            }
+                        }
+
+                        sumR = Math.Min(Math.Max(sumR, 0), 255);
+                        sumG = Math.Min(Math.Max(sumG, 0), 255);
+                        sumB = Math.Min(Math.Max(sumB, 0), 255);
+                        Color newPixel = Color.FromArgb(sumR, sumG, sumB);
+                        newImage.SetPixel(x, y, newPixel);
+                    }
+                }
+                return newImage;
+            }
+            // Kenarları Doldur
+            else
+            {
+                Bitmap newImage = FillEdge(image);
+
+                for (int y = halfKernelHeight; y < newImage.Height - halfKernelHeight; y++)
+                {
+                    for (int x = halfKernelWidth; x < newImage.Width - halfKernelWidth; x++)
+                    {
+                        int sumR = 0;
+                        int sumG = 0;
+                        int sumB = 0;
+                        int R, G, B = 0;
+                        for (int tX = 0; tX < kernelHeight; tX++)
+                        {
+                            for (int tY = 0; tY < kernelWidth; tY++)
+                            {
+
+                                int pixelX = x + (tX - halfKernelWidth);
+                                int pixelY = y + (tY - halfKernelHeight);
+
+                                Color currentPixel = newImage.GetPixel(pixelX, pixelY);
+                                R = (int)(currentPixel.R * kernel[tX, tY]);
+                                G = (int)(currentPixel.G * kernel[tX, tY]);
+                                B = (int)(currentPixel.B * kernel[tX, tY]);
+                                sumR += R;
+                                sumG += G;
+                                sumB += B;
+                            }
+                        }
+
+                        sumR = Math.Min(Math.Max(sumR, 0), 255);
+                        sumG = Math.Min(Math.Max(sumG, 0), 255);
+                        sumB = Math.Min(Math.Max(sumB, 0), 255);
+                        Color newPixel = Color.FromArgb(sumR, sumG, sumB);
+                        newImage.SetPixel(x, y, newPixel);
+                    }
+                }
+                return newImage;
+            }
+        }
+        public static Bitmap FillEdge(Bitmap image)
+        {
+            Bitmap newBitmap = new Bitmap(image.Width + 1, image.Height + 1);
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    if (x == 0 || y == 0 || x == newBitmap.Width || y == newBitmap.Height)
+                    {
+                        newBitmap.SetPixel(x, y, Color.Black);
+                    }
+                    else
+                    {
+                        newBitmap.SetPixel(x, y, image.GetPixel(x, y));
+                    }
+                }
+            }
+            return newBitmap;
+        }
+        public static double[,] GaussianFilter(double sigma, int kernelSize)
+        {
+
+            double[,] kernel = new double[kernelSize, kernelSize];
+            double sum = 0.0;
+            int center = kernelSize / 2;
+
+            double twoSigmaSquare = 2.0 * Math.PI * sigma * sigma;
+
+            for (int i = 0; i < kernelSize; i++)
+            {
+                for (int j = 0; j < kernelSize; j++)
+                {
+                    int x = j - center;
+                    int y = i - center;
+
+                    double exponent = -(x * x + y * y) / twoSigmaSquare;
+
+                    kernel[i, j] = Math.Exp(exponent);
+
+                    sum += kernel[i, j];
+                }
+            }
+
+            for (int i = 0; i < kernelSize; i++)
+            {
+                for (int j = 0; j < kernelSize; j++)
+                {
+                    kernel[i, j] /= sum;
+                }
+            }
+
+            return kernel;
+        }
+
         public static Bitmap brightnessTransformation(Bitmap image, int brightness)
         {
             Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);

@@ -1,4 +1,4 @@
-using System.Drawing.Imaging;
+ï»¿using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -21,11 +21,11 @@ namespace VisiMorph
         }
         private void CenterPictureBoxInPanel()
         {
-            // Eðer pictureBox veya appPanel henüz oluþturulmadýysa iþlem yapma
+            // EÃ°er pictureBox veya appPanel henÃ¼z oluÃ¾turulmadÃ½ysa iÃ¾lem yapma
             if (imageBox == null || appPanel == null || imageBox.Image == null)
                 return;
 
-            // PictureBox'ý panel içinde ortala
+            // PictureBox'Ã½ panel iÃ§inde ortala
             int x = Math.Max(0, (appPanel.ClientSize.Width - imageBox.Width) / 2);
             int y = Math.Max(0, (appPanel.ClientSize.Height - imageBox.Height) / 2);
             imageBox.Location = new Point(x, y);
@@ -33,8 +33,8 @@ namespace VisiMorph
         private void fileopenButton_Click(object sender, EventArgs e)
         {
             appPanel.Controls.Clear();
-            imageopenFileDialog.Title = "Bir görüntü dosyasý seçiniz.";
-            imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+            imageopenFileDialog.Title = "Bir gÃ¶rÃ¼ntÃ¼ dosyasÃ½ seÃ§iniz.";
+            imageopenFileDialog.Filter = "GÃ¶rÃ¼ntÃ¼ dosyalarÃ½|*.bmp; *.png; *.jpeg";
 
             if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -55,7 +55,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir görsel yüklenmedi, iþlem baþarýsýz.");
+                MessageBox.Show("Herhangi bir gÃ¶rsel yÃ¼klenmedi, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -69,14 +69,14 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir resim açmadýnýz.");
+                MessageBox.Show("Herhangi bir resim aÃ§madÃ½nÃ½z.");
                 return;
             }
 
-            imagesaveFileDialog.Title = "Görüntü dosyasýnýn kaydedileceði dizini seçiniz.";
+            imagesaveFileDialog.Title = "GÃ¶rÃ¼ntÃ¼ dosyasÃ½nÃ½n kaydedileceÃ°i dizini seÃ§iniz.";
             imagesaveFileDialog.DefaultExt = "jpeg";
             imagesaveFileDialog.AddExtension = true;
-            imagesaveFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+            imagesaveFileDialog.Filter = "GÃ¶rÃ¼ntÃ¼ dosyalarÃ½|*.bmp; *.png; *.jpeg";
 
 
             if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
@@ -96,7 +96,7 @@ namespace VisiMorph
                 }
 
                 image.Save(savePath, format);
-                MessageBox.Show("Resim baþarýyla kaydedildi.");
+                MessageBox.Show("Resim baÃ¾arÃ½yla kaydedildi.");
             }
         }
 
@@ -104,7 +104,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
             else
             {
@@ -117,7 +117,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -139,7 +139,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -163,7 +163,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -183,7 +183,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -204,7 +204,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -222,7 +222,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -238,7 +238,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -254,7 +254,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("HenÃ¼z bir resim yÃ¼klemediniz, iÃ¾lem baÃ¾arÃ½sÃ½z.");
             }
 
             else
@@ -263,6 +263,22 @@ namespace VisiMorph
                 Bitmap newImage = Morphology.imageDilation(image, kernel);
                 newImage = Morphology.imageErosion(newImage, kernel);
                 imageBox.Image = newImage;
+            }
+        }
+
+        private void convolutionButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henï¿½z bir resim yï¿½klemediniz, iï¿½lem baï¿½arï¿½sï¿½z.");
+            }
+
+            else
+            {
+                double[,] gaussFilter = ImageFunctions.GaussianFilter(1, 3);
+                //image = ImageFunctions.Convolution(image, gaussFilter, true);
+                image = ImageFunctions.Convolution(image, gaussFilter, true);
+                imageBox.Image = image;
             }
         }
     }

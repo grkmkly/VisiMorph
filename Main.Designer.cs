@@ -79,27 +79,27 @@
             navbarFile.DropDownItems.AddRange(new ToolStripItem[] { fileopenButton, filecloseButton, filesaveButton });
             navbarFile.ImageTransparentColor = Color.Magenta;
             navbarFile.Name = "navbarFile";
-            navbarFile.Size = new Size(74, 28);
+            navbarFile.Size = new Size(63, 24);
             navbarFile.Text = "Dosya";
             // 
             // fileopenButton
             // 
             fileopenButton.Name = "fileopenButton";
-            fileopenButton.Size = new Size(148, 28);
+            fileopenButton.Size = new Size(124, 24);
             fileopenButton.Text = "Aç";
             fileopenButton.Click += fileopenButton_Click;
             // 
             // filecloseButton
             // 
             filecloseButton.Name = "filecloseButton";
-            filecloseButton.Size = new Size(148, 28);
+            filecloseButton.Size = new Size(124, 24);
             filecloseButton.Text = "Kapat";
             filecloseButton.Click += filecloseButton_Click;
             // 
             // filesaveButton
             // 
             filesaveButton.Name = "filesaveButton";
-            filesaveButton.Size = new Size(148, 28);
+            filesaveButton.Size = new Size(124, 24);
             filesaveButton.Text = "Kaydet";
             filesaveButton.Click += filesaveButton_Click;
             // 
@@ -109,71 +109,71 @@
             navbarTransformations.DropDownItems.AddRange(new ToolStripItem[] { geometrictransformationButton, arithmetictransformationButton, colortransformationButton, brightnessButton });
             navbarTransformations.ImageTransparentColor = Color.Magenta;
             navbarTransformations.Name = "navbarTransformations";
-            navbarTransformations.Size = new Size(121, 28);
+            navbarTransformations.Size = new Size(102, 24);
             navbarTransformations.Text = "Dönüşümler";
             // 
             // geometrictransformationButton
             // 
             geometrictransformationButton.DropDownItems.AddRange(new ToolStripItem[] { imagerotationButton, imagecroppingButton, imagezoomingButton });
             geometrictransformationButton.Name = "geometrictransformationButton";
-            geometrictransformationButton.Size = new Size(278, 28);
+            geometrictransformationButton.Size = new Size(231, 24);
             geometrictransformationButton.Text = "Geometrik Dönüşümler";
             // 
             // imagerotationButton
             // 
             imagerotationButton.Name = "imagerotationButton";
-            imagerotationButton.Size = new Size(359, 28);
+            imagerotationButton.Size = new Size(301, 24);
             imagerotationButton.Text = "Görüntü Döndürme";
             // 
             // imagecroppingButton
             // 
             imagecroppingButton.Name = "imagecroppingButton";
-            imagecroppingButton.Size = new Size(359, 28);
+            imagecroppingButton.Size = new Size(301, 24);
             imagecroppingButton.Text = "Görüntü Kırpma";
             // 
             // imagezoomingButton
             // 
             imagezoomingButton.Name = "imagezoomingButton";
-            imagezoomingButton.Size = new Size(359, 28);
+            imagezoomingButton.Size = new Size(301, 24);
             imagezoomingButton.Text = "Görüntü Yaklaştırma/Uzaklaştırma";
             // 
             // arithmetictransformationButton
             // 
             arithmetictransformationButton.DropDownItems.AddRange(new ToolStripItem[] { addimageButton, multiplyimageButton });
             arithmetictransformationButton.Name = "arithmetictransformationButton";
-            arithmetictransformationButton.Size = new Size(278, 28);
+            arithmetictransformationButton.Size = new Size(231, 24);
             arithmetictransformationButton.Text = "Aritmetik Dönüşümler";
             // 
             // addimageButton
             // 
             addimageButton.Name = "addimageButton";
-            addimageButton.Size = new Size(208, 28);
+            addimageButton.Size = new Size(174, 24);
             addimageButton.Text = "Resim Ekleme";
             // 
             // multiplyimageButton
             // 
             multiplyimageButton.Name = "multiplyimageButton";
-            multiplyimageButton.Size = new Size(208, 28);
+            multiplyimageButton.Size = new Size(174, 24);
             multiplyimageButton.Text = "Resim Çarpma";
             // 
             // colortransformationButton
             // 
             colortransformationButton.DropDownItems.AddRange(new ToolStripItem[] { graytransformationButton, binarytransformationButton, colorspaceButton });
             colortransformationButton.Name = "colortransformationButton";
-            colortransformationButton.Size = new Size(278, 28);
+            colortransformationButton.Size = new Size(231, 24);
             colortransformationButton.Text = "Renk Dönüşümleri";
             // 
             // graytransformationButton
             // 
             graytransformationButton.Name = "graytransformationButton";
-            graytransformationButton.Size = new Size(285, 28);
+            graytransformationButton.Size = new Size(238, 24);
             graytransformationButton.Text = "Gri (Gray) Dönüşüm";
             graytransformationButton.Click += graytransformationButton_Click;
             // 
             // binarytransformationButton
             // 
             binarytransformationButton.Name = "binarytransformationButton";
-            binarytransformationButton.Size = new Size(285, 28);
+            binarytransformationButton.Size = new Size(238, 24);
             binarytransformationButton.Text = "İkili (Binary) Dönüşüm";
             binarytransformationButton.Click += binarytransformationButton_Click;
             // 
@@ -181,20 +181,20 @@
             // 
             colorspaceButton.DropDownItems.AddRange(new ToolStripItem[] { RGBtoHSVButton });
             colorspaceButton.Name = "colorspaceButton";
-            colorspaceButton.Size = new Size(285, 28);
+            colorspaceButton.Size = new Size(238, 24);
             colorspaceButton.Text = "Renk Uzayı Dönüşümleri";
             // 
             // RGBtoHSVButton
             // 
             RGBtoHSVButton.Name = "RGBtoHSVButton";
-            RGBtoHSVButton.Size = new Size(178, 28);
+            RGBtoHSVButton.Size = new Size(148, 24);
             RGBtoHSVButton.Text = "RGB - HSV";
             RGBtoHSVButton.Click += RGBtoHSVButton_Click;
             // 
             // brightnessButton
             // 
             brightnessButton.Name = "brightnessButton";
-            brightnessButton.Size = new Size(278, 28);
+            brightnessButton.Size = new Size(231, 24);
             brightnessButton.Text = "Parlaklık Ayarı";
             brightnessButton.Click += brightnessButton_Click;
             // 
@@ -204,13 +204,13 @@
             navbarHistogram.DropDownItems.AddRange(new ToolStripItem[] { imagehistogramButton });
             navbarHistogram.ImageTransparentColor = Color.Magenta;
             navbarHistogram.Name = "navbarHistogram";
-            navbarHistogram.Size = new Size(108, 28);
+            navbarHistogram.Size = new Size(92, 24);
             navbarHistogram.Text = "Histogram";
             // 
             // imagehistogramButton
             // 
             imagehistogramButton.Name = "imagehistogramButton";
-            imagehistogramButton.Size = new Size(284, 28);
+            imagehistogramButton.Size = new Size(236, 24);
             imagehistogramButton.Text = "Histogram Dönüşümleri";
             imagehistogramButton.Click += imagehistogramButton_Click;
             // 
@@ -220,13 +220,13 @@
             navbarThresholding.DropDownItems.AddRange(new ToolStripItem[] { adaptiveButton });
             navbarThresholding.ImageTransparentColor = Color.Magenta;
             navbarThresholding.Name = "navbarThresholding";
-            navbarThresholding.Size = new Size(92, 28);
+            navbarThresholding.Size = new Size(80, 24);
             navbarThresholding.Text = "Eşikleme";
             // 
             // adaptiveButton
             // 
             adaptiveButton.Name = "adaptiveButton";
-            adaptiveButton.Size = new Size(226, 28);
+            adaptiveButton.Size = new Size(190, 24);
             adaptiveButton.Text = "Adaptif Eşikleme";
             adaptiveButton.Click += adaptiveButton_Click;
             // 
@@ -236,51 +236,52 @@
             navbarFilterNoise.DropDownItems.AddRange(new ToolStripItem[] { convolutionButton, addnoiseButton, removenoiseButton, blurringButton });
             navbarFilterNoise.ImageTransparentColor = Color.Magenta;
             navbarFilterNoise.Name = "navbarFilterNoise";
-            navbarFilterNoise.Size = new Size(148, 28);
+            navbarFilterNoise.Size = new Size(126, 24);
             navbarFilterNoise.Text = "Filtre ve Gürültü";
             // 
             // convolutionButton
             // 
             convolutionButton.Name = "convolutionButton";
-            convolutionButton.Size = new Size(288, 28);
+            convolutionButton.Size = new Size(245, 24);
             convolutionButton.Text = "Konvolüsyon (Gauss)";
+            convolutionButton.Click += convolutionButton_Click;
             // 
             // addnoiseButton
             // 
             addnoiseButton.DropDownItems.AddRange(new ToolStripItem[] { saltpepperButton });
             addnoiseButton.Name = "addnoiseButton";
-            addnoiseButton.Size = new Size(288, 28);
+            addnoiseButton.Size = new Size(245, 24);
             addnoiseButton.Text = "Gürültü Ekleme";
             // 
             // saltpepperButton
             // 
             saltpepperButton.Name = "saltpepperButton";
-            saltpepperButton.Size = new Size(195, 28);
+            saltpepperButton.Size = new Size(163, 24);
             saltpepperButton.Text = "Salt - Pepper";
             // 
             // removenoiseButton
             // 
             removenoiseButton.DropDownItems.AddRange(new ToolStripItem[] { meanfilterButton, medianfilterButton });
             removenoiseButton.Name = "removenoiseButton";
-            removenoiseButton.Size = new Size(288, 28);
+            removenoiseButton.Size = new Size(245, 24);
             removenoiseButton.Text = "Gürültü Temizleme";
             // 
             // meanfilterButton
             // 
             meanfilterButton.Name = "meanfilterButton";
-            meanfilterButton.Size = new Size(285, 28);
+            meanfilterButton.Size = new Size(241, 24);
             meanfilterButton.Text = "Ortalama (Mean) Filtresi";
             // 
             // medianfilterButton
             // 
             medianfilterButton.Name = "medianfilterButton";
-            medianfilterButton.Size = new Size(285, 28);
+            medianfilterButton.Size = new Size(241, 24);
             medianfilterButton.Text = "Ortanca (Median) Filtresi";
             // 
             // blurringButton
             // 
             blurringButton.Name = "blurringButton";
-            blurringButton.Size = new Size(288, 28);
+            blurringButton.Size = new Size(245, 24);
             blurringButton.Text = "Bulanıklaştırma (Blurring)";
             // 
             // navbarEdge
@@ -289,13 +290,13 @@
             navbarEdge.DropDownItems.AddRange(new ToolStripItem[] { sobelButton });
             navbarEdge.ImageTransparentColor = Color.Magenta;
             navbarEdge.Name = "navbarEdge";
-            navbarEdge.Size = new Size(122, 28);
+            navbarEdge.Size = new Size(107, 24);
             navbarEdge.Text = "Kenar Tespiti";
             // 
             // sobelButton
             // 
             sobelButton.Name = "sobelButton";
-            sobelButton.Size = new Size(262, 28);
+            sobelButton.Size = new Size(222, 24);
             sobelButton.Text = "Sobel Kenar Algılama";
             // 
             // navbarMenu
@@ -307,7 +308,7 @@
             navbarMenu.LayoutStyle = ToolStripLayoutStyle.Flow;
             navbarMenu.Location = new Point(0, 0);
             navbarMenu.Name = "navbarMenu";
-            navbarMenu.Size = new Size(911, 31);
+            navbarMenu.Size = new Size(797, 27);
             navbarMenu.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -327,34 +328,34 @@
             navbarMorphology.DropDownItems.AddRange(new ToolStripItem[] { dilationButton, erosionButton, openingButton, closingButton });
             navbarMorphology.ImageTransparentColor = Color.Magenta;
             navbarMorphology.Name = "navbarMorphology";
-            navbarMorphology.Size = new Size(97, 28);
+            navbarMorphology.Size = new Size(84, 24);
             navbarMorphology.Text = "Morfoloji";
             // 
             // dilationButton
             // 
             dilationButton.Name = "dilationButton";
-            dilationButton.Size = new Size(251, 28);
+            dilationButton.Size = new Size(214, 24);
             dilationButton.Text = "Genişleme (Dilation)";
             dilationButton.Click += dilationButton_Click;
             // 
             // erosionButton
             // 
             erosionButton.Name = "erosionButton";
-            erosionButton.Size = new Size(251, 28);
+            erosionButton.Size = new Size(214, 24);
             erosionButton.Text = "Aşınma (Erosion)";
             erosionButton.Click += erosionButton_Click;
             // 
             // openingButton
             // 
             openingButton.Name = "openingButton";
-            openingButton.Size = new Size(251, 28);
+            openingButton.Size = new Size(214, 24);
             openingButton.Text = "Açma (Opening)";
             openingButton.Click += openingButton_Click;
             // 
             // closingButton
             // 
             closingButton.Name = "closingButton";
-            closingButton.Size = new Size(251, 28);
+            closingButton.Size = new Size(214, 24);
             closingButton.Text = "Kapama (Closing)";
             closingButton.Click += closingButton_Click;
             // 
@@ -363,21 +364,22 @@
             appPanel.AutoScroll = true;
             appPanel.BackColor = Color.FromArgb(64, 64, 64);
             appPanel.Dock = DockStyle.Fill;
-            appPanel.Location = new Point(0, 31);
-            appPanel.Margin = new Padding(500);
+            appPanel.Location = new Point(0, 27);
+            appPanel.Margin = new Padding(438, 375, 438, 375);
             appPanel.Name = "appPanel";
-            appPanel.Size = new Size(911, 588);
+            appPanel.Size = new Size(797, 437);
             appPanel.TabIndex = 1;
             // 
             // Main
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(911, 619);
+            ClientSize = new Size(797, 464);
             Controls.Add(appPanel);
             Controls.Add(navbarMenu);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Main";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
