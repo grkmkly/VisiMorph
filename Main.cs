@@ -76,7 +76,7 @@ namespace VisiMorph
             imagesaveFileDialog.Title = "Görüntü dosyasýnýn kaydedileceði dizini seçiniz.";
             imagesaveFileDialog.DefaultExt = "jpeg";
             imagesaveFileDialog.AddExtension = true;
-            imagesaveFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg";
 
 
             if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
@@ -128,7 +128,8 @@ namespace VisiMorph
                 {
                     threshold = thresholdTrackBar.trackbarValue;
                 }
-                imageBox.Image = ImageFunctions.binaryTransformation(image, threshold);
+                image = ImageFunctions.binaryTransformation(image, threshold);
+                imageBox.Image = image;
             }
         }
         private void adaptiveButton_Click(object sender, EventArgs e)
@@ -139,7 +140,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -153,7 +154,8 @@ namespace VisiMorph
                     new_H = RGBtoHSVForm.H;
                     new_S = RGBtoHSVForm.S;
                     new_V = RGBtoHSVForm.V;
-                    imageBox.Image = ImageFunctions.imageRGBtoHSV(image, new_H, new_S, new_V); ;
+                    image = ImageFunctions.imageRGBtoHSV(image, new_H, new_S, new_V);
+                    imageBox.Image = image;
                 }
             }
 
@@ -163,7 +165,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -174,8 +176,8 @@ namespace VisiMorph
                 {
                     brightness = brightnessTrackBar.trackbarValue;
                 }
-
-                imageBox.Image = ImageFunctions.brightnessTransformation(image, brightness);
+                image = ImageFunctions.brightnessTransformation(image, brightness);
+                imageBox.Image = image;
             }
         }
 
@@ -183,7 +185,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -204,7 +206,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -214,7 +216,8 @@ namespace VisiMorph
 
                 int[,] kernel = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
                 Bitmap newImage = Morphology.imageDilation(image, kernel);
-                imageBox.Image = newImage;
+                image = newImage;
+                imageBox.Image = image;
             }
         }
 
@@ -222,14 +225,15 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
             {
                 int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
                 Bitmap newImage = Morphology.imageErosion(image, kernel);
-                imageBox.Image = newImage;
+                image = newImage;
+                imageBox.Image = image;
 
             }
         }
@@ -238,7 +242,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -246,7 +250,8 @@ namespace VisiMorph
                 int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
                 Bitmap newImage = Morphology.imageErosion(image, kernel);
                 newImage = Morphology.imageDilation(newImage, kernel);
-                imageBox.Image = newImage;
+                image = newImage;
+                imageBox.Image = image;
             }
         }
 
@@ -254,7 +259,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -262,7 +267,8 @@ namespace VisiMorph
                 int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
                 Bitmap newImage = Morphology.imageDilation(image, kernel);
                 newImage = Morphology.imageErosion(newImage, kernel);
-                imageBox.Image = newImage;
+                image = newImage;
+                imageBox.Image = image;
             }
         }
 
@@ -270,14 +276,14 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Hen�z bir resim y�klemediniz, i�lem ba�ar�s�z.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
             {
                 double[,] gaussFilter = ImageFunctions.GaussianFilter(1, 3);
                 //image = ImageFunctions.Convolution(image, gaussFilter, true);
-                image = ImageFunctions.Convolution(image, gaussFilter, true);
+                image = ImageFunctions.Convolution(image, gaussFilter, false);
                 imageBox.Image = image;
             }
         }
