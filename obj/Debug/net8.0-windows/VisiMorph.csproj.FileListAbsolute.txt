@@ -65,3 +65,13 @@ C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme_v1.1\VisiMorph\obj\Debug\net8.
 C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme_v1.1\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.pdb
 C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme_v1.1\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.genruntimeconfig.cache
 C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme_v1.1\VisiMorph\obj\Debug\net8.0-windows\ref\VisiMorph.dll
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\bin\Debug\net8.0-windows\WinForms.DataVisualization.Utilities.dll
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\bin\Debug\net8.0-windows\WinForms.DataVisualization.dll
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.csproj.AssemblyReference.cache
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.BrightnessTrackBar.resources
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.Histogram.resources
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.RGBtoHSVTrackBar.resources
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.ThresholdTrackBar.resources
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.sourcelink.json
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.csproj.Up2Date
+C:\Users\oguzt\OneDrive\Masaüstü\goruntu_isleme\VisiMorph\obj\Debug\net8.0-windows\VisiMorph.MorphologyMatrixForm.resources

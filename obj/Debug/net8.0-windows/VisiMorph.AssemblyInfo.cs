@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisiMorph")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e0ea120219453979d8b36c6537d1960aff10572")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisiMorph")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisiMorph")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -198,5 +198,71 @@ namespace VisiMorph
 
             }
         }
+
+        private void dilationButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+            }
+
+            else
+            {
+                MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.ShowDialog();
+
+                int[,] kernel = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+                Bitmap newImage = Morphology.imageDilation(image, kernel);
+                imageBox.Image = newImage;
+            }
+        }
+
+        private void erosionButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+            }
+
+            else
+            {
+                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
+                Bitmap newImage = Morphology.imageErosion(image, kernel);
+                imageBox.Image = newImage;
+
+            }
+        }
+
+        private void openingButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+            }
+
+            else
+            {
+                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
+                Bitmap newImage = Morphology.imageErosion(image, kernel);
+                newImage = Morphology.imageDilation(newImage, kernel);
+                imageBox.Image = newImage;
+            }
+        }
+
+        private void closingButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+            }
+
+            else
+            {
+                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
+                Bitmap newImage = Morphology.imageDilation(image, kernel);
+                newImage = Morphology.imageErosion(newImage, kernel);
+                imageBox.Image = newImage;
+            }
+        }
     }
 }

@@ -11,26 +11,27 @@ namespace VisiMorph
 
         public static Bitmap grayTransformation(Bitmap image)
         {
-            for (int y = 0; y < image.Height; y++)
+            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            using (Graphics g = Graphics.FromImage(newImage))
             {
-                for (int x = 0; x < image.Width; x++)
+                g.DrawImage(image, 0, 0);
+            }
+            for (int y = 0; y < newImage.Height; y++)
+            {
+                for (int x = 0; x < newImage.Width; x++)
                 {
-                    Color currentPixel = image.GetPixel(x, y);
+                    Color currentPixel = newImage.GetPixel(x, y);
                     int grayValue = (int)(currentPixel.R * 0.299 + currentPixel.G * 0.587 + currentPixel.B * 0.114);
                     Color grayColor = Color.FromArgb(grayValue, grayValue, grayValue);
-                    image.SetPixel(x, y, grayColor);
+                    newImage.SetPixel(x, y, grayColor);
                 }
             }
 
-            return image;
+            return newImage;
         }
 
         public static Bitmap binaryTransformation(Bitmap image, int threshold)
         {
-            if (threshold < 0 || threshold > 255)
-            {
-                MessageBox.Show("0-255 arasında geçerli bir eşik değeri seçiniz.");
-            }
 
             image = grayTransformation(image);
             for (int y = 0; y < image.Height; y++)
@@ -60,8 +61,6 @@ namespace VisiMorph
         public static (double, double, double) RGBtoHSV(int R, int G, int B)
         {
             double H = 0, S, V;
-
-
             double maxValue = Math.Max(R, Math.Max(G, B));
             double minValue = Math.Min(R, Math.Min(G, B));
 
@@ -157,11 +156,18 @@ namespace VisiMorph
 
         public static Bitmap imageRGBtoHSV(Bitmap image, double new_H, double new_S, double new_V)
         {
-            for (int y = 0; y < image.Height; y++)
+
+            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            using (Graphics g = Graphics.FromImage(newImage))
             {
-                for (int x = 0; x < image.Width; x++)
+                g.DrawImage(image, 0, 0);
+            }
+
+            for (int y = 0; y < newImage.Height; y++)
+            {
+                for (int x = 0; x < newImage.Width; x++)
                 {
-                    Color currentPixel = image.GetPixel(x, y);
+                    Color currentPixel = newImage.GetPixel(x, y);
                     double curr_H, curr_S, curr_V;
 
                     (curr_H, curr_S, curr_V) = RGBtoHSV(currentPixel.R, currentPixel.G, currentPixel.B);
@@ -178,31 +184,38 @@ namespace VisiMorph
                     new_B = Math.Min(Math.Max(new_B, 0), 255);
 
                     Color transformedPixel = Color.FromArgb(new_R, new_G, new_B);
-                    image.SetPixel(x, y, transformedPixel);
+                    newImage.SetPixel(x, y, transformedPixel);
                 }
             }
-            return image;
+            return newImage;
         }
        
         public static Bitmap brightnessTransformation(Bitmap image, int brightness)
         {
-            for (int y = 0; y < image.Height; y++)
+            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            using (Graphics g = Graphics.FromImage(newImage))
             {
-                for (int x = 0; x < image.Width; x++)
+                g.DrawImage(image, 0, 0);
+            }
+
+            for (int y = 0; y < newImage.Height; y++)
+            {
+                for (int x = 0; x < newImage.Width; x++)
                 {
-                    Color currentPixel = image.GetPixel(x, y);
+                    Color currentPixel = newImage.GetPixel(x, y);
                     int R = Math.Min(Math.Max(currentPixel.R + brightness, 0), 255);
                     int G = Math.Min(Math.Max(currentPixel.G + brightness, 0), 255);
                     int B = Math.Min(Math.Max(currentPixel.B + brightness, 0), 255);
                     Color newPixel = Color.FromArgb(R, G, B);
-                    image.SetPixel(x,y, newPixel);
+                    newImage.SetPixel(x,y, newPixel);
                 }
             }
-            return image;
+            return newImage;
         }
-    
+        // Format24bppRgb kullanımının nedeni bazı dosyaların indexed-pixel kullanması, bu hataya yol açıyor. O yüzden bazı fonksiyonlara dönüştürme için ekliyorum.
         public static int[] calculateHistogram(Bitmap image)
         {
+            // zaten grayTransformation kullanılmış, o yüzden Format24bppRgb kullanımına gerek yok.
             image = ImageFunctions.grayTransformation(image);
             int[] histogramCounter = new int[256];
             for (int y = 0; y < image.Height; y++)
@@ -220,7 +233,6 @@ namespace VisiMorph
         public static Bitmap stretchingHistogram(Bitmap image)
         {
             image = ImageFunctions.grayTransformation(image);
-
             int min = 255;
             int max = 0;
 
@@ -258,8 +270,10 @@ namespace VisiMorph
 
             Bitmap extendedImage = new Bitmap(image.Width, image.Height);
 
-            minRange = Math.Min(minRange, maxRange);
-            maxRange = Math.Max(minRange, maxRange);
+            int tempMin = Math.Min(minRange, maxRange);
+            int tempMax = Math.Max(minRange, maxRange);
+            minRange = tempMin;
+            maxRange = tempMax;
 
             for (int y = 0; y < image.Height; y++)
             {

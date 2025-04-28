@@ -335,24 +335,28 @@
             dilationButton.Name = "dilationButton";
             dilationButton.Size = new Size(251, 28);
             dilationButton.Text = "Genişleme (Dilation)";
+            dilationButton.Click += dilationButton_Click;
             // 
             // erosionButton
             // 
             erosionButton.Name = "erosionButton";
             erosionButton.Size = new Size(251, 28);
             erosionButton.Text = "Aşınma (Erosion)";
+            erosionButton.Click += erosionButton_Click;
             // 
             // openingButton
             // 
             openingButton.Name = "openingButton";
             openingButton.Size = new Size(251, 28);
             openingButton.Text = "Açma (Opening)";
+            openingButton.Click += openingButton_Click;
             // 
             // closingButton
             // 
             closingButton.Name = "closingButton";
             closingButton.Size = new Size(251, 28);
             closingButton.Text = "Kapama (Closing)";
+            closingButton.Click += closingButton_Click;
             // 
             // appPanel
             // 

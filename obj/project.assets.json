@@ -73,11 +73,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme_v1.1\\VisiMorph\\VisiMorph.csproj",
+      "projectUniqueName": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme\\VisiMorph\\VisiMorph.csproj",
       "projectName": "VisiMorph",
-      "projectPath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme_v1.1\\VisiMorph\\VisiMorph.csproj",
+      "projectPath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme\\VisiMorph\\VisiMorph.csproj",
       "packagesPath": "C:\\Users\\oguzt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme_v1.1\\VisiMorph\\obj\\",
+      "outputPath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme\\VisiMorph\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\oguzt\\AppData\\Roaming\\NuGet\\NuGet.Config",

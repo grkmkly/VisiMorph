@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OdA8J8ELvXA=",
+  "dgSpecHash": "9AObNqImviI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme_v1.1\\VisiMorph\\VisiMorph.csproj",
+  "projectFilePath": "C:\\Users\\oguzt\\OneDrive\\Masaüstü\\goruntu_isleme\\VisiMorph\\VisiMorph.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oguzt\\.nuget\\packages\\winforms.datavisualization\\1.10.0\\winforms.datavisualization.1.10.0.nupkg.sha512"
   ],
