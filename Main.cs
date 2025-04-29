@@ -33,7 +33,7 @@ namespace VisiMorph
         private void fileopenButton_Click(object sender, EventArgs e)
         {
             appPanel.Controls.Clear();
-            imageopenFileDialog.Title = "Bir görüntü dosyasý seçiniz.";
+            imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
             imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
 
             if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
@@ -55,7 +55,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir görsel yüklenmedi, iþlem baþarýsýz.");
+                MessageBox.Show("Herhangi bir görsel yüklenmedi, işlem başarısız.");
             }
 
             else
@@ -69,11 +69,11 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir resim açmadýnýz.");
+                MessageBox.Show("Herhangi bir resim açmadınız.");
                 return;
             }
 
-            imagesaveFileDialog.Title = "Görüntü dosyasýnýn kaydedileceði dizini seçiniz.";
+            imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
             imagesaveFileDialog.DefaultExt = "jpeg";
             imagesaveFileDialog.AddExtension = true;
             imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg";
@@ -96,7 +96,7 @@ namespace VisiMorph
                 }
 
                 image.Save(savePath, format);
-                MessageBox.Show("Resim baþarýyla kaydedildi.");
+                MessageBox.Show("Resim başarıyla kaydedildi.");
             }
         }
 
@@ -104,7 +104,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
             else
             {
@@ -117,7 +117,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -134,7 +134,22 @@ namespace VisiMorph
         }
         private void adaptiveButton_Click(object sender, EventArgs e)
         {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
 
+            else
+            {
+                int windowSize = 0;
+                AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
+                if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
+                {
+                    windowSize = adaptiveThresholdingForm.windowMatrixSize;
+                }
+                image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+                imageBox.Image = image;
+            }
         }
         private void RGBtoHSVButton_Click(object sender, EventArgs e)
         {

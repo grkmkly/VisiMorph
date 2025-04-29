@@ -8,7 +8,7 @@ namespace VisiMorph
 {
     internal class AdaptiveThresholding
     {
-        public static void adaptivethresholdingMean(Bitmap image, int wsize)
+        public static Bitmap adaptivethresholdingMean(Bitmap image, int wsize)
         {
             int windowsize = wsize;
 
@@ -24,7 +24,7 @@ namespace VisiMorph
                         {
                             int currentX = x + wx;
                             int currentY = y + wy;
-                            if (currentX > 0 && currentX <= image.Width && currentY > 0 && currentY <= image.Height)
+                            if (currentX >= 0 && currentX < image.Width && currentY >= 0 && currentY < image.Height)
                             {
                                 Color windowPixel = image.GetPixel(currentX, currentY);
                                 sum += windowPixel.R;
@@ -40,6 +40,8 @@ namespace VisiMorph
                     image.SetPixel(x, y, newPixel);
                 }
             }
+
+            return image;
         }
     }
 }
