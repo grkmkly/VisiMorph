@@ -11,7 +11,7 @@ namespace VisiMorph
         public static Bitmap adaptivethresholdingMean(Bitmap image, int wsize)
         {
             int windowsize = wsize;
-
+            image = ImageFunctions.grayTransformation(image);
             for (int y = 0; y < image.Height; y++)
             {
                 for (int x = 0; x < image.Width; x++)
