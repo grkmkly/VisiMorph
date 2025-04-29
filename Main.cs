@@ -214,10 +214,13 @@ namespace VisiMorph
                 MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
                 morphologyMatrixForm.ShowDialog();
 
-                int[,] kernel = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-                Bitmap newImage = Morphology.imageDilation(image, kernel);
-                image = newImage;
-                imageBox.Image = image;
+                if (morphologyMatrixForm.DialogResult == DialogResult.OK)
+                {
+                    int[,] kernel = morphologyMatrixForm.kernelMatrix;
+                    Bitmap newImage = Morphology.imageDilation(image, kernel);
+                    image = newImage;
+                    imageBox.Image = image;
+                }
             }
         }
 
@@ -230,10 +233,16 @@ namespace VisiMorph
 
             else
             {
-                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
-                Bitmap newImage = Morphology.imageErosion(image, kernel);
-                image = newImage;
-                imageBox.Image = image;
+                MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.ShowDialog();
+
+                if (morphologyMatrixForm.DialogResult == DialogResult.OK)
+                {
+                    int[,] kernel = morphologyMatrixForm.kernelMatrix;
+                    Bitmap newImage = Morphology.imageErosion(image, kernel);
+                    image = newImage;
+                    imageBox.Image = image;
+                }
 
             }
         }
@@ -247,11 +256,16 @@ namespace VisiMorph
 
             else
             {
-                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
-                Bitmap newImage = Morphology.imageErosion(image, kernel);
-                newImage = Morphology.imageDilation(newImage, kernel);
-                image = newImage;
-                imageBox.Image = image;
+                MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.ShowDialog();
+
+                if (morphologyMatrixForm.DialogResult == DialogResult.OK)
+                {
+                    int[,] kernel = morphologyMatrixForm.kernelMatrix;
+                    Bitmap newImage = Morphology.imageErosion(image, kernel);
+                    image = Morphology.imageDilation(newImage, kernel);
+                    imageBox.Image = image;
+                }
             }
         }
 
@@ -264,11 +278,16 @@ namespace VisiMorph
 
             else
             {
-                int[,] kernel = { { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
-                Bitmap newImage = Morphology.imageDilation(image, kernel);
-                newImage = Morphology.imageErosion(newImage, kernel);
-                image = newImage;
-                imageBox.Image = image;
+                MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.ShowDialog();
+
+                if (morphologyMatrixForm.DialogResult == DialogResult.OK)
+                {
+                    int[,] kernel = morphologyMatrixForm.kernelMatrix;
+                    Bitmap newImage = Morphology.imageDilation(image, kernel);
+                    image = Morphology.imageErosion(newImage, kernel);
+                    imageBox.Image = image;
+                }
             }
         }
 

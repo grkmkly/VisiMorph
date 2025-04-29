@@ -39,8 +39,6 @@
             matrixDataGridView = new DataGridView();
             rowaddButton = new Button();
             rowdeleteButton = new Button();
-            columnaddButton = new Button();
-            columndeleteButton = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)matrixheightInput).BeginInit();
             ((System.ComponentModel.ISupportInitialize)matrixwidthInput).BeginInit();
@@ -57,14 +55,14 @@
             groupBox2.ForeColor = Color.White;
             groupBox2.Location = new Point(12, 28);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(358, 146);
+            groupBox2.Size = new Size(371, 146);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Çekirdek (Kernel) Matris Ayarları";
             // 
             // matrixheightInput
             // 
-            matrixheightInput.Location = new Point(225, 86);
+            matrixheightInput.Location = new Point(276, 86);
             matrixheightInput.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             matrixheightInput.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             matrixheightInput.Name = "matrixheightInput";
@@ -74,7 +72,7 @@
             // 
             // matrixwidthInput
             // 
-            matrixwidthInput.Location = new Point(225, 47);
+            matrixwidthInput.Location = new Point(276, 47);
             matrixwidthInput.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             matrixwidthInput.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             matrixwidthInput.Name = "matrixwidthInput";
@@ -85,20 +83,22 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(9, 88);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label2.Location = new Point(6, 90);
             label2.Name = "label2";
-            label2.Size = new Size(210, 23);
+            label2.Size = new Size(261, 20);
             label2.TabIndex = 3;
-            label2.Text = "Matris Yüksekliği (Height): ";
+            label2.Text = "Maksimum Matris Yüksekliği (Height): ";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(23, 49);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label1.Location = new Point(19, 51);
             label1.Name = "label1";
-            label1.Size = new Size(196, 23);
+            label1.Size = new Size(248, 20);
             label1.TabIndex = 2;
-            label1.Text = "Matris Genişliği (Width): ";
+            label1.Text = "Maksimum Matris Genişliği (Width): ";
             // 
             // okButton
             // 
@@ -109,13 +109,14 @@
             okButton.TabIndex = 9;
             okButton.Text = "Tamam";
             okButton.UseVisualStyleBackColor = true;
+            okButton.Click += okButton_Click;
             // 
             // creatematrixButton
             // 
             creatematrixButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            creatematrixButton.Location = new Point(376, 39);
+            creatematrixButton.Location = new Point(389, 40);
             creatematrixButton.Name = "creatematrixButton";
-            creatematrixButton.Size = new Size(282, 41);
+            creatematrixButton.Size = new Size(269, 41);
             creatematrixButton.TabIndex = 10;
             creatematrixButton.Text = "Matrisi Oluştur";
             creatematrixButton.UseVisualStyleBackColor = true;
@@ -130,55 +131,41 @@
             closeButton.TabIndex = 11;
             closeButton.Text = "İptal";
             closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += closeButton_Click;
             // 
             // matrixDataGridView
             // 
+            matrixDataGridView.AllowUserToAddRows = false;
+            matrixDataGridView.AllowUserToDeleteRows = false;
             matrixDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             matrixDataGridView.Location = new Point(12, 192);
             matrixDataGridView.Name = "matrixDataGridView";
             matrixDataGridView.RowHeadersWidth = 51;
             matrixDataGridView.Size = new Size(646, 502);
             matrixDataGridView.TabIndex = 12;
+            matrixDataGridView.CellValidating += matrixDataGridView_CellValidating;
             // 
             // rowaddButton
             // 
             rowaddButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            rowaddButton.Location = new Point(376, 86);
+            rowaddButton.Location = new Point(389, 133);
             rowaddButton.Name = "rowaddButton";
-            rowaddButton.Size = new Size(128, 41);
+            rowaddButton.Size = new Size(132, 41);
             rowaddButton.TabIndex = 13;
             rowaddButton.Text = "Satır Ekle";
             rowaddButton.UseVisualStyleBackColor = true;
+            rowaddButton.Click += rowaddButton_Click;
             // 
             // rowdeleteButton
             // 
             rowdeleteButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            rowdeleteButton.Location = new Point(376, 133);
+            rowdeleteButton.Location = new Point(526, 133);
             rowdeleteButton.Name = "rowdeleteButton";
-            rowdeleteButton.Size = new Size(128, 41);
+            rowdeleteButton.Size = new Size(132, 41);
             rowdeleteButton.TabIndex = 14;
             rowdeleteButton.Text = "Satır Sil";
             rowdeleteButton.UseVisualStyleBackColor = true;
-            // 
-            // columnaddButton
-            // 
-            columnaddButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            columnaddButton.Location = new Point(530, 86);
-            columnaddButton.Name = "columnaddButton";
-            columnaddButton.Size = new Size(128, 41);
-            columnaddButton.TabIndex = 15;
-            columnaddButton.Text = "Sütun Ekle";
-            columnaddButton.UseVisualStyleBackColor = true;
-            // 
-            // columndeleteButton
-            // 
-            columndeleteButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            columndeleteButton.Location = new Point(530, 133);
-            columndeleteButton.Name = "columndeleteButton";
-            columndeleteButton.Size = new Size(128, 41);
-            columndeleteButton.TabIndex = 16;
-            columndeleteButton.Text = "Sütun Sil";
-            columndeleteButton.UseVisualStyleBackColor = true;
+            rowdeleteButton.Click += rowdeleteButton_Click;
             // 
             // MorphologyMatrixForm
             // 
@@ -186,8 +173,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(670, 766);
-            Controls.Add(columndeleteButton);
-            Controls.Add(columnaddButton);
             Controls.Add(rowdeleteButton);
             Controls.Add(rowaddButton);
             Controls.Add(matrixDataGridView);
@@ -218,7 +203,5 @@
         private DataGridView matrixDataGridView;
         private Button rowaddButton;
         private Button rowdeleteButton;
-        private Button columnaddButton;
-        private Button columndeleteButton;
     }
 }
