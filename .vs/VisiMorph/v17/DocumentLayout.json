@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\imagefunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:imagefunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MorphologyMatrixForm.cs",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeDocumentMoniker": "MorphologyMatrixForm.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeToolTip": "MorphologyMatrixForm.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAAwH0AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T12:49:15.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
-              "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
-              "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAAEBAAAAAAAAAAAQwA8BAAA1AAAAAAAAAA==",
+              "Title": "ImageFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\ImageFunctions.cs",
+              "RelativeDocumentMoniker": "ImageFunctions.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\ImageFunctions.cs",
+              "RelativeToolTip": "ImageFunctions.cs",
+              "ViewState": "AgIAAEYBAAAAAAAAAAAAAFcBAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T12:32:22.59Z",
+              "WhenOpened": "2025-04-29T17:35:59.706Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MorphologyMatrixForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeDocumentMoniker": "MorphologyMatrixForm.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs [Design]",
-              "RelativeToolTip": "MorphologyMatrixForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T10:35:24.731Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }
