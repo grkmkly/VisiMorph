@@ -48,9 +48,8 @@ namespace VisiMorph
                 CenterPictureBoxInPanel();
 
                 appPanel.Controls.Add(imageBox);
-            }
-            ;
-
+            };
+            
         }
 
         private void filecloseButton_Click(object sender, EventArgs e)
@@ -341,7 +340,7 @@ namespace VisiMorph
                 Bitmap image = this.image;
                 appPanel.Controls.Clear();
                 imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
-                imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+                imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg";
                 if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     string imagePath = imageopenFileDialog.FileName;
@@ -397,6 +396,25 @@ namespace VisiMorph
                     appPanel.Controls.Add(imageBox);
                 }
             }
+
+        }
+
+        private void meanfilterButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Filters.meanFilter(image, 5);
+                imageBox.Image = image;
+            }
+        }
+
+        private void medianfilterButton_Click(object sender, EventArgs e)
+        {
 
         }
     }

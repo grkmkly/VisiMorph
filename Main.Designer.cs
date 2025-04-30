@@ -148,6 +148,7 @@
             // 
             addimageButton.Name = "addimageButton";
             addimageButton.Size = new Size(224, 28);
+            addimageButton.Size = new Size(208, 28);
             addimageButton.Text = "Resim Ekleme";
             addimageButton.Click += addimageButton_Click;
             // 
@@ -155,6 +156,7 @@
             // 
             multiplyimageButton.Name = "multiplyimageButton";
             multiplyimageButton.Size = new Size(224, 28);
+            multiplyimageButton.Size = new Size(208, 28);
             multiplyimageButton.Text = "Resim Çarpma";
             multiplyimageButton.Click += multiplyimageButton_Click;
             // 
@@ -273,12 +275,14 @@
             meanfilterButton.Name = "meanfilterButton";
             meanfilterButton.Size = new Size(285, 28);
             meanfilterButton.Text = "Ortalama (Mean) Filtresi";
+            meanfilterButton.Click += meanfilterButton_Click;
             // 
             // medianfilterButton
             // 
             medianfilterButton.Name = "medianfilterButton";
             medianfilterButton.Size = new Size(285, 28);
             medianfilterButton.Text = "Ortanca (Median) Filtresi";
+            medianfilterButton.Click += medianfilterButton_Click;
             // 
             // blurringButton
             // 
