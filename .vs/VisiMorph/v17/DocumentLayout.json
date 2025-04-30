@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\arithmetictransforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:arithmetictransforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\merte\\documents\\projelerim\\goruntuislemeodevi\\visimorph\\morphology.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,12 +58,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Main.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.Designer.cs",
+              "RelativeDocumentMoniker": "Main.Designer.cs",
+              "ToolTip": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.Designer.cs",
+              "RelativeToolTip": "Main.Designer.cs",
+              "ViewState": "AgIAACIBAAAAAAAAAAApwDMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T14:03:40.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAxwEsBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T13:54:45.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ArithmeticTransforms.cs",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\ArithmeticTransforms.cs",
               "RelativeDocumentMoniker": "ArithmeticTransforms.cs",
-              "ToolTip": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\ArithmeticTransforms.cs*",
-              "RelativeToolTip": "ArithmeticTransforms.cs*",
+              "ToolTip": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\ArithmeticTransforms.cs",
+              "RelativeToolTip": "ArithmeticTransforms.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAiwAsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T13:34:53.968Z",
@@ -67,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Main.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.cs",
               "RelativeDocumentMoniker": "Main.cs",
@@ -79,20 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.cs",
-              "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Main.cs",
-              "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAAkBAAAAAAAAAAA4wGABAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:27:39.228Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Morphology.cs",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Morphology.cs",
               "RelativeDocumentMoniker": "Morphology.cs",
@@ -105,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ThresholdTrackBar.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\ThresholdTrackBar.cs",
               "RelativeDocumentMoniker": "ThresholdTrackBar.cs",
@@ -117,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RGBtoHSVTrackBar.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\RGBtoHSVTrackBar.cs",
               "RelativeDocumentMoniker": "RGBtoHSVTrackBar.cs",
@@ -129,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "MorphologyMatrixForm.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\MorphologyMatrixForm.cs",
               "RelativeDocumentMoniker": "MorphologyMatrixForm.cs",
@@ -141,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Histogram.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\merte\\Documents\\projelerim\\goruntuislemeodevi\\visimorph\\Histogram.cs",
               "RelativeDocumentMoniker": "Histogram.cs",

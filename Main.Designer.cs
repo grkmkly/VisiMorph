@@ -86,6 +86,8 @@
             // 
             fileopenButton.Name = "fileopenButton";
             fileopenButton.Size = new Size(224, 28);
+
+            fileopenButton.Size = new Size(148, 28);
             fileopenButton.Text = "Aç";
             fileopenButton.Click += fileopenButton_Click;
             // 
@@ -93,6 +95,7 @@
             // 
             filecloseButton.Name = "filecloseButton";
             filecloseButton.Size = new Size(224, 28);
+            filecloseButton.Size = new Size(148, 28);
             filecloseButton.Text = "Kapat";
             filecloseButton.Click += filecloseButton_Click;
             // 
@@ -100,6 +103,7 @@
             // 
             filesaveButton.Name = "filesaveButton";
             filesaveButton.Size = new Size(224, 28);
+            filesaveButton.Size = new Size(148, 28);
             filesaveButton.Text = "Kaydet";
             filesaveButton.Click += filesaveButton_Click;
             // 
@@ -148,6 +152,7 @@
             // 
             addimageButton.Name = "addimageButton";
             addimageButton.Size = new Size(224, 28);
+            addimageButton.Size = new Size(208, 28);
             addimageButton.Text = "Resim Ekleme";
             addimageButton.Click += addimageButton_Click;
             // 
@@ -155,6 +160,7 @@
             // 
             multiplyimageButton.Name = "multiplyimageButton";
             multiplyimageButton.Size = new Size(224, 28);
+            multiplyimageButton.Size = new Size(208, 28);
             multiplyimageButton.Text = "Resim Çarpma";
             // 
             // colortransformationButton

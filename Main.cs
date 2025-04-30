@@ -34,7 +34,7 @@ namespace VisiMorph
         {
             appPanel.Controls.Clear();
             imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
-            imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+            imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg; *.jpg";
 
             if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -77,7 +77,7 @@ namespace VisiMorph
             imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
             imagesaveFileDialog.DefaultExt = "jpeg";
             imagesaveFileDialog.AddExtension = true;
-            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg";
+            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg|JPG Dosyası (*.jpg)|*.jpg";
 
 
             if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
@@ -94,6 +94,11 @@ namespace VisiMorph
                 else if (extension == ".bmp")
                 {
                     format = ImageFormat.Bmp;
+                }
+
+                else if (extension == ".jpg")
+                {
+                    format = ImageFormat.Jpeg;
                 }
 
                 image.Save(savePath, format);
@@ -325,7 +330,6 @@ namespace VisiMorph
 
         private void addimageButton_Click(object sender, EventArgs e)
         {
-
             if (image == null)
             {
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
@@ -351,5 +355,6 @@ namespace VisiMorph
             }
 
         }
+
     }
 }
