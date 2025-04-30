@@ -85,8 +85,6 @@
             // fileopenButton
             // 
             fileopenButton.Name = "fileopenButton";
-            fileopenButton.Size = new Size(224, 28);
-
             fileopenButton.Size = new Size(148, 28);
             fileopenButton.Text = "Aç";
             fileopenButton.Click += fileopenButton_Click;
@@ -94,7 +92,6 @@
             // filecloseButton
             // 
             filecloseButton.Name = "filecloseButton";
-            filecloseButton.Size = new Size(224, 28);
             filecloseButton.Size = new Size(148, 28);
             filecloseButton.Text = "Kapat";
             filecloseButton.Click += filecloseButton_Click;
@@ -102,7 +99,6 @@
             // filesaveButton
             // 
             filesaveButton.Name = "filesaveButton";
-            filesaveButton.Size = new Size(224, 28);
             filesaveButton.Size = new Size(148, 28);
             filesaveButton.Text = "Kaydet";
             filesaveButton.Click += filesaveButton_Click;
@@ -151,7 +147,6 @@
             // addimageButton
             // 
             addimageButton.Name = "addimageButton";
-            addimageButton.Size = new Size(224, 28);
             addimageButton.Size = new Size(208, 28);
             addimageButton.Text = "Resim Ekleme";
             addimageButton.Click += addimageButton_Click;
@@ -159,7 +154,6 @@
             // multiplyimageButton
             // 
             multiplyimageButton.Name = "multiplyimageButton";
-            multiplyimageButton.Size = new Size(224, 28);
             multiplyimageButton.Size = new Size(208, 28);
             multiplyimageButton.Text = "Resim Çarpma";
             // 
@@ -278,12 +272,14 @@
             meanfilterButton.Name = "meanfilterButton";
             meanfilterButton.Size = new Size(285, 28);
             meanfilterButton.Text = "Ortalama (Mean) Filtresi";
+            meanfilterButton.Click += meanfilterButton_Click;
             // 
             // medianfilterButton
             // 
             medianfilterButton.Name = "medianfilterButton";
             medianfilterButton.Size = new Size(285, 28);
             medianfilterButton.Text = "Ortanca (Median) Filtresi";
+            medianfilterButton.Click += medianfilterButton_Click;
             // 
             // blurringButton
             // 
