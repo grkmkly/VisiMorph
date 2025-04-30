@@ -71,14 +71,35 @@ namespace VisiMorph
                             {
                                 Color windowPixel = image.GetPixel(currentX, currentY);
                                 R_values.Add(windowPixel.R);
-                                R_values.Add(windowPixel.R);
-                                R_values.Add(windowPixel.R);
+                                G_values.Add(windowPixel.G);
+                                B_values.Add(windowPixel.B);
                             }
                         }
                     }
 
                     Color currentPixel = image.GetPixel(x, y);
-                    Color newPixel = Color.FromArgb();
+
+                    int new_R, new_G, new_B;
+
+                    R_values.Sort();
+                    G_values.Sort();
+                    B_values.Sort();
+
+                    if (R_values.Count % 2 != 0)
+                    {
+                        new_R = R_values[R_values.Count / 2];
+                        new_G = G_values[G_values.Count / 2];
+                        new_B = B_values[B_values.Count / 2];
+                    }
+                    else
+                    {
+                        int midIndex = R_values.Count / 2;
+                        new_R = (R_values[midIndex - 1] + R_values[midIndex]) / 2;
+                        new_G = (G_values[midIndex - 1] + G_values[midIndex]) / 2;
+                        new_B = (B_values[midIndex - 1] + B_values[midIndex]) / 2;
+                    }
+
+                    Color newPixel = Color.FromArgb(new_R, new_G, new_B);
 
                     image.SetPixel(x, y, newPixel);
                 }

@@ -415,7 +415,16 @@ namespace VisiMorph
 
         private void medianfilterButton_Click(object sender, EventArgs e)
         {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
 
+            else
+            {
+                image = Filters.medianFilter(image, 5);
+                imageBox.Image = image;
+            }
         }
     }
 }
