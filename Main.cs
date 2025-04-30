@@ -33,8 +33,8 @@ namespace VisiMorph
         private void fileopenButton_Click(object sender, EventArgs e)
         {
             appPanel.Controls.Clear();
-            imageopenFileDialog.Title = "Bir görüntü dosyasý seçiniz.";
-            imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+            imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+            imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg; *.jpg";
 
             if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -49,13 +49,14 @@ namespace VisiMorph
 
                 appPanel.Controls.Add(imageBox);
             };
+
         }
 
         private void filecloseButton_Click(object sender, EventArgs e)
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir görsel yüklenmedi, iþlem baþarýsýz.");
+                MessageBox.Show("Herhangi bir görsel yüklenmedi, işlem başarısız.");
             }
 
             else
@@ -69,14 +70,14 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Herhangi bir resim açmadýnýz.");
+                MessageBox.Show("Herhangi bir resim açmadınız.");
                 return;
             }
 
-            imagesaveFileDialog.Title = "Görüntü dosyasýnýn kaydedileceði dizini seçiniz.";
+            imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
             imagesaveFileDialog.DefaultExt = "jpeg";
             imagesaveFileDialog.AddExtension = true;
-            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg";
+            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg|JPG Dosyası (*.jpg)|*.jpg";
 
 
             if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
@@ -95,8 +96,13 @@ namespace VisiMorph
                     format = ImageFormat.Bmp;
                 }
 
+                else if (extension == ".jpg")
+                {
+                    format = ImageFormat.Jpeg;
+                }
+
                 image.Save(savePath, format);
-                MessageBox.Show("Resim baþarýyla kaydedildi.");
+                MessageBox.Show("Resim başarıyla kaydedildi.");
             }
         }
 
@@ -104,7 +110,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
             else
             {
@@ -117,7 +123,7 @@ namespace VisiMorph
         {
             if (image == null)
             {
-                MessageBox.Show("Henüz bir resim yüklemediniz, iþlem baþarýsýz.");
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
 
             else
@@ -134,7 +140,22 @@ namespace VisiMorph
         }
         private void adaptiveButton_Click(object sender, EventArgs e)
         {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
 
+            else
+            {
+                int windowSize = 0;
+                AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
+                if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
+                {
+                    windowSize = adaptiveThresholdingForm.windowMatrixSize;
+                }
+                image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+                imageBox.Image = image;
+            }
         }
         private void RGBtoHSVButton_Click(object sender, EventArgs e)
         {
@@ -306,13 +327,130 @@ namespace VisiMorph
                 imageBox.Image = image;
             }
         }
-
         private void imagerotationButton_Click(object sender, EventArgs e)
         {
             Bitmap newImage = GeometricOperations.ImageRotate(image, 90);
             image = newImage;
             imageBox.Image = image;
 
+        }
+        private void addimageButton_Click(object sender, EventArgs e)
+        {
+
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                Bitmap image = this.image;
+                appPanel.Controls.Clear();
+                imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+                imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg";
+                if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    string imagePath = imageopenFileDialog.FileName;
+                    Bitmap secondImage = new Bitmap(imagePath);
+                    image = ArithmeticTransforms.AddImage(image, secondImage);
+                    imageBox.Image = image;
+                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                    imageBox.Width = image.Width;
+                    imageBox.Height = image.Height;
+                    CenterPictureBoxInPanel();
+                    appPanel.Controls.Add(imageBox);
+                }
+            }
+
+        }
+
+        private void sobelButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Sobel.sobelEdgeAlgoritm(image);
+                imageBox.Image = image;
+            }
+        }
+
+        private void multiplyimageButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                Bitmap image = this.image;
+                appPanel.Controls.Clear();
+                imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+                imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+                if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    string imagePath = imageopenFileDialog.FileName;
+                    Bitmap secondImage = new Bitmap(imagePath);
+                    image = ArithmeticTransforms.MultiplyImage(image, secondImage);
+                    imageBox.Image = image;
+                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                    imageBox.Width = image.Width;
+                    imageBox.Height = image.Height;
+                    CenterPictureBoxInPanel();
+                    appPanel.Controls.Add(imageBox);
+                }
+            }
+
+        }
+
+        private void meanfilterButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Filters.meanFilter(image, 5);
+                imageBox.Image = image;
+            }
+        }
+
+        private void medianfilterButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Filters.medianFilter(image, 5);
+                imageBox.Image = image;
+            }
+        }
+
+        private void saltpepperButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                SaltPepperForm saltpepperForm = new SaltPepperForm();
+                saltpepperForm.ShowDialog();
+
+                if (saltpepperForm.DialogResult == DialogResult.OK)
+                {
+                    image = SaltPepper.saltpepperNoise(image, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
+                    imageBox.Image = image;
+                }
+            }
         }
     }
 }

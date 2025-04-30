@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\g\u00F6rkem\\desktop\\visimorph\\visimorph\\geometricoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:geometricoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -16,6 +17,25 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+=======
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\saltpepper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:saltpepper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\saltpepperform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:saltpepperform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\saltpepperform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:saltpepperform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+>>>>>>> 960bc357b8f8439cde2c041b2513a2bf98083523
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -31,6 +51,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "GeometricOperations.cs",
               "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\GeometricOperations.cs",
               "RelativeDocumentMoniker": "GeometricOperations.cs",
@@ -39,11 +60,22 @@
               "ViewState": "AgIAAAYAAAAAAAAAAAAIwAwAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T19:28:23.879Z",
+=======
+              "Title": "SaltPepper.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepper.cs",
+              "RelativeDocumentMoniker": "SaltPepper.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepper.cs",
+              "RelativeToolTip": "SaltPepper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:54:01.083Z",
+>>>>>>> 960bc357b8f8439cde2c041b2513a2bf98083523
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+<<<<<<< HEAD
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\Main.cs",
               "RelativeDocumentMoniker": "Main.cs",
@@ -77,7 +109,54 @@
               "RelativeToolTip": "Main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T18:08:28.61Z",
+=======
+              "Title": "SaltPepperForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepperForm.cs",
+              "RelativeDocumentMoniker": "SaltPepperForm.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepperForm.cs [Design]",
+              "RelativeToolTip": "SaltPepperForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:52:52.844Z",
+>>>>>>> 960bc357b8f8439cde2c041b2513a2bf98083523
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AgIAAKMBAAAAAAAAAAAwwLwBAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:50:26.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Main.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs [Design]",
+              "RelativeToolTip": "Main.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:50:21.672Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SaltPepperForm.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepperForm.cs",
+              "RelativeDocumentMoniker": "SaltPepperForm.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\SaltPepperForm.cs",
+              "RelativeToolTip": "SaltPepperForm.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAvwB0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:44:47.651Z",
+              "EditorCaption": ""
             }
           ]
         }
