@@ -305,6 +305,7 @@
             sobelButton.Name = "sobelButton";
             sobelButton.Size = new Size(262, 28);
             sobelButton.Text = "Sobel Kenar Algılama";
+            sobelButton.Click += sobelButton_Click;
             // 
             // navbarMenu
             // 
