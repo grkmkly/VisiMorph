@@ -49,6 +49,7 @@ namespace VisiMorph
 
                 appPanel.Controls.Add(imageBox);
             };
+            
         }
 
         private void filecloseButton_Click(object sender, EventArgs e)
@@ -320,6 +321,35 @@ namespace VisiMorph
                 image = ImageFunctions.Convolution(image, gaussFilter, false);
                 imageBox.Image = image;
             }
+        }
+
+        private void addimageButton_Click(object sender, EventArgs e)
+        {
+
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                Bitmap image = this.image;
+                appPanel.Controls.Clear();
+                imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+                imageopenFileDialog.Filter = "Görüntü dosyalarý|*.bmp; *.png; *.jpeg";
+                if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    string imagePath = imageopenFileDialog.FileName;
+                    Bitmap secondImage = new Bitmap(imagePath);
+                    image = ArithmeticTransforms.AddImage(image, secondImage);
+                    imageBox.Image = image;
+                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                    imageBox.Width = image.Width;
+                    imageBox.Height = image.Height;
+                    CenterPictureBoxInPanel();
+                    appPanel.Controls.Add(imageBox);
+                }
+            }
+
         }
     }
 }
