@@ -330,6 +330,7 @@ namespace VisiMorph
 
         private void addimageButton_Click(object sender, EventArgs e)
         {
+
             if (image == null)
             {
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
@@ -356,5 +357,18 @@ namespace VisiMorph
 
         }
 
+        private void sobelButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Sobel.sobelEdgeAlgoritm(image);
+                imageBox.Image = image;
+            }
+        }
     }
 }
