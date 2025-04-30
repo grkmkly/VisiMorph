@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\adaptivethresholding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:adaptivethresholding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\sobel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:sobel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\morphology.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:morphology.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,21 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AdaptiveThresholding.cs",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\AdaptiveThresholding.cs",
-              "RelativeDocumentMoniker": "AdaptiveThresholding.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\AdaptiveThresholding.cs",
-              "RelativeToolTip": "AdaptiveThresholding.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAuwA0AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:24:23.898Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -41,9 +36,48 @@
               "RelativeDocumentMoniker": "Main.cs",
               "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
               "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAcwCQAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:15:30.061Z"
+              "WhenOpened": "2025-04-30T13:19:43.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Main.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs [Design]",
+              "RelativeToolTip": "Main.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T13:19:29.722Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Morphology.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Morphology.cs",
+              "RelativeDocumentMoniker": "Morphology.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Morphology.cs",
+              "RelativeToolTip": "Morphology.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T12:34:18.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sobel.cs",
+              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Sobel.cs",
+              "RelativeDocumentMoniker": "Sobel.cs",
+              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Sobel.cs",
+              "RelativeToolTip": "Sobel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwvyUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T12:31:05.303Z",
+              "EditorCaption": ""
             }
           ]
         }
