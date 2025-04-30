@@ -147,7 +147,6 @@
             // addimageButton
             // 
             addimageButton.Name = "addimageButton";
-            addimageButton.Size = new Size(224, 28);
             addimageButton.Size = new Size(208, 28);
             addimageButton.Text = "Resim Ekleme";
             addimageButton.Click += addimageButton_Click;
@@ -155,7 +154,6 @@
             // multiplyimageButton
             // 
             multiplyimageButton.Name = "multiplyimageButton";
-            multiplyimageButton.Size = new Size(224, 28);
             multiplyimageButton.Size = new Size(208, 28);
             multiplyimageButton.Text = "Resim Çarpma";
             multiplyimageButton.Click += multiplyimageButton_Click;
@@ -260,8 +258,9 @@
             // saltpepperButton
             // 
             saltpepperButton.Name = "saltpepperButton";
-            saltpepperButton.Size = new Size(195, 28);
+            saltpepperButton.Size = new Size(224, 28);
             saltpepperButton.Text = "Salt - Pepper";
+            saltpepperButton.Click += saltpepperButton_Click;
             // 
             // removenoiseButton
             // 

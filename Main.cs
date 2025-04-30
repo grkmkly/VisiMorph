@@ -49,7 +49,7 @@ namespace VisiMorph
 
                 appPanel.Controls.Add(imageBox);
             };
-            
+
         }
 
         private void filecloseButton_Click(object sender, EventArgs e)
@@ -424,6 +424,26 @@ namespace VisiMorph
             {
                 image = Filters.medianFilter(image, 5);
                 imageBox.Image = image;
+            }
+        }
+
+        private void saltpepperButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                SaltPepperForm saltpepperForm = new SaltPepperForm();
+                saltpepperForm.ShowDialog();
+
+                if (saltpepperForm.DialogResult == DialogResult.OK)
+                {
+                    image = SaltPepper.saltpepperNoise(image, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
+                    imageBox.Image = image;
+                }
             }
         }
     }

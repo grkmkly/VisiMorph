@@ -16,6 +16,9 @@
     <Compile Update="RGBtoHSVTrackBar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SaltPepperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ThresholdTrackBar.cs">
       <SubType>Form</SubType>
     </Compile>
