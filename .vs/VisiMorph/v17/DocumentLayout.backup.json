@@ -1,18 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\",
+  "WorkspaceRootPath": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\g\u00F6rkem\\desktop\\visimorph\\visimorph\\geometricoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:geometricoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:morphologymatrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\oguzt\\onedrive\\masa\u00FCst\u00FC\\goruntu_isleme\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\g\u00F6rkem\\desktop\\visimorph\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|c:\\users\\g\u00F6rkem\\desktop\\visimorph\\visimorph\\imagefunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:imagefunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BE826ED-FC08-45F7-A6BC-93AE839AF0C1}|VisiMorph.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,39 +31,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MorphologyMatrixForm.cs",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeDocumentMoniker": "MorphologyMatrixForm.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeToolTip": "MorphologyMatrixForm.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAAwH0AAAAkAAAAAAAAAA==",
+              "Title": "GeometricOperations.cs",
+              "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\GeometricOperations.cs",
+              "RelativeDocumentMoniker": "GeometricOperations.cs",
+              "ToolTip": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\GeometricOperations.cs",
+              "RelativeToolTip": "GeometricOperations.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAIwAwAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T12:49:15.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
-              "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\Main.cs",
-              "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAuwMkAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T12:32:22.59Z",
+              "WhenOpened": "2025-04-30T19:28:23.879Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MorphologyMatrixForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs",
-              "RelativeDocumentMoniker": "MorphologyMatrixForm.cs",
-              "ToolTip": "C:\\Users\\oguzt\\OneDrive\\Masa\u00FCst\u00FC\\goruntu_isleme\\VisiMorph\\MorphologyMatrixForm.cs [Design]",
-              "RelativeToolTip": "MorphologyMatrixForm.cs [Design]",
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAwwDcBAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T10:35:24.731Z",
+              "WhenOpened": "2025-04-28T18:44:04.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImageFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\ImageFunctions.cs",
+              "RelativeDocumentMoniker": "ImageFunctions.cs",
+              "ToolTip": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\ImageFunctions.cs",
+              "RelativeToolTip": "ImageFunctions.cs",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAmwEoBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T18:09:01.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Main.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\G\u00F6rkem\\Desktop\\VisiMorph\\visimorph\\Main.cs [Design]",
+              "RelativeToolTip": "Main.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T18:08:28.61Z",
               "EditorCaption": " [Design]"
             }
           ]

@@ -124,6 +124,7 @@
             imagerotationButton.Name = "imagerotationButton";
             imagerotationButton.Size = new Size(301, 24);
             imagerotationButton.Text = "Görüntü Döndürme";
+            imagerotationButton.Click += imagerotationButton_Click;
             // 
             // imagecroppingButton
             // 

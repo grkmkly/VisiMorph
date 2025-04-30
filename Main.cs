@@ -306,5 +306,13 @@ namespace VisiMorph
                 imageBox.Image = image;
             }
         }
+
+        private void imagerotationButton_Click(object sender, EventArgs e)
+        {
+            Bitmap newImage = GeometricOperations.ImageRotate(image, 90);
+            image = newImage;
+            imageBox.Image = image;
+
+        }
     }
 }
