@@ -77,7 +77,7 @@ namespace VisiMorph
                     else
                     {
                         // Sınır dışıysa belirlenen arka plan rengini kullan
-                        color = Color.Transparent;
+                        color = Color.White;
                     }
 
                     // SetPixel işlemi (PixelFormat uyumluysa çalışır)

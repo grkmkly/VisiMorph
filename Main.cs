@@ -328,10 +328,16 @@ namespace VisiMorph
 
             else
             {
-                double[,] gaussFilter = ImageFunctions.GaussianFilter(1, 3);
-                //image = ImageFunctions.Convolution(image, gaussFilter, true);
-                image = ImageFunctions.Convolution(image, gaussFilter, false);
-                imageBox.Image = image;
+                GaussForm gaussForm = new GaussForm();
+                if (gaussForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int gaussMatrixSize = gaussForm.gaussMatrixSize;
+                    bool isEdgeFill = gaussForm.fillEdge;
+                    float sigmaValue = gaussForm.sigma;
+                    double[,] gaussFilter = ImageFunctions.GaussianFilter(sigmaValue, gaussMatrixSize);
+                    image = ImageFunctions.Convolution(image, gaussFilter, isEdgeFill);
+                    imageBox.Image = image;
+                }
             }
         }
 
@@ -455,9 +461,8 @@ namespace VisiMorph
             else
             {
                 SaltPepperForm saltpepperForm = new SaltPepperForm();
-                saltpepperForm.ShowDialog();
 
-                if (saltpepperForm.DialogResult == DialogResult.OK)
+                if (saltpepperForm.ShowDialog(this) == DialogResult.OK)
                 {
                     image = SaltPepper.saltpepperNoise(image, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
                     imageBox.Image = image;
@@ -473,12 +478,18 @@ namespace VisiMorph
             }
             else
             {
-                Bitmap newImage = GeometricOperations.ImageRotate(image, 30);
-                image = newImage;
+                ImageRotationForm imageRotationForm = new ImageRotationForm();
 
-                imageBox.Width = newSize.Width;
-                imageBox.Height = newSize.Height;
-                imageBox.Image = image;
+                if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int rotateDegree = imageRotationForm.degreeValue;
+                    Bitmap newImage = GeometricOperations.ImageRotate(image, rotateDegree);
+                    image = newImage;
+
+                    imageBox.Width = newSize.Width;
+                    imageBox.Height = newSize.Height;
+                    imageBox.Image = image;
+                }
             }
 
         }
