@@ -259,7 +259,7 @@
             // saltpepperButton
             // 
             saltpepperButton.Name = "saltpepperButton";
-            saltpepperButton.Size = new Size(224, 28);
+            saltpepperButton.Size = new Size(195, 28);
             saltpepperButton.Text = "Salt - Pepper";
             saltpepperButton.Click += saltpepperButton_Click;
             // 
@@ -289,6 +289,7 @@
             blurringButton.Name = "blurringButton";
             blurringButton.Size = new Size(288, 28);
             blurringButton.Text = "Bulanıklaştırma (Blurring)";
+            blurringButton.Click += blurringButton_Click;
             // 
             // navbarEdge
             // 

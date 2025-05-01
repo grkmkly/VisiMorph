@@ -1,4 +1,5 @@
-﻿using System.Drawing.Imaging;
+﻿using System.Diagnostics.Eventing.Reader;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -52,8 +53,9 @@ namespace VisiMorph
                 CenterPictureBoxInPanel();
 
                 appPanel.Controls.Add(imageBox);
-            };
-            newSize = GeometricOperations.newImageSize(image);
+                newSize = GeometricOperations.newImageSize(image);
+
+            }
 
         }
 
@@ -413,8 +415,13 @@ namespace VisiMorph
 
             else
             {
-                image = Filters.meanFilter(image, 5);
-                imageBox.Image = image;
+                FilterForm filterForm = new FilterForm();
+                if (filterForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int matrixSize = filterForm.filterMatrixSize;
+                    image = Filters.medianFilter(image, matrixSize);
+                    imageBox.Image = image;
+                }
             }
         }
 
@@ -427,8 +434,14 @@ namespace VisiMorph
 
             else
             {
-                image = Filters.medianFilter(image, 5);
-                imageBox.Image = image;
+                FilterForm filterForm = new FilterForm();
+                if (filterForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int matrixSize = filterForm.filterMatrixSize;
+                    image = Filters.medianFilter(image, matrixSize);
+                    imageBox.Image = image;
+                }
+
             }
         }
 
@@ -455,13 +468,41 @@ namespace VisiMorph
         private void imagerotationButton_Click(object sender, EventArgs e)
         {
             if (image == null)
-                return;
-            Bitmap newImage = GeometricOperations.ImageRotate(image, 30);
-            image = newImage;
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                Bitmap newImage = GeometricOperations.ImageRotate(image, 30);
+                image = newImage;
 
-            imageBox.Width = newSize.Width;
-            imageBox.Height = newSize.Height;
-            imageBox.Image = image;
+                imageBox.Width = newSize.Width;
+                imageBox.Height = newSize.Height;
+                imageBox.Image = image;
+            }
+
+        }
+
+        private void blurringButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                FilterForm filterForm = new FilterForm();
+                if (filterForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    int matrixSize = filterForm.filterMatrixSize;
+                    int[,] blurringMatrix = Filters.createBlurringMatrix(matrixSize);
+                    image = Filters.blurringFilter(image, blurringMatrix);
+                    imageBox.Image = image;
+                }
+
+            }
+
         }
     }
 }

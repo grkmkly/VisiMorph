@@ -37,9 +37,6 @@ namespace VisiMorph
                             }
                         }
                     }
-
-                    Color currentPixel = image.GetPixel(x, y);
-
                     Color newPixel = Color.FromArgb(R_sum/count, G_sum/count, B_sum/count);
                     image.SetPixel(x, y, newPixel);
                 }
@@ -105,6 +102,79 @@ namespace VisiMorph
                 }
             }
 
+            return image;
+        }
+
+        public static int[,] createBlurringMatrix(int radius)
+        {
+            int size = (radius * 2) + 1;
+            int[,] blurringMatrix = new int[size, size];
+
+            int matrixCenterY = blurringMatrix.GetLength(0) / 2; 
+            int matrixCenterX = blurringMatrix.GetLength(1) / 2;
+
+            for (int y = 0; y < blurringMatrix.GetLength(0); y++)
+            {
+                for (int x = 0;  x < blurringMatrix.GetLength(1); x++)
+                {
+                    double distance = Math.Sqrt(Math.Pow(matrixCenterX - x, 2) + Math.Pow(matrixCenterY - y, 2));
+                    if (distance <= radius)
+                    {
+                        blurringMatrix[y, x] = 1;
+                    }
+
+                    else
+                    {
+                        blurringMatrix[y, x] = 0;
+                    }
+                }
+            }
+            return blurringMatrix;
+        }
+
+        public static Bitmap blurringFilter(Bitmap image, int[,] blurringMatrix)
+        {
+            // 0 ya da 1 olması önemli değil, kare matris
+            int windowsize = blurringMatrix.GetLength(0);
+            int matrixCenterX = blurringMatrix.GetLength(1) / 2;
+            int matrixCenterY = blurringMatrix.GetLength(0) / 2;
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    int count = 0;
+                    int R_sum = 0;
+                    int G_sum = 0;
+                    int B_sum = 0;
+
+                    for (int wy = -(windowsize / 2); wy <= windowsize / 2; wy++)
+                    {
+                        for (int wx = -(windowsize / 2); wx <= windowsize / 2; wx++)
+                        {
+                            int currentX = x + wx;
+                            int currentY = y + wy;
+                            if (currentX >= 0 && currentX < image.Width && currentY >= 0 && currentY < image.Height)
+                            {
+                                int matrixValue = blurringMatrix[wy + matrixCenterY, wx + matrixCenterX];
+                                if (matrixValue == 1)
+                                {
+                                    Color windowPixel = image.GetPixel(currentX, currentY);
+                                    R_sum += windowPixel.R;
+                                    G_sum += windowPixel.G;
+                                    B_sum += windowPixel.B;
+                                    count++;
+                                }
+
+                                else { continue; }
+
+                            }
+                        }
+                    }
+                    Color newPixel = Color.FromArgb(R_sum / count, G_sum / count, B_sum / count);
+                    image.SetPixel(x, y, newPixel);
+                }
+            }
             return image;
         }
     }
