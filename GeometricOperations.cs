@@ -56,37 +56,26 @@ namespace VisiMorph
                 {
                     Color color;
 
-                    // 1. Hedef pikselin YENİ merkeze göre ofsetini bul
                     double xOffsetNew = x - newXCenter;
                     double yOffsetNew = y - newYCenter;
 
-                    // 2. Ters dönüşümle ORİJİNAL merkeze göre ofseti bul
-                    //    Formül: x_orig = cos(theta)*x_new + sin(theta)*y_new
-                    //            y_orig = -sin(theta)*x_new + cos(theta)*y_new
-                    //    (Not: Bu, (x_new, y_new) noktasını GERİ döndürür)
-                    //    !!! (int) KALDIRILDI !!!
                     double xOffsetOrig = cosTheta * xOffsetNew + sinTheta * yOffsetNew;
                     double yOffsetOrig = -sinTheta * xOffsetNew + cosTheta * yOffsetNew;
 
-                    // 3. ORİJİNAL resimdeki MUTLAK kaynak koordinatını bul
+
                     double sourceX = xOffsetOrig + origXCenter;
                     double sourceY = yOffsetOrig + origYCenter;
 
-                    // 4. Sınır kontrolünü MUTLAK kaynak koordinatları (sourceX, sourceY) ile yap
-                    //    !!! KOŞUL DEĞİŞTİ !!!
                     if (sourceX >= 0 && sourceX < image.Width && sourceY >= 0 && sourceY < image.Height)
                     {
-                        // 5. İnterpolasyonu MUTLAK kaynak koordinatları (sourceX, sourceY) ile yap
-                        //    !!! PARAMETRELER DEĞİŞTİ !!!
+
                         color = BilinearInterpolation(image, sourceX, sourceY);
                     }
                     else
                     {
-                        // Sınır dışıysa belirlenen arka plan rengini kullan
                         color = Color.Transparent;
                     }
 
-                    // SetPixel işlemi (PixelFormat uyumluysa çalışır)
                     returnImage.SetPixel(x, y, color);
                 }
             }
