@@ -20,6 +20,7 @@ namespace VisiMorph
         private Size newSize;
         bool zoomModeActive;
         bool returnModeActive;
+        private List<Bitmap> zoomedImageList = new List<Bitmap>();
 
 
 
@@ -532,14 +533,25 @@ namespace VisiMorph
             }
             zoomModeActive = !zoomModeActive;
             returnModeActive = !returnModeActive;
+            if(!zoomModeActive)
+            {
+                image = (Bitmap)imageBox.Image;
+                zoomedImageList.Clear();
+            }
 
             if (zoomModeActive && returnModeActive)
             {
+                this.Cursor = Cursors.Cross;
                 imageBox.Image = image;
                 imageBox.MouseClick -= imageBox_MouseClick;
                 imageBox.MouseClick += imageBox_MouseClick;   
             }
+            else
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
+
 
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
         {
@@ -548,39 +560,55 @@ namespace VisiMorph
 
             if (e.Button == MouseButtons.Left)
             {
+                this.Cursor = Cursors.WaitCursor;
+                Bitmap tempImage = new Bitmap(imageBox.Image);
                 //Yakınlaştırma
-                float scaleX = (float)image.Width / imageBox.Width;
-                float scaleY = (float)image.Height / imageBox.Height;
+                float scaleX = (float)tempImage.Width / imageBox.Width;
+                float scaleY = (float)tempImage.Height / imageBox.Height;
 
                 int realX = (int)(e.X * scaleX);
                 int realY = (int)(e.Y * scaleY);
 
                 float zoomFactor = 2.0f;
-                int zoomWidth = (int)(image.Width / zoomFactor);
-                int zoomHeight = (int)(image.Height / zoomFactor);
+                int zoomWidth = (int)(tempImage.Width / zoomFactor);
+                int zoomHeight = (int)(tempImage.Height / zoomFactor);
 
                 int startX = realX - zoomWidth / 2;
                 int startY = realY - zoomHeight / 2;
 
                 if (startX < 0) startX = 0;
                 if (startY < 0) startY = 0;
-                if (startX + zoomWidth > image.Width) startX = image.Width - zoomWidth;
-                if (startY + zoomHeight > image.Height) startY = image.Height - zoomHeight;
+                if (startX + zoomWidth > tempImage.Width) startX = tempImage.Width - zoomWidth;
+                if (startY + zoomHeight > tempImage.Height) startY = tempImage.Height - zoomHeight;
 
                 Rectangle zoomRect = new Rectangle(startX, startY, zoomWidth, zoomHeight);
 
-                Bitmap zoomed = GeometricOperations.zoomImage(image, zoomRect, imageBox.Size);
-
+                Bitmap zoomed = GeometricOperations.zoomImage(tempImage, zoomRect, imageBox.Size);
+                zoomedImageList.Add(zoomed);
                 imageBox.Image = zoomed;
                 imageBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
             else if (e.Button == MouseButtons.Right)
             {
-                //Uzaklaştırma
-                imageBox.Image = image;
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                CenterPictureBoxInPanel();
+                if (zoomedImageList.Count == 0 || zoomedImageList.Count == 1)
+                {
+                    imageBox.Image = image;
+                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                    CenterPictureBoxInPanel();
+                    zoomedImageList.Clear();
+                    return;
+                }
+                else
+                {
+                    imageBox.Image = zoomedImageList[zoomedImageList.Count - 2];
+                    zoomedImageList.RemoveAt(zoomedImageList.Count - 2);
+                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                    CenterPictureBoxInPanel();
+                }
+
             }
+
+            this.Cursor = Cursors.Cross;
         }
     }
 }
