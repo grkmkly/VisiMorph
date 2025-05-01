@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Eventing.Reader;
+﻿using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
@@ -56,8 +57,7 @@ namespace VisiMorph
                 CenterPictureBoxInPanel();
 
                 appPanel.Controls.Add(imageBox);
-                newSize = GeometricOperations.newImageSize(image);
-
+                isImageRotated = false;
             }
 
         }
@@ -472,6 +472,7 @@ namespace VisiMorph
                 }
             }
         }
+        bool isImageRotated = false;
 
         private void imagerotationButton_Click(object sender, EventArgs e)
         {
@@ -486,15 +487,19 @@ namespace VisiMorph
                 if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
                 {
                     int rotateDegree = imageRotationForm.degreeValue;
-                    Bitmap newImage = GeometricOperations.ImageRotate(image, rotateDegree);
+                    if (!isImageRotated)
+                    {
+                        GeometricOperations.OriginalImage(image);
+                        isImageRotated = true;
+                    }
+                    Bitmap newImage = GeometricOperations.ImageRotate(GeometricOperations.originalImage, rotateDegree, GeometricOperations.originalImage.Size);
+                    image = new Bitmap(newImage);
                     image = newImage;
-
-                    imageBox.Width = newSize.Width;
-                    imageBox.Height = newSize.Height;
+                    imageBox.Size = image.Size;
                     imageBox.Image = image;
+                    CenterPictureBoxInPanel();
                 }
             }
-
         }
 
         private void blurringButton_Click(object sender, EventArgs e)

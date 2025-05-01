@@ -9,31 +9,38 @@ namespace VisiMorph
 {
     internal class GeometricOperations
     {
-        public static Size newImageSize(Bitmap image) { 
-            return CalculateNewDimensions(image.Width,image.Height,45);
+        public static double rotateDegre;
+        public static Bitmap rotatedImage;
+        public static Bitmap originalImage;
+        public static Size newImageSize(Bitmap image,double degrees) { 
+            return CalculateNewDimensions_Round(image.Width, image.Height, degrees);
         }
-        public static Size CalculateNewDimensions(int originalWidth, int originalHeight, double degrees)
+        public static Size CalculateNewDimensions_Round(int originalWidth, int originalHeight, double degrees)
         {
             double angleRad = degrees * Math.PI / 180.0;
-            double cos = Math.Cos(angleRad);
-            double sin = Math.Sin(angleRad);
-
-            int newWidth = (int)Math.Ceiling((originalWidth * cos) + (originalHeight * sin));
-            int newHeight = (int)Math.Ceiling((originalWidth * sin) + (originalHeight * cos));
-
-            return new Size(newWidth, newHeight);
+            double cos = Math.Abs(Math.Cos(angleRad));
+            double sin = Math.Abs(Math.Sin(angleRad));
+            int newWidth = (int)Math.Round(originalWidth * cos + originalHeight * sin);
+            int newHeight = (int)Math.Round(originalWidth * sin + originalHeight * cos);
+            return new Size(Math.Max(1, newWidth), Math.Max(1, newHeight));
         }
-        public static Bitmap ImageRotate(Bitmap image, double degrees)
+        public static void OriginalImage(Bitmap image)
+        {
+            originalImage = image;
+        }
+        public static Bitmap ImageRotate(Bitmap image, double degrees, Size size)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
-            if (degrees % 360 == 0) return new Bitmap(image); // Orijinalin kopyasını döndür
+            if (degrees % 360 == 0) return new Bitmap(image);
 
-            Size newSize = CalculateNewDimensions(image.Width, image.Height, degrees);
-            // SetPixel ile uyumlu bir format kullanmak daha güvenli olabilir:
-            Bitmap returnImage = new Bitmap(newSize.Width, newSize.Height, PixelFormat.Format32bppArgb);
-            returnImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+            rotateDegre += degrees;
+            rotateDegre = rotateDegre % 360;
+            size = CalculateNewDimensions_Round(image.Width, image.Height, rotateDegre);
 
-            double radyan = degrees * Math.PI / 180.0;
+            Bitmap returnImage = new Bitmap(size.Width, size.Height);
+
+
+            double radyan = rotateDegre * Math.PI / 180.0;
             // Sinüs ve kosinüsü döngü dışında hesapla (performans için)
             double cosTheta = Math.Cos(radyan); // Not: Ters dönüşüm için -radyan kullanacağız
             double sinTheta = Math.Sin(radyan); // Veya formülde işaretleri ayarlayacağız
@@ -71,18 +78,19 @@ namespace VisiMorph
                     {
                         // 5. İnterpolasyonu MUTLAK kaynak koordinatları (sourceX, sourceY) ile yap
                         //    !!! PARAMETRELER DEĞİŞTİ !!!
-                        color = NearestNeighborInterpolation(image, sourceX, sourceY);
+                        color = BilinearInterpolation(image, sourceX, sourceY);
                     }
                     else
                     {
                         // Sınır dışıysa belirlenen arka plan rengini kullan
-                        color = Color.White;
+                        color = Color.Transparent;
                     }
 
                     // SetPixel işlemi (PixelFormat uyumluysa çalışır)
                     returnImage.SetPixel(x, y, color);
                 }
             }
+            rotatedImage = returnImage;
             return returnImage;
         }
         public static Color NearestNeighborInterpolation( Bitmap image,double x, double y)
@@ -107,9 +115,11 @@ namespace VisiMorph
 
             double dx = tempX - point0.X;
             double dy = tempY - point0.Y;
-            
 
-
+            if (tempX < 0 || tempY < 0 || tempX >= image.Width - 1 || tempY >= image.Height - 1)
+            {
+                return Color.Black; // veya başka bir default değer
+            }
             int red = (int)(image.GetPixel(point0.X, point0.Y).R * (1 - dx) * (1 - dy) + image.GetPixel(point1.X, point1.Y).R * dx * (1 - dy) + image.GetPixel(point2.X, point2.Y).R * (1 - dx) * dy + image.GetPixel(point3.X, point3.Y).R * dx * dy);
             int green = (int)(image.GetPixel(point0.X, point0.Y).G * (1 - dx) * (1 - dy) + image.GetPixel(point1.X, point1.Y).G * dx * (1 - dy) + image.GetPixel(point2.X, point2.Y).G * (1 - dx) * dy + image.GetPixel(point3.X, point3.Y).G * dx * dy);
             int blue = (int)(image.GetPixel(point0.X, point0.Y).B * (1 - dx) * (1 - dy) + image.GetPixel(point1.X, point1.Y).B * dx * (1 - dy) + image.GetPixel(point2.X, point2.Y).B * (1 - dx) * dy + image.GetPixel(point3.X, point3.Y).B * dx * dy);
@@ -117,11 +127,6 @@ namespace VisiMorph
             red = Math.Max(0, Math.Min(255, red));
             green = Math.Max(0, Math.Min(255, green));
             blue = Math.Max(0, Math.Min(255, blue));
-
-            if (tempX < 0 || tempY < 0 || tempX >= image.Width - 1 || tempY >= image.Height - 1)
-            {
-                return Color.Black; // veya başka bir default değer
-            }
 
             return Color.FromArgb(red, green, blue);
         }
