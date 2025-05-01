@@ -15,6 +15,9 @@ namespace VisiMorph
 
         private PictureBox imageBox = new PictureBox();
         private Bitmap image;
+        private Size newSize;
+
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             CenterPictureBoxInPanel();
@@ -41,6 +44,7 @@ namespace VisiMorph
                 string imagePath = imageopenFileDialog.FileName;
                 image = new Bitmap(imagePath);
 
+
                 imageBox.Image = image;
                 imageBox.SizeMode = PictureBoxSizeMode.Normal;
                 imageBox.Width = image.Width;
@@ -49,6 +53,7 @@ namespace VisiMorph
 
                 appPanel.Controls.Add(imageBox);
             };
+            newSize = GeometricOperations.newImageSize(image);
 
         }
 
@@ -449,10 +454,14 @@ namespace VisiMorph
 
         private void imagerotationButton_Click(object sender, EventArgs e)
         {
-            Bitmap newImage = GeometricOperations.ImageRotate(image, 90);
+            if (image == null)
+                return;
+            Bitmap newImage = GeometricOperations.ImageRotate(image, 30);
             image = newImage;
-            imageBox.Image = image;
 
+            imageBox.Width = newSize.Width;
+            imageBox.Height = newSize.Height;
+            imageBox.Image = image;
         }
     }
 }
