@@ -23,8 +23,7 @@ namespace VisiMorph
 
             return new Size(newWidth, newHeight);
         }
-
-        public static Bitmap ImageRotate(Bitmap image, double degrees) // Arka plan rengi parametresi ekledim
+        public static Bitmap ImageRotate(Bitmap image, double degrees)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
             if (degrees % 360 == 0) return new Bitmap(image); // Orijinalin kopyasını döndür
@@ -126,5 +125,26 @@ namespace VisiMorph
 
             return Color.FromArgb(red, green, blue);
         }
+        public static Bitmap zoomImage(Bitmap source, Rectangle zoomArea, Size targetSize)
+        {
+            Bitmap result = new Bitmap(targetSize.Width, targetSize.Height);
+
+            for (int y = 0; y < targetSize.Height; y++)
+            {
+                for (int x = 0; x < targetSize.Width; x++)
+                {
+                    // Hedef pikselin, zoomArea içindeki hangi piksele karşılık geldiğini bul
+                    float srcX = zoomArea.X + (x / (float)targetSize.Width) * zoomArea.Width;
+                    float srcY = zoomArea.Y + (y / (float)targetSize.Height) * zoomArea.Height;
+
+                    Color pixelColor = BilinearInterpolation(source, srcX, srcY);
+                    result.SetPixel(x, y, pixelColor);
+                }
+            }
+
+            return result;
+        }
+
+
     }
 }

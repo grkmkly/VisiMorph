@@ -137,6 +137,7 @@
             imagezoomingButton.Name = "imagezoomingButton";
             imagezoomingButton.Size = new Size(359, 28);
             imagezoomingButton.Text = "Görüntü Yaklaştırma/Uzaklaştırma";
+            imagezoomingButton.Click += imagezoomingButton_Click;
             // 
             // arithmetictransformationButton
             // 

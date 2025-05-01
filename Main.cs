@@ -17,6 +17,9 @@ namespace VisiMorph
         private PictureBox imageBox = new PictureBox();
         private Bitmap image;
         private Size newSize;
+        bool zoomModeActive;
+        bool returnModeActive;
+
 
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -514,6 +517,65 @@ namespace VisiMorph
 
             }
 
+        }
+
+        private void imagezoomingButton_Click(object sender,EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            zoomModeActive = !zoomModeActive;
+            returnModeActive = !returnModeActive;
+
+            if (zoomModeActive && returnModeActive)
+            {
+                imageBox.Image = image;
+                imageBox.MouseClick -= imageBox_MouseClick;
+                imageBox.MouseClick += imageBox_MouseClick;   
+            }
+        }
+
+        private void imageBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!zoomModeActive || image == null || !returnModeActive)
+                return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                //Yakınlaştırma
+                float scaleX = (float)image.Width / imageBox.Width;
+                float scaleY = (float)image.Height / imageBox.Height;
+
+                int realX = (int)(e.X * scaleX);
+                int realY = (int)(e.Y * scaleY);
+
+                float zoomFactor = 2.0f;
+                int zoomWidth = (int)(image.Width / zoomFactor);
+                int zoomHeight = (int)(image.Height / zoomFactor);
+
+                int startX = realX - zoomWidth / 2;
+                int startY = realY - zoomHeight / 2;
+
+                if (startX < 0) startX = 0;
+                if (startY < 0) startY = 0;
+                if (startX + zoomWidth > image.Width) startX = image.Width - zoomWidth;
+                if (startY + zoomHeight > image.Height) startY = image.Height - zoomHeight;
+
+                Rectangle zoomRect = new Rectangle(startX, startY, zoomWidth, zoomHeight);
+
+                Bitmap zoomed = GeometricOperations.zoomImage(image, zoomRect, imageBox.Size);
+
+                imageBox.Image = zoomed;
+                imageBox.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                //Uzaklaştırma
+                imageBox.Image = image;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                CenterPictureBoxInPanel();
+            }
         }
     }
 }
