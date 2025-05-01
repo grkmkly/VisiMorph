@@ -11,23 +11,19 @@ namespace VisiMorph
 
         public static Bitmap grayTransformation(Bitmap image)
         {
-            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            using (Graphics g = Graphics.FromImage(newImage))
+            
+            for (int y = 0; y < image.Height; y++)
             {
-                g.DrawImage(image, 0, 0);
-            }
-            for (int y = 0; y < newImage.Height; y++)
-            {
-                for (int x = 0; x < newImage.Width; x++)
+                for (int x = 0; x < image.Width; x++)
                 {
-                    Color currentPixel = newImage.GetPixel(x, y);
+                    Color currentPixel = image.GetPixel(x, y);
                     int grayValue = (int)(currentPixel.R * 0.299 + currentPixel.G * 0.587 + currentPixel.B * 0.114);
                     Color grayColor = Color.FromArgb(grayValue, grayValue, grayValue);
-                    newImage.SetPixel(x, y, grayColor);
+                    image.SetPixel(x, y, grayColor);
                 }
             }
 
-            return newImage;
+            return image;
         }
 
         public static Bitmap binaryTransformation(Bitmap image, int threshold)

@@ -61,7 +61,7 @@ namespace VisiMorph
 
             else
             {
-                image.Dispose();
+                image = null;
                 imageBox.Image = null;
             }
         }
