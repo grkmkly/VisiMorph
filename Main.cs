@@ -13,14 +13,23 @@ namespace VisiMorph
         {
             InitializeComponent();
             this.Resize += Form1_Resize;
+
+        }
+        private void Main_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private PictureBox imageBox = new PictureBox();
         private Bitmap image;
+        public Bitmap _originalImage;
         private Size newSize;
         bool zoomModeActive;
         bool returnModeActive;
         private List<Bitmap> zoomedImageList = new List<Bitmap>();
+        private int prevVal;
+        private int brightness;
+        bool brightnessModeActive;
 
 
 
@@ -39,29 +48,35 @@ namespace VisiMorph
             int y = Math.Max(0, (appPanel.ClientSize.Height - imageBox.Height) / 2);
             imageBox.Location = new Point(x, y);
         }
-        private void fileopenButton_Click(object sender, EventArgs e)
-        {
-            appPanel.Controls.Clear();
-            imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
-            imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg; *.jpg";
-
-            if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string imagePath = imageopenFileDialog.FileName;
-                image = new Bitmap(imagePath);
 
 
-                imageBox.Image = image;
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                imageBox.Width = image.Width;
-                imageBox.Height = image.Height;
-                CenterPictureBoxInPanel();
+        //private void fileopenButton_Click(object sender, EventArgs e)
+        //{
+        //    if (appPanel.Controls.Contains(imageBox))
+        //    {
+        //        appPanel.Controls.Remove(imageBox);
+        //    }
+        //    imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+        //    imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg; *.jpg";
 
-                appPanel.Controls.Add(imageBox);
-                isImageRotated = false;
-            }
+        //    if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
+        //    {
+        //        string imagePath = imageopenFileDialog.FileName;
+        //        image = new Bitmap(imagePath);
+        //        originalImage = new Bitmap(imagePath);
 
-        }
+
+        //        imageBox.Image = image;
+        //        imageBox.SizeMode = PictureBoxSizeMode.Normal;
+        //        imageBox.Width = image.Width;
+        //        imageBox.Height = image.Height;
+        //        CenterPictureBoxInPanel();
+
+        //        appPanel.Controls.Add(imageBox);
+        //        isImageRotated = false;
+        //    }
+
+        //}
 
         private void filecloseButton_Click(object sender, EventArgs e)
         {
@@ -77,45 +92,45 @@ namespace VisiMorph
             }
         }
 
-        private void filesaveButton_Click(object sender, EventArgs e)
-        {
-            if (image == null)
-            {
-                MessageBox.Show("Herhangi bir resim açmadınız.");
-                return;
-            }
+        //private void filesaveButton_Click(object sender, EventArgs e)
+        //{
+        //    if (image == null)
+        //    {
+        //        MessageBox.Show("Herhangi bir resim açmadınız.");
+        //        return;
+        //    }
 
-            imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
-            imagesaveFileDialog.DefaultExt = "jpeg";
-            imagesaveFileDialog.AddExtension = true;
-            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg|JPG Dosyası (*.jpg)|*.jpg";
+        //    imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
+        //    imagesaveFileDialog.DefaultExt = "jpeg";
+        //    imagesaveFileDialog.AddExtension = true;
+        //    imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg|JPG Dosyası (*.jpg)|*.jpg";
 
 
-            if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string savePath = imagesaveFileDialog.FileName;
-                ImageFormat format = ImageFormat.Jpeg;
+        //    if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
+        //    {
+        //        string savePath = imagesaveFileDialog.FileName;
+        //        ImageFormat format = ImageFormat.Jpeg;
 
-                string extension = Path.GetExtension(savePath).ToLower();
-                if (extension == ".png")
-                {
-                    format = ImageFormat.Png;
-                }
+        //        string extension = Path.GetExtension(savePath).ToLower();
+        //        if (extension == ".png")
+        //        {
+        //            format = ImageFormat.Png;
+        //        }
 
-                else if (extension == ".bmp")
-                {
-                    format = ImageFormat.Bmp;
-                }
+        //        else if (extension == ".bmp")
+        //        {
+        //            format = ImageFormat.Bmp;
+        //        }
 
-                else if (extension == ".jpg")
-                {
-                    format = ImageFormat.Jpeg;
-                }
+        //        else if (extension == ".jpg")
+        //        {
+        //            format = ImageFormat.Jpeg;
+        //        }
 
-                image.Save(savePath, format);
-                MessageBox.Show("Resim başarıyla kaydedildi.");
-            }
-        }
+        //        image.Save(savePath, format);
+        //        MessageBox.Show("Resim başarıyla kaydedildi.");
+        //    }
+        //}
 
         private void graytransformationButton_Click(object sender, EventArgs e)
         {
@@ -151,22 +166,22 @@ namespace VisiMorph
         }
         private void adaptiveButton_Click(object sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
+            //if (image == null)
+            //{
+            //    MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            //}
 
-            else
-            {
-                int windowSize = 0;
-                AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
-                if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
-                {
-                    windowSize = adaptiveThresholdingForm.windowMatrixSize;
-                }
-                image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
-                imageBox.Image = image;
-            }
+            //else
+            //{
+            //    int windowSize = 0;
+            //    AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
+            //    if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        windowSize = adaptiveThresholdingForm.windowMatrixSize;
+            //    }
+            //    image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+            //    imageBox.Image = image;
+            //}
         }
         private void RGBtoHSVButton_Click(object sender, EventArgs e)
         {
@@ -198,41 +213,68 @@ namespace VisiMorph
             if (image == null)
             {
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+                return;
             }
+            brightnessModeActive = !brightnessModeActive;
+            if (brightnessModeActive)
+            {
+                panel1.Visible = !panel1.Visible;
+                brightnessButton.BackColor = panel1.Visible ? Color.LightGray : Color.Transparent;
+                panel1.Dock = DockStyle.Left;
+                panel1.BringToFront();
+                brightnessTrack.Value = 0;
+                if (panel1.Visible)
+                {
 
+                    brightnessTrack.Minimum = -255;
+                    brightnessTrack.Maximum = 255;
+                    brightnessTrack.TickFrequency = 1;
+                    brightnessTrack.LargeChange = 1;
+                    brightnessTrack.SmallChange = 1;
+
+                    // Olayı tekrar tekrar eklememek için önce çıkar, sonra ekle
+                    brightnessTrack.MouseUp -= BrightnessTrack_Scroll;
+                    brightnessTrack.MouseUp += BrightnessTrack_Scroll;
+                }
+                else
+                {
+                    _originalImage = image;
+                    imageBox.Image = _originalImage;
+                    brightnessTrack.Value = 0;
+                    brightnessLabel.Text = "Seçili Değer: 0";
+
+                }
+            }
             else
             {
-                int brightness = 0;
-                BrightnessTrackBar brightnessTrackBar = new BrightnessTrackBar();
-                if (brightnessTrackBar.ShowDialog() == DialogResult.OK)
-                {
-                    brightness = brightnessTrackBar.trackbarValue;
-                }
-                image = ImageFunctions.brightnessTransformation(image, brightness);
-                imageBox.Image = image;
+                image = (Bitmap)imageBox.Image;
+                _originalImage = image;
             }
+
+            
         }
 
-        private void imagehistogramButton_Click(object sender, EventArgs e)
-        {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
 
-            else
-            {
-                Histogram histogramChart = new Histogram(image);
-                histogramChart.ShowDialog();
+        //private void imagehistogramButton_Click(object sender, EventArgs e)
+        //{
+        //    if (image == null)
+        //    {
+        //        MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+        //    }
 
-                if (histogramChart.DialogResult == DialogResult.OK)
-                {
-                    image = histogramChart.resultImage;
-                    imageBox.Image = image;
-                }
+        //    else
+        //    {
+        //        Histogram histogramChart = new Histogram(image);
+        //        histogramChart.ShowDialog();
 
-            }
-        }
+        //        if (histogramChart.DialogResult == DialogResult.OK)
+        //        {
+        //            image = histogramChart.resultImage;
+        //            imageBox.Image = image;
+        //        }
+
+        //    }
+        //}
 
         private void dilationButton_Click(object sender, EventArgs e)
         {
@@ -374,20 +416,6 @@ namespace VisiMorph
 
         }
 
-        private void sobelButton_Click(object sender, EventArgs e)
-        {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-
-            else
-            {
-                image = Sobel.sobelEdgeAlgoritm(image);
-                imageBox.Image = image;
-            }
-        }
-
         private void multiplyimageButton_Click(object sender, EventArgs e)
         {
             if (image == null)
@@ -414,6 +442,19 @@ namespace VisiMorph
                 }
             }
 
+        }
+        private void sobelButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                image = Sobel.sobelEdgeAlgoritm(image);
+                imageBox.Image = image;
+            }
         }
 
         private void meanfilterButton_Click(object sender, EventArgs e)
@@ -477,30 +518,30 @@ namespace VisiMorph
 
         private void imagerotationButton_Click(object sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            else
-            {
-                ImageRotationForm imageRotationForm = new ImageRotationForm();
+            //if (image == null)
+            //{
+            //    MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            //}
+            //else
+            //{
+            //    ImageRotationForm imageRotationForm = new ImageRotationForm();
 
-                if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
-                {
-                    int rotateDegree = imageRotationForm.degreeValue;
-                    if (!isImageRotated)
-                    {
-                        GeometricOperations.OriginalImage(image);
-                        isImageRotated = true;
-                    }
-                    Bitmap newImage = GeometricOperations.ImageRotate(GeometricOperations.originalImage, rotateDegree, GeometricOperations.originalImage.Size);
-                    image = new Bitmap(newImage);
-                    image = newImage;
-                    imageBox.Size = image.Size;
-                    imageBox.Image = image;
-                    CenterPictureBoxInPanel();
-                }
-            }
+            //    if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
+            //    {
+            //        int rotateDegree = imageRotationForm.degreeValue;
+            //        if (!isImageRotated)
+            //        {
+            //            GeometricOperations.OriginalImage(image);
+            //            isImageRotated = true;
+            //        }
+            //        Bitmap newImage = GeometricOperations.ImageRotate(GeometricOperations.originalImage, rotateDegree, GeometricOperations.originalImage.Size);
+            //        image = new Bitmap(newImage);
+            //        image = newImage;
+            //        imageBox.Size = image.Size;
+            //        imageBox.Image = image;
+            //        CenterPictureBoxInPanel();
+            //    }
+            //}
         }
 
         private void blurringButton_Click(object sender, EventArgs e)
@@ -524,34 +565,6 @@ namespace VisiMorph
             }
 
         }
-
-        private void imagezoomingButton_Click(object sender,EventArgs e)
-        {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            zoomModeActive = !zoomModeActive;
-            returnModeActive = !returnModeActive;
-            if(!zoomModeActive)
-            {
-                image = (Bitmap)imageBox.Image;
-                zoomedImageList.Clear();
-            }
-
-            if (zoomModeActive && returnModeActive)
-            {
-                this.Cursor = Cursors.Cross;
-                imageBox.Image = image;
-                imageBox.MouseClick -= imageBox_MouseClick;
-                imageBox.MouseClick += imageBox_MouseClick;   
-            }
-            else
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
-
 
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
         {
@@ -609,6 +622,208 @@ namespace VisiMorph
             }
 
             this.Cursor = Cursors.Cross;
+        }
+
+        private void magnifyingButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+                return;
+            }
+            zoomModeActive = !zoomModeActive;
+            returnModeActive = !returnModeActive;
+            if (!zoomModeActive)
+            {
+                // Büyültme modu kapatıldı
+                magnifyingButton.BackColor = Color.Transparent;
+                image = (Bitmap)imageBox.Image;
+                _originalImage = image;
+                zoomedImageList.Clear();
+            }
+
+            if (zoomModeActive && returnModeActive)
+            {
+                // Büyültme modu açıldı
+                this.Cursor = Cursors.Cross;
+                magnifyingButton.BackColor = Color.LightGray;
+                imageBox.Image = image;
+                imageBox.MouseClick -= imageBox_MouseClick;
+                imageBox.MouseClick += imageBox_MouseClick;
+            }
+            else
+            {
+                this.Cursor = Cursors.Default;
+            }
+
+        }
+
+        private void rotateButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                ImageRotationForm imageRotationForm = new ImageRotationForm();
+
+                if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    int rotateDegree = imageRotationForm.degreeValue;
+                    if (!isImageRotated)
+                    {
+                        GeometricOperations.OriginalImage(image);
+                        isImageRotated = true;
+                    }
+                    Bitmap newImage = GeometricOperations.ImageRotate(GeometricOperations.originalImage, rotateDegree, GeometricOperations.originalImage.Size);
+                    image = new Bitmap(newImage);
+                    image = newImage;
+                    imageBox.Size = image.Size;
+                    imageBox.Image = image;
+                    CenterPictureBoxInPanel();
+                    this.Cursor = Cursors.Default;
+                }
+            }
+
+        }
+
+
+
+        private void BrightnessTrack_Scroll(object? sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                brightnessLabel.Text = $"Seçili Değer: {brightnessTrack.Value}";
+                brightness = brightnessTrack.Value;
+                imageBox.Image = ImageFunctions.brightnessTransformation(_originalImage, brightness);
+                prevVal = brightnessTrack.Value;
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                int windowSize = 0;
+                AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
+                if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
+                {
+                    windowSize = adaptiveThresholdingForm.windowMatrixSize;
+                }
+                image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+                imageBox.Image = image;
+            }
+        }
+
+        private void histogramButton_Click(object sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+
+            else
+            {
+                Histogram histogramChart = new Histogram(image);
+                histogramChart.StartPosition = FormStartPosition.CenterParent;
+                histogramChart.ShowDialog();
+
+                if (histogramChart.DialogResult == DialogResult.OK)
+                {
+                    image = histogramChart.resultImage;
+                    imageBox.Image = image;
+                }
+
+            }
+        }
+
+
+        
+
+        private void newFileButton_Click(object sender, EventArgs e)
+        {
+            if (appPanel.Controls.Contains(imageBox))
+            {
+                appPanel.Controls.Remove(imageBox);
+            }
+            imageopenFileDialog.Title = "Bir görüntü dosyası seçiniz.";
+            imageopenFileDialog.Filter = "Görüntü dosyaları|*.bmp; *.png; *.jpeg; *.jpg";
+
+            if (imageopenFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string imagePath = imageopenFileDialog.FileName;
+                image = new Bitmap(imagePath);
+                _originalImage = new Bitmap(image);
+
+
+                imageBox.Image = image;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                imageBox.Width = image.Width;
+                imageBox.Height = image.Height;
+                CenterPictureBoxInPanel();
+
+                appPanel.Controls.Add(imageBox);
+                isImageRotated = false;
+            }
+
+        }
+
+        private void saveFileButton_Click(object sender, EventArgs e)
+        {
+
+            if (image == null)
+            {
+                MessageBox.Show("Herhangi bir resim açmadınız.");
+                return;
+            }
+
+            imagesaveFileDialog.Title = "Görüntü dosyasının kaydedileceği dizini seçiniz.";
+            imagesaveFileDialog.DefaultExt = "jpeg";
+            imagesaveFileDialog.AddExtension = true;
+            imagesaveFileDialog.Filter = "BMP Dosyası (*.bmp)|*.bmp|PNG Dosyası (*.png)|*.png|JPEG Dosyası (*.jpeg)|*.jpeg|JPG Dosyası (*.jpg)|*.jpg";
+
+
+            if (imagesaveFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string savePath = imagesaveFileDialog.FileName;
+                ImageFormat format = ImageFormat.Jpeg;
+
+                string extension = Path.GetExtension(savePath).ToLower();
+                if (extension == ".png")
+                {
+                    format = ImageFormat.Png;
+                }
+
+                else if (extension == ".bmp")
+                {
+                    format = ImageFormat.Bmp;
+                }
+
+                else if (extension == ".jpg")
+                {
+                    format = ImageFormat.Jpeg;
+                }
+
+                image.Save(savePath, format);
+                MessageBox.Show("Resim başarıyla kaydedildi.");
+            }
+
+        }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Restart();
         }
     }
 }

@@ -328,6 +328,7 @@ namespace VisiMorph
 
         public static Bitmap brightnessTransformation(Bitmap image, int brightness)
         {
+            Bitmap result = new Bitmap(image.Width, image.Height);
 
             for (int y = 0; y < image.Height; y++)
             {
@@ -338,10 +339,10 @@ namespace VisiMorph
                     int G = Math.Min(Math.Max(currentPixel.G + brightness, 0), 255);
                     int B = Math.Min(Math.Max(currentPixel.B + brightness, 0), 255);
                     Color newPixel = Color.FromArgb(R, G, B);
-                    image.SetPixel(x,y, newPixel);
+                    result.SetPixel(x, y, newPixel);
                 }
             }
-            return image;
+            return result;
         }
         // Format24bppRgb kullanımının nedeni bazı dosyaların indexed-pixel kullanması, bu hataya yol açıyor. O yüzden bazı fonksiyonlara dönüştürme için ekliyorum.
         public static int[] calculateHistogram(Bitmap image)
