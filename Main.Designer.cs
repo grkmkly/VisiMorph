@@ -62,7 +62,7 @@
             toolStripSeparator15 = new ToolStripSeparator();
             toolStripLabel10 = new ToolStripLabel();
             toolStripLabel9 = new ToolStripLabel();
-            toolStripButton3 = new ToolStripButton();
+            adaptiveThresholdButton = new ToolStripButton();
             toolStripSeparator17 = new ToolStripSeparator();
             toolStripLabel11 = new ToolStripLabel();
             convolutionButton = new ToolStripButton();
@@ -125,7 +125,7 @@
             navbarMenu.Dock = DockStyle.Left;
             navbarMenu.Font = new Font("Segoe UI Variable Text", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             navbarMenu.ImageScalingSize = new Size(20, 20);
-            navbarMenu.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel16, toolStripLabel5, cropButton, toolStripSeparator1, magnifyingButton, toolStripSeparator2, rotateButton, toolStripSeparator3, toolStripLabel4, addButton, toolStripSeparator4, multiplyButton, toolStripSeparator7, toolStripLabel3, grayButton, toolStripSeparator9, binaryButton, toolStripSeparator10, RGBtoHSVButton, toolStripSeparator11, toolStripLabel6, brightnessButton, toolStripSeparator13, toolStripLabel8, toolStripLabel7, histogramButton, toolStripSeparator15, toolStripLabel10, toolStripLabel9, toolStripButton3, toolStripSeparator17, toolStripLabel11, convolutionButton, toolStripSeparator23, saltpepperButton, toolStripSeparator19, meanfilterButton, toolStripSeparator20, medianfilterButton, toolStripSeparator21, blurringButton, toolStripSeparator22, toolStripLabel13, toolStripLabel12, sobelButton, toolStripSeparator25, toolStripLabel15, toolStripLabel14, dilationButton, toolStripSeparator27, erosionButton, toolStripSeparator28, openingButton, toolStripSeparator29, closingButton, toolStripSeparator30 });
+            navbarMenu.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel16, toolStripLabel5, cropButton, toolStripSeparator1, magnifyingButton, toolStripSeparator2, rotateButton, toolStripSeparator3, toolStripLabel4, addButton, toolStripSeparator4, multiplyButton, toolStripSeparator7, toolStripLabel3, grayButton, toolStripSeparator9, binaryButton, toolStripSeparator10, RGBtoHSVButton, toolStripSeparator11, toolStripLabel6, brightnessButton, toolStripSeparator13, toolStripLabel8, toolStripLabel7, histogramButton, toolStripSeparator15, toolStripLabel10, toolStripLabel9, adaptiveThresholdButton, toolStripSeparator17, toolStripLabel11, convolutionButton, toolStripSeparator23, saltpepperButton, toolStripSeparator19, meanfilterButton, toolStripSeparator20, medianfilterButton, toolStripSeparator21, blurringButton, toolStripSeparator22, toolStripLabel13, toolStripLabel12, sobelButton, toolStripSeparator25, toolStripLabel15, toolStripLabel14, dilationButton, toolStripSeparator27, erosionButton, toolStripSeparator28, openingButton, toolStripSeparator29, closingButton, toolStripSeparator30 });
             navbarMenu.LayoutStyle = ToolStripLayoutStyle.Flow;
             navbarMenu.Location = new Point(0, 0);
             navbarMenu.Name = "navbarMenu";
@@ -165,6 +165,7 @@
             cropButton.Name = "cropButton";
             cropButton.Size = new Size(32, 32);
             cropButton.Text = "Kırp";
+            cropButton.Click += cropButton_Click;
             // 
             // toolStripSeparator1
             // 
@@ -240,6 +241,7 @@
             multiplyButton.Name = "multiplyButton";
             multiplyButton.Size = new Size(32, 32);
             multiplyButton.Text = "Resim Çarp";
+            multiplyButton.Click += multiplyimageButton_Click;
             // 
             // toolStripSeparator7
             // 
@@ -262,6 +264,7 @@
             grayButton.Name = "grayButton";
             grayButton.Size = new Size(32, 32);
             grayButton.Text = "Gri Dönüştür";
+            grayButton.Click += graytransformationButton_Click;
             // 
             // toolStripSeparator9
             // 
@@ -279,6 +282,7 @@
             binaryButton.Name = "binaryButton";
             binaryButton.Size = new Size(32, 32);
             binaryButton.Text = "Bİnary Dönüştür";
+            binaryButton.Click += binarytransformationButton_Click;
             // 
             // toolStripSeparator10
             // 
@@ -369,16 +373,16 @@
             toolStripLabel9.Size = new Size(158, 24);
             toolStripLabel9.Text = "Eşikleme                ";
             // 
-            // toolStripButton3
+            // adaptiveThresholdButton
             // 
-            toolStripButton3.AutoSize = false;
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(32, 32);
-            toolStripButton3.Text = "Adaptif Eşikleme";
-            toolStripButton3.Click += toolStripButton3_Click;
+            adaptiveThresholdButton.AutoSize = false;
+            adaptiveThresholdButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            adaptiveThresholdButton.Image = (Image)resources.GetObject("adaptiveThresholdButton.Image");
+            adaptiveThresholdButton.ImageTransparentColor = Color.Magenta;
+            adaptiveThresholdButton.Name = "adaptiveThresholdButton";
+            adaptiveThresholdButton.Size = new Size(32, 32);
+            adaptiveThresholdButton.Text = "Adaptif Eşikleme";
+            adaptiveThresholdButton.Click += adaptiveThresholdButton_Click;
             // 
             // toolStripSeparator17
             // 
@@ -659,14 +663,14 @@
             // newFileButton
             // 
             newFileButton.Name = "newFileButton";
-            newFileButton.Size = new Size(224, 26);
+            newFileButton.Size = new Size(183, 26);
             newFileButton.Text = "Yeni Dosya";
             newFileButton.Click += newFileButton_Click;
             // 
             // saveFileButton
             // 
             saveFileButton.Name = "saveFileButton";
-            saveFileButton.Size = new Size(224, 26);
+            saveFileButton.Size = new Size(183, 26);
             saveFileButton.Text = "Dosya Kaydet";
             saveFileButton.Click += saveFileButton_Click;
             // 
@@ -819,7 +823,7 @@
         private ToolStripSeparator toolStripSeparator15;
         private ToolStripLabel toolStripLabel10;
         private ToolStripLabel toolStripLabel9;
-        private ToolStripButton toolStripButton3;
+        private ToolStripButton adaptiveThresholdButton;
         private ToolStripSeparator toolStripSeparator17;
         private ToolStripLabel toolStripLabel11;
         private ToolStripButton convolutionButton;
