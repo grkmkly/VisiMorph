@@ -78,6 +78,53 @@ namespace VisiMorph
             return newImage;
 
         }
+        public static Bitmap CropImage(Image image, Rectangle cropRect, Size displaySize)
+        {
+            if(image == null || cropRect.Width <= 0 || cropRect.Height <= 0)
+                return null;
+            // Resim boyutunu kontrol et
+            if (image.Width < cropRect.X + cropRect.Width || image.Height < cropRect.Y + cropRect.Height )
+            {
+                cropRect.Width = Math.Min(cropRect.Width, image.Width - cropRect.X);
+                cropRect.Height = Math.Min(cropRect.Height, image.Height - cropRect.Y);
+            }
+            else
+            {
+                // Resim boyutunu kontrol et
+                if (cropRect.X < 0 || cropRect.Y < 0)
+                {
+                    cropRect.X = Math.Max(cropRect.X, 0);
+                    cropRect.Y = Math.Max(cropRect.Y, 0);
+                }
+            }
+
+
+            Bitmap source = new Bitmap(image);
+
+            // Ölçekleme: Görüntü PictureBox’ta farklı boyutta olabilir
+            float scaleX = (float)source.Width / displaySize.Width;
+            float scaleY = (float)source.Height / displaySize.Height;
+
+            int cropX = (int)(cropRect.X * scaleX);
+            int cropY = (int)(cropRect.Y * scaleY);
+            int cropWidth = (int)(cropRect.Width * scaleX);
+            int cropHeight = (int)(cropRect.Height * scaleY);
+
+            // Yeni bitmap oluştur
+            Bitmap cropped = new Bitmap(cropWidth, cropHeight);
+
+            for (int y = 0; y < cropHeight; y++)
+            {
+                for (int x = 0; x < cropWidth; x++)
+                {
+                    Color pixel = source.GetPixel(cropX + x, cropY + y);
+                    cropped.SetPixel(x, y, pixel);
+                }
+            }
+
+            return cropped;
+        }
+
 
 
     }

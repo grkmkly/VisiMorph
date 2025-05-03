@@ -13,13 +13,18 @@ namespace VisiMorph
         {
             InitializeComponent();
             this.Resize += Form1_Resize;
+            this.KeyPreview = true;  // Form'un KeyPreview özelliğini true yap
+            this.KeyDown += new KeyEventHandler(Form_KeyDown);  // Bu satırla formun tuş olaylarını dinle
+
 
         }
         private void Main_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-        }
+            this.imageBox.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
 
+
+        }
         private PictureBox imageBox = new PictureBox();
         private Bitmap image;
         public Bitmap _originalImage;
@@ -27,16 +32,32 @@ namespace VisiMorph
         bool zoomModeActive;
         bool returnModeActive;
         private List<Bitmap> zoomedImageList = new List<Bitmap>();
+        private List<Bitmap> croppedImageList = new List<Bitmap>();
         private int prevVal;
         private int brightness;
         bool brightnessModeActive;
         bool isImageRotated = false;
-
-
-
+        //Kırpma için gerekli değişkenler
+        private Point cropStartPoint;
+        private Rectangle cropRect;
+        private Point startPoint;
+        private bool isCropping = false;
+        private bool cropModeActive = false;
+        private bool isDragging = false;
         private void Form1_Resize(object sender, EventArgs e)
         {
             CenterPictureBoxInPanel();
+        }
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            // CTRL+Z kombinasyonu ile geri alma işlemi
+            if ( e.Control && e.KeyCode == Keys.Z)
+            {
+                if (cropModeActive)
+                    UndoCrop();
+                else if (zoomModeActive)
+                    UndoZoom();
+            }
         }
         private void CenterPictureBoxInPanel()
         {
@@ -84,6 +105,7 @@ namespace VisiMorph
                 imageBox.SizeMode = PictureBoxSizeMode.Normal;
                 imageBox.Width = image.Width;
                 imageBox.Height = image.Height;
+
                 CenterPictureBoxInPanel();
 
                 appPanel.Controls.Add(imageBox);
@@ -141,8 +163,36 @@ namespace VisiMorph
         //RESİM KIRPMA
         private void cropButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Kırpma Kodu Daha Yazılmadı. -SME");
-            return;
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+                return;
+            }
+
+            cropModeActive = !cropModeActive;
+            if (cropModeActive)
+            {
+                cropButton.BackColor = Color.LightGray;
+                imageBox.Cursor = Cursors.Cross;
+                imageBox.MouseDown -= imageBox_MouseDown;
+                imageBox.MouseMove -= imageBox_MouseMove;
+                imageBox.MouseUp -= imageBox_MouseUp;
+                imageBox.MouseDown += imageBox_MouseDown;
+                imageBox.MouseMove += imageBox_MouseMove;
+                imageBox.MouseUp += imageBox_MouseUp;
+                //Kırpmayı Geri Alma Eventi İçin
+                imageBox.MouseClick -= imageBox_MouseClick;
+                imageBox.MouseClick += imageBox_MouseClick;
+            }
+            else
+            {
+                imageBox.Cursor = Cursors.Default;
+                cropButton.BackColor = Color.Transparent;
+                cropModeActive = false;
+                _originalImage = (Bitmap)imageBox.Image;
+                croppedImageList.Clear();
+                CenterPictureBoxInPanel();
+            }
         }
         //YAKINLAŞTIRMA-UZAKLAŞTIRMA
         private void magnifyingButton_Click(object sender, EventArgs e)
@@ -168,7 +218,8 @@ namespace VisiMorph
                 // Büyültme modu açıldı
                 this.Cursor = Cursors.Cross;
                 magnifyingButton.BackColor = Color.LightGray;
-                imageBox.Image = image;
+                imageBox.Image = _originalImage;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
                 imageBox.MouseClick -= imageBox_MouseClick;
                 imageBox.MouseClick += imageBox_MouseClick;
             }
@@ -196,7 +247,7 @@ namespace VisiMorph
                     int rotateDegree = imageRotationForm.degreeValue;
                     if (!isImageRotated)
                     {
-                        GeometricOperations.OriginalImage(image);
+                        GeometricOperations.OriginalImage(_originalImage);
                         isImageRotated = true;
                     }
                     Bitmap newImage = GeometricOperations.ImageRotate(GeometricOperations.originalImage, rotateDegree, GeometricOperations.originalImage.Size);
@@ -238,7 +289,7 @@ namespace VisiMorph
                     appPanel.Controls.Add(imageBox);
                 }
             }
-            _originalImage = image;
+            _originalImage = (Bitmap)imageBox.Image;
 
         }
         //RESİM ÇARPMA
@@ -676,13 +727,13 @@ namespace VisiMorph
             }
             _originalImage = image;
         }
-        //REİM BÜYÜLTME İÇİN GEREKEN EVENT
+        //RESİM BÜYÜLTME İÇİN GEREKEN EVENT
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!zoomModeActive || image == null || !returnModeActive)
+            if (image == null)
                 return;
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && zoomModeActive)
             {
                 this.Cursor = Cursors.WaitCursor;
                 Bitmap tempImage = new Bitmap(imageBox.Image);
@@ -711,28 +762,10 @@ namespace VisiMorph
                 zoomedImageList.Add(zoomed);
                 imageBox.Image = zoomed;
                 imageBox.SizeMode = PictureBoxSizeMode.Zoom;
+                this.Cursor = Cursors.Cross;
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                if (zoomedImageList.Count == 0 || zoomedImageList.Count == 1)
-                {
-                    imageBox.Image = image;
-                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                    CenterPictureBoxInPanel();
-                    zoomedImageList.Clear();
-                    return;
-                }
-                else
-                {
-                    imageBox.Image = zoomedImageList[zoomedImageList.Count - 2];
-                    zoomedImageList.RemoveAt(zoomedImageList.Count - 2);
-                    imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                    CenterPictureBoxInPanel();
-                }
+            
 
-            }
-
-            this.Cursor = Cursors.Cross;
         }
         //PARLAKLIK AYARLAMA İÇİN GEREKEN EVENT
         private void BrightnessTrack_MouseUp(object? sender, EventArgs e)
@@ -761,7 +794,109 @@ namespace VisiMorph
                 brightnessLabel.Text = $"Seçili Değer: {brightnessTrack.Value}";
             }
         }
+        //RESİM KIRPMA İÇİN GEREKEN EVENT (BU VE ALTINDAKİ 4 EVENT)
+        private void imageBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!cropModeActive) return;
 
-        
+            isDragging = true;
+            startPoint = e.Location;
+            cropRect = new Rectangle();
+        }
+
+        private void imageBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!cropModeActive || !isDragging) return;
+
+            int x = Math.Min(startPoint.X, e.X);
+            int y = Math.Min(startPoint.Y, e.Y);
+            int width = Math.Abs(startPoint.X - e.X);
+            int height = Math.Abs(startPoint.Y - e.Y);
+
+            cropRect = new Rectangle(x, y, width, height);
+            imageBox.Refresh(); // Paint olayını tetikler
+
+        }
+
+        private void imageBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!cropModeActive || !isDragging) return;
+
+            isDragging = false;
+
+            // Kırpma işlemini yap
+            var cropped = ArithmeticTransforms.CropImage(imageBox.Image, cropRect, imageBox.Size);
+            // Kırpılmış resmi listeye ekle
+            croppedImageList.Add(cropped);
+            cropRect = Rectangle.Empty;
+            imageBox.Invalidate();
+
+            if (cropped != null) 
+            { 
+                imageBox.Image = cropped;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                imageBox.Width = cropped.Width;
+                imageBox.Height = cropped.Height;
+                CenterPictureBoxInPanel();
+            }
+
+        }
+        //KIRPMA BÖLGESİ SEÇİLEN YER İÇİN GEREKLİ EVENT
+        private void imageBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (cropModeActive && cropRect.Width > 0 && cropRect.Height > 0)
+            {
+                using (Pen redPen = new Pen(Color.Red, 2))
+                {
+                    redPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    e.Graphics.DrawRectangle(redPen, cropRect);
+                }
+            }
+        }
+        //KIRPMA İŞLEMİ GERİ ALMA
+        private void UndoCrop()
+        {
+            if (croppedImageList.Count == 0 || croppedImageList.Count == 1)
+            {
+                imageBox.Image = _originalImage;
+                imageBox.Width = _originalImage.Width;
+                imageBox.Height = _originalImage.Height;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                CenterPictureBoxInPanel();
+                croppedImageList.Clear();
+                return;
+            }
+            else
+            {
+                imageBox.Image = croppedImageList[croppedImageList.Count - 2];
+                imageBox.Width = croppedImageList[croppedImageList.Count - 2].Width;
+                imageBox.Height = croppedImageList[croppedImageList.Count - 2].Height;
+                croppedImageList.RemoveAt(croppedImageList.Count - 2);
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+
+                CenterPictureBoxInPanel();
+            }
+        }
+        //ZOOM İŞLEMİNİ GERİ ALMA
+        private void UndoZoom()
+        {
+            if (zoomedImageList.Count == 0 || zoomedImageList.Count == 1)
+            {
+                imageBox.Image = _originalImage;
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                CenterPictureBoxInPanel();
+                zoomedImageList.Clear();
+                return;
+            }
+            else
+            {
+                imageBox.Image = zoomedImageList[zoomedImageList.Count - 2];
+                zoomedImageList.RemoveAt(zoomedImageList.Count - 2);
+                imageBox.SizeMode = PictureBoxSizeMode.Normal;
+                CenterPictureBoxInPanel();
+            }
+        }
+
+
     }
 }
