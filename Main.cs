@@ -22,9 +22,19 @@ namespace VisiMorph
         {
             this.WindowState = FormWindowState.Maximized;
             this.imageBox.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            buttons = new List<ToolStripButton> {
+                cropButton, magnifyingButton, rotateButton,
+                addButton, multiplyButton, grayButton,
+                binaryButton, RGBtoHSVButton, brightnessButton,
+                histogramButton, adaptiveThresholdButton, convolutionButton,
+                saltpepperButton, meanfilterButton, medianfilterButton,
+                blurringButton, sobelButton, dilationButton, 
+                erosionButton, openingButton, closingButton 
+            };
 
 
         }
+        List<ToolStripButton> buttons = new List<ToolStripButton>();
         private PictureBox imageBox = new PictureBox();
         private Bitmap image;
         public Bitmap _originalImage;
@@ -168,10 +178,13 @@ namespace VisiMorph
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
                 return;
             }
+            ToolStripButton clickedButton = sender as ToolStripButton;
+
 
             cropModeActive = !cropModeActive;
             if (cropModeActive)
             {
+                DisableOtherButtons(clickedButton);
                 cropButton.BackColor = Color.LightGray;
                 imageBox.Cursor = Cursors.Cross;
                 imageBox.MouseDown -= imageBox_MouseDown;
@@ -186,6 +199,8 @@ namespace VisiMorph
             }
             else
             {
+                EnableAllButtons();
+
                 imageBox.Cursor = Cursors.Default;
                 cropButton.BackColor = Color.Transparent;
                 cropModeActive = false;
@@ -202,10 +217,12 @@ namespace VisiMorph
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
                 return;
             }
+            ToolStripButton clickedButton = sender as ToolStripButton;
             zoomModeActive = !zoomModeActive;
             returnModeActive = !returnModeActive;
             if (!zoomModeActive)
             {
+                EnableAllButtons();
                 // Büyültme modu kapatıldı
                 magnifyingButton.BackColor = Color.Transparent;
                 image = (Bitmap)imageBox.Image;
@@ -215,6 +232,7 @@ namespace VisiMorph
 
             if (zoomModeActive && returnModeActive)
             {
+                DisableOtherButtons(clickedButton);
                 // Büyültme modu açıldı
                 this.Cursor = Cursors.Cross;
                 magnifyingButton.BackColor = Color.LightGray;
@@ -399,9 +417,11 @@ namespace VisiMorph
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
                 return;
             }
+            ToolStripButton clickedButton = sender as ToolStripButton;
             brightnessModeActive = !brightnessModeActive;
             if (brightnessModeActive)
             {
+                DisableOtherButtons(clickedButton);
                 panel1.Visible = !panel1.Visible;
                 brightnessButton.BackColor = panel1.Visible ? Color.LightGray : Color.Transparent;
                 panel1.Dock = DockStyle.Left;
@@ -425,6 +445,7 @@ namespace VisiMorph
             }
             else
             {
+                EnableAllButtons();
                 image = (Bitmap)imageBox.Image;
                 _originalImage = image;
                 panel1.Visible = false;
@@ -727,6 +748,9 @@ namespace VisiMorph
             }
             _originalImage = image;
         }
+
+        //EVENTLER
+
         //RESİM BÜYÜLTME İÇİN GEREKEN EVENT
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
         {
@@ -794,7 +818,7 @@ namespace VisiMorph
                 brightnessLabel.Text = $"Seçili Değer: {brightnessTrack.Value}";
             }
         }
-        //RESİM KIRPMA İÇİN GEREKEN EVENT (BU VE ALTINDAKİ 4 EVENT)
+        //RESİM KIRPMA İÇİN GEREKEN EVENT
         private void imageBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (!cropModeActive) return;
@@ -803,7 +827,7 @@ namespace VisiMorph
             startPoint = e.Location;
             cropRect = new Rectangle();
         }
-
+        //RESİM KIRPMA İÇİN GEREKEN EVENT
         private void imageBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (!cropModeActive || !isDragging) return;
@@ -817,7 +841,7 @@ namespace VisiMorph
             imageBox.Refresh(); // Paint olayını tetikler
 
         }
-
+        //RESİM KIRPMA İÇİN GEREKEN EVENT
         private void imageBox_MouseUp(object sender, MouseEventArgs e)
         {
             if (!cropModeActive || !isDragging) return;
@@ -896,7 +920,26 @@ namespace VisiMorph
                 CenterPictureBoxInPanel();
             }
         }
-
+        //TIKLANMAMIŞ BUTONLARI DEVRE DIŞI BIRAKMA
+        private void DisableOtherButtons(ToolStripButton activeButton)
+        {
+            
+            foreach (ToolStripButton button in buttons)
+            {
+                if (button != activeButton)
+                {
+                    button.Enabled = false;
+                }
+            }
+        }
+        // BUTONLARI AKTİF ETME
+        private void EnableAllButtons()
+        {
+            foreach (ToolStripButton button in buttons)
+            {
+                button.Enabled = true;
+            }
+        }
 
     }
 }
