@@ -14,8 +14,8 @@ namespace VisiMorph
             int height = image.Height;
 
             int totalnoisedPixel = (width * height) * noiseRatio / 100;
-            int totalwhitePixel = (width * height) * saltRatio / 100;
-            int totalblackPixel = (width * height) * (100 - saltRatio) / 100;
+            int totalwhitePixel = totalnoisedPixel * saltRatio / 100;
+            int totalblackPixel = totalnoisedPixel * (100 - saltRatio) / 100;
 
             Random random = new Random();
 

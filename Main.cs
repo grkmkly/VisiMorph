@@ -298,7 +298,7 @@ namespace VisiMorph
                 {
                     string imagePath = imageopenFileDialog.FileName;
                     Bitmap secondImage = new Bitmap(imagePath);
-                    image = ArithmeticTransforms.AddImage(image, secondImage);
+                    image = ArithmeticTransforms.AddImage(_originalImage, secondImage);
                     imageBox.Image = image;
                     imageBox.SizeMode = PictureBoxSizeMode.Normal;
                     imageBox.Width = image.Width;
@@ -327,7 +327,7 @@ namespace VisiMorph
                 {
                     string imagePath = imageopenFileDialog.FileName;
                     Bitmap secondImage = new Bitmap(imagePath);
-                    image = ArithmeticTransforms.MultiplyImage(image, secondImage);
+                    image = ArithmeticTransforms.MultiplyImage(_originalImage, secondImage);
                     imageBox.Image = image;
                     imageBox.SizeMode = PictureBoxSizeMode.Normal;
                     imageBox.Width = image.Width;
@@ -350,7 +350,7 @@ namespace VisiMorph
             else
             {
                 this.Cursor = Cursors.WaitCursor;
-                image = ImageFunctions.grayTransformation(image);
+                image = ImageFunctions.grayTransformation(_originalImage);
                 imageBox.Image = image;
                 this.Cursor = Cursors.Default;
             }
@@ -374,7 +374,7 @@ namespace VisiMorph
                     threshold = thresholdTrackBar.trackbarValue;
                 }
                 this.Cursor = Cursors.WaitCursor;
-                image = ImageFunctions.binaryTransformation(image, threshold);
+                image = ImageFunctions.binaryTransformation(_originalImage, threshold);
                 imageBox.Image = image;
                 this.Cursor = Cursors.Default;
             }
@@ -401,7 +401,7 @@ namespace VisiMorph
                     new_H = RGBtoHSVForm.H;
                     new_S = RGBtoHSVForm.S;
                     new_V = RGBtoHSVForm.V;
-                    image = ImageFunctions.imageRGBtoHSV(image, new_H, new_S, new_V);
+                    image = ImageFunctions.imageRGBtoHSV(_originalImage, new_H, new_S, new_V);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
                 }
@@ -500,7 +500,7 @@ namespace VisiMorph
                     windowSize = adaptiveThresholdingForm.windowMatrixSize;
                 }
                 this.Cursor = Cursors.WaitCursor;
-                image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+                image = AdaptiveThresholding.adaptivethresholdingMean(_originalImage, windowSize);
                 this.Cursor = Cursors.Default;
                 imageBox.Image = image;
             }
@@ -525,7 +525,7 @@ namespace VisiMorph
                     bool isEdgeFill = gaussForm.fillEdge;
                     float sigmaValue = gaussForm.sigma;
                     double[,] gaussFilter = ImageFunctions.GaussianFilter(sigmaValue, gaussMatrixSize);
-                    image = ImageFunctions.Convolution(image, gaussFilter, isEdgeFill);
+                    image = ImageFunctions.Convolution(_originalImage, gaussFilter, isEdgeFill);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
                 }
@@ -548,7 +548,7 @@ namespace VisiMorph
                 if (saltpepperForm.ShowDialog(this) == DialogResult.OK)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    image = SaltPepper.saltpepperNoise(image, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
+                    image = SaltPepper.saltpepperNoise(_originalImage, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
                     this.Cursor = Cursors.Default;
                     imageBox.Image = image;
                 }
@@ -571,7 +571,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
-                    image = Filters.medianFilter(image, matrixSize);
+                    image = Filters.medianFilter(_originalImage, matrixSize);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
                 }
@@ -594,7 +594,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
-                    image = Filters.medianFilter(image, matrixSize);
+                    image = Filters.medianFilter(_originalImage, matrixSize);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
                 }
@@ -618,7 +618,7 @@ namespace VisiMorph
                     this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
                     int[,] blurringMatrix = Filters.createBlurringMatrix(matrixSize);
-                    image = Filters.blurringFilter(image, blurringMatrix);
+                    image = Filters.blurringFilter(_originalImage, blurringMatrix);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
                 }
@@ -638,7 +638,7 @@ namespace VisiMorph
             else
             {
                 this.Cursor = Cursors.WaitCursor;
-                image = Sobel.sobelEdgeAlgoritm(image);
+                image = Sobel.sobelEdgeAlgoritm(_originalImage);
                 imageBox.Image = image;
                 this.Cursor = Cursors.Default;
             }
@@ -662,7 +662,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
-                    Bitmap newImage = Morphology.imageDilation(image, kernel);
+                    Bitmap newImage = Morphology.imageDilation(_originalImage, kernel);
                     image = newImage;
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
@@ -688,7 +688,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
-                    Bitmap newImage = Morphology.imageErosion(image, kernel);
+                    Bitmap newImage = Morphology.imageErosion(_originalImage, kernel);
                     image = newImage;
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
@@ -714,7 +714,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
-                    Bitmap newImage = Morphology.imageErosion(image, kernel);
+                    Bitmap newImage = Morphology.imageErosion(_originalImage, kernel);
                     image = Morphology.imageDilation(newImage, kernel);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;
@@ -740,7 +740,7 @@ namespace VisiMorph
                 {
                     this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
-                    Bitmap newImage = Morphology.imageDilation(image, kernel);
+                    Bitmap newImage = Morphology.imageDilation(_originalImage, kernel);
                     image = Morphology.imageErosion(newImage, kernel);
                     imageBox.Image = image;
                     this.Cursor = Cursors.Default;

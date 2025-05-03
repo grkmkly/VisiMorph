@@ -421,7 +421,7 @@
             saltpepperButton.ImageTransparentColor = Color.Magenta;
             saltpepperButton.Name = "saltpepperButton";
             saltpepperButton.Size = new Size(32, 32);
-            saltpepperButton.Text = "Salt&&Pepper Gürültü";
+            saltpepperButton.Text = "Salt and Pepper Gürültü";
             saltpepperButton.Click += saltpepperButton_Click;
             // 
             // toolStripSeparator19
@@ -472,7 +472,7 @@
             blurringButton.ImageTransparentColor = Color.Magenta;
             blurringButton.Name = "blurringButton";
             blurringButton.Size = new Size(32, 32);
-            blurringButton.Text = "Bulankılaştır";
+            blurringButton.Text = "Bulanıklaştır";
             blurringButton.Click += blurringButton_Click;
             // 
             // toolStripSeparator22
@@ -722,7 +722,8 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(brightnessLabel);
             panel1.Controls.Add(brightnessTrack);
-            panel1.Location = new Point(3, 30);
+            panel1.ForeColor = Color.White;
+            panel1.Location = new Point(3, 32);
             panel1.Name = "panel1";
             panel1.Size = new Size(191, 118);
             panel1.TabIndex = 1;
