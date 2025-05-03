@@ -49,6 +49,7 @@ namespace VisiMorph
 
         private void histogramStretchButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor; 
             Bitmap stretched = ImageFunctions.stretchingHistogram(originalImage);
             resultImage = stretched;
 
@@ -58,10 +59,12 @@ namespace VisiMorph
             {
                 chart.Series[0].Points.AddXY(i, newHistogramArray[i]);
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void histogramExtendButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             if (histogramRangeMax.Value == histogramRangeMin.Value) 
             { 
                 MessageBox.Show("Aralık (range) değerleri, birbirine eşit olamaz.");
@@ -78,6 +81,7 @@ namespace VisiMorph
             {
                 chart.Series[0].Points.AddXY(i, newHistogramArray[i]);
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void okButton_Click(object sender, EventArgs e)

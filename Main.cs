@@ -33,6 +33,7 @@ namespace VisiMorph
         bool isImageRotated = false;
 
 
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             CenterPictureBoxInPanel();
@@ -187,6 +188,7 @@ namespace VisiMorph
             else
             {
                 ImageRotationForm imageRotationForm = new ImageRotationForm();
+                imageRotationForm.StartPosition = FormStartPosition.CenterParent;
 
                 if (imageRotationForm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -275,10 +277,13 @@ namespace VisiMorph
             {
                 MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
             }
+
             else
             {
+                this.Cursor = Cursors.WaitCursor;
                 image = ImageFunctions.grayTransformation(image);
                 imageBox.Image = image;
+                this.Cursor = Cursors.Default;
             }
             _originalImage = image;
         }
@@ -294,12 +299,15 @@ namespace VisiMorph
             {
                 int threshold = 0;
                 ThresholdTrackBar thresholdTrackBar = new ThresholdTrackBar();
+                thresholdTrackBar.StartPosition = FormStartPosition.CenterParent;
                 if (thresholdTrackBar.ShowDialog() == DialogResult.OK)
                 {
                     threshold = thresholdTrackBar.trackbarValue;
                 }
+                this.Cursor = Cursors.WaitCursor;
                 image = ImageFunctions.binaryTransformation(image, threshold);
                 imageBox.Image = image;
+                this.Cursor = Cursors.Default;
             }
             _originalImage = image;
         }
@@ -317,13 +325,16 @@ namespace VisiMorph
                 double new_S;
                 double new_V;
                 RGBtoHSVTrackBar RGBtoHSVForm = new RGBtoHSVTrackBar();
+                RGBtoHSVForm.StartPosition = FormStartPosition.CenterParent;
                 if (RGBtoHSVForm.ShowDialog() == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     new_H = RGBtoHSVForm.H;
                     new_S = RGBtoHSVForm.S;
                     new_V = RGBtoHSVForm.V;
                     image = ImageFunctions.imageRGBtoHSV(image, new_H, new_S, new_V);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -391,8 +402,10 @@ namespace VisiMorph
 
                 if (histogramChart.DialogResult == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     image = histogramChart.resultImage;
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
 
             }
@@ -409,11 +422,14 @@ namespace VisiMorph
             {
                 int windowSize = 0;
                 AdaptiveThresholdingForm adaptiveThresholdingForm = new AdaptiveThresholdingForm();
+                adaptiveThresholdingForm.StartPosition = FormStartPosition.CenterParent;
                 if (adaptiveThresholdingForm.ShowDialog() == DialogResult.OK)
                 {
                     windowSize = adaptiveThresholdingForm.windowMatrixSize;
                 }
+                this.Cursor = Cursors.WaitCursor;
                 image = AdaptiveThresholding.adaptivethresholdingMean(image, windowSize);
+                this.Cursor = Cursors.Default;
                 imageBox.Image = image;
             }
             _originalImage = image;
@@ -429,14 +445,17 @@ namespace VisiMorph
             else
             {
                 GaussForm gaussForm = new GaussForm();
+                gaussForm.StartPosition = FormStartPosition.CenterParent;
                 if (gaussForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int gaussMatrixSize = gaussForm.gaussMatrixSize;
                     bool isEdgeFill = gaussForm.fillEdge;
                     float sigmaValue = gaussForm.sigma;
                     double[,] gaussFilter = ImageFunctions.GaussianFilter(sigmaValue, gaussMatrixSize);
                     image = ImageFunctions.Convolution(image, gaussFilter, isEdgeFill);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -452,10 +471,13 @@ namespace VisiMorph
             else
             {
                 SaltPepperForm saltpepperForm = new SaltPepperForm();
+                saltpepperForm.StartPosition = FormStartPosition.CenterParent;
 
                 if (saltpepperForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     image = SaltPepper.saltpepperNoise(image, saltpepperForm.totalNoiseRatioValue, saltpepperForm.saltRatioValue);
+                    this.Cursor = Cursors.Default;
                     imageBox.Image = image;
                 }
             }
@@ -472,11 +494,14 @@ namespace VisiMorph
             else
             {
                 FilterForm filterForm = new FilterForm();
+                filterForm.StartPosition = FormStartPosition.CenterParent;
                 if (filterForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
                     image = Filters.medianFilter(image, matrixSize);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -492,11 +517,14 @@ namespace VisiMorph
             else
             {
                 FilterForm filterForm = new FilterForm();
+                filterForm.StartPosition = FormStartPosition.CenterParent;
                 if (filterForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
                     image = Filters.medianFilter(image, matrixSize);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -512,12 +540,15 @@ namespace VisiMorph
             else
             {
                 FilterForm filterForm = new FilterForm();
+                filterForm.StartPosition = FormStartPosition.CenterParent;
                 if (filterForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int matrixSize = filterForm.filterMatrixSize;
                     int[,] blurringMatrix = Filters.createBlurringMatrix(matrixSize);
                     image = Filters.blurringFilter(image, blurringMatrix);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
 
             }
@@ -534,8 +565,10 @@ namespace VisiMorph
 
             else
             {
+                this.Cursor = Cursors.WaitCursor;
                 image = Sobel.sobelEdgeAlgoritm(image);
                 imageBox.Image = image;
+                this.Cursor = Cursors.Default;
             }
             _originalImage = image;
         }
@@ -550,14 +583,17 @@ namespace VisiMorph
             else
             {
                 MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.StartPosition = FormStartPosition.CenterParent;
                 morphologyMatrixForm.ShowDialog();
 
                 if (morphologyMatrixForm.DialogResult == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
                     Bitmap newImage = Morphology.imageDilation(image, kernel);
                     image = newImage;
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -573,14 +609,17 @@ namespace VisiMorph
             else
             {
                 MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.StartPosition = FormStartPosition.CenterParent;
                 morphologyMatrixForm.ShowDialog();
 
                 if (morphologyMatrixForm.DialogResult == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
                     Bitmap newImage = Morphology.imageErosion(image, kernel);
                     image = newImage;
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -596,14 +635,17 @@ namespace VisiMorph
             else
             {
                 MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.StartPosition = FormStartPosition.CenterParent;
                 morphologyMatrixForm.ShowDialog();
 
                 if (morphologyMatrixForm.DialogResult == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
                     Bitmap newImage = Morphology.imageErosion(image, kernel);
                     image = Morphology.imageDilation(newImage, kernel);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
@@ -619,14 +661,17 @@ namespace VisiMorph
             else
             {
                 MorphologyMatrixForm morphologyMatrixForm = new MorphologyMatrixForm();
+                morphologyMatrixForm.StartPosition = FormStartPosition.CenterParent;
                 morphologyMatrixForm.ShowDialog();
 
                 if (morphologyMatrixForm.DialogResult == DialogResult.OK)
                 {
+                    this.Cursor = Cursors.WaitCursor;
                     int[,] kernel = morphologyMatrixForm.kernelMatrix;
                     Bitmap newImage = Morphology.imageDilation(image, kernel);
                     image = Morphology.imageErosion(newImage, kernel);
                     imageBox.Image = image;
+                    this.Cursor = Cursors.Default;
                 }
             }
             _originalImage = image;
