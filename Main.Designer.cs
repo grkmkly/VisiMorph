@@ -33,7 +33,6 @@
             imageopenFileDialog = new OpenFileDialog();
             navbarMenu = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
-            toolStripLabel16 = new ToolStripLabel();
             toolStripLabel5 = new ToolStripLabel();
             cropButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -53,6 +52,8 @@
             toolStripSeparator10 = new ToolStripSeparator();
             RGBtoHSVButton = new ToolStripButton();
             toolStripSeparator11 = new ToolStripSeparator();
+            RGBtoYCBCRButton = new ToolStripButton();
+            toolStripSeparator5 = new ToolStripSeparator();
             toolStripLabel6 = new ToolStripLabel();
             brightnessButton = new ToolStripButton();
             toolStripSeparator13 = new ToolStripSeparator();
@@ -75,7 +76,6 @@
             toolStripSeparator21 = new ToolStripSeparator();
             blurringButton = new ToolStripButton();
             toolStripSeparator22 = new ToolStripSeparator();
-            toolStripLabel13 = new ToolStripLabel();
             toolStripLabel12 = new ToolStripLabel();
             sobelButton = new ToolStripButton();
             toolStripSeparator25 = new ToolStripSeparator();
@@ -105,7 +105,25 @@
             toolStripDropDownButton2 = new ToolStripDropDownButton();
             restartButton = new ToolStripMenuItem();
             appPanel = new Panel();
+            ycbcrPanel = new Panel();
+            ycbcrOkButton = new Button();
+            crLabel = new Label();
+            cbLabel = new Label();
+            crTrackBar = new TrackBar();
+            yLabel = new Label();
+            cbTrackBar = new TrackBar();
+            label6 = new Label();
+            yTrackBar = new TrackBar();
             brightnessTrackBar = new TrackBar();
+            hsvPanel = new Panel();
+            hsvOkButton = new Button();
+            vLabel = new Label();
+            sLabel = new Label();
+            vTrackBar = new TrackBar();
+            hLabel = new Label();
+            sTrackBar = new TrackBar();
+            label2 = new Label();
+            hTrackBar = new TrackBar();
             panel1 = new Panel();
             label1 = new Label();
             brightnessLabel = new Label();
@@ -113,7 +131,15 @@
             navbarMenu.SuspendLayout();
             toolStrip1.SuspendLayout();
             appPanel.SuspendLayout();
+            ycbcrPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)crTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)yTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)brightnessTrackBar).BeginInit();
+            hsvPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)vTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)hTrackBar).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)brightnessTrack).BeginInit();
             SuspendLayout();
@@ -125,35 +151,30 @@
             navbarMenu.Dock = DockStyle.Left;
             navbarMenu.Font = new Font("Segoe UI Variable Text", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             navbarMenu.ImageScalingSize = new Size(20, 20);
-            navbarMenu.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel16, toolStripLabel5, cropButton, toolStripSeparator1, magnifyingButton, toolStripSeparator2, rotateButton, toolStripSeparator3, toolStripLabel4, addButton, toolStripSeparator4, multiplyButton, toolStripSeparator7, toolStripLabel3, grayButton, toolStripSeparator9, binaryButton, toolStripSeparator10, RGBtoHSVButton, toolStripSeparator11, toolStripLabel6, brightnessButton, toolStripSeparator13, toolStripLabel8, toolStripLabel7, histogramButton, toolStripSeparator15, toolStripLabel10, toolStripLabel9, adaptiveThresholdButton, toolStripSeparator17, toolStripLabel11, convolutionButton, toolStripSeparator23, saltpepperButton, toolStripSeparator19, meanfilterButton, toolStripSeparator20, medianfilterButton, toolStripSeparator21, blurringButton, toolStripSeparator22, toolStripLabel13, toolStripLabel12, sobelButton, toolStripSeparator25, toolStripLabel15, toolStripLabel14, dilationButton, toolStripSeparator27, erosionButton, toolStripSeparator28, openingButton, toolStripSeparator29, closingButton, toolStripSeparator30 });
+            navbarMenu.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel5, cropButton, toolStripSeparator1, magnifyingButton, toolStripSeparator2, rotateButton, toolStripSeparator3, toolStripLabel4, addButton, toolStripSeparator4, multiplyButton, toolStripSeparator7, toolStripLabel3, grayButton, toolStripSeparator9, binaryButton, toolStripSeparator10, RGBtoHSVButton, toolStripSeparator11, RGBtoYCBCRButton, toolStripSeparator5, toolStripLabel6, brightnessButton, toolStripSeparator13, toolStripLabel8, toolStripLabel7, histogramButton, toolStripSeparator15, toolStripLabel10, toolStripLabel9, adaptiveThresholdButton, toolStripSeparator17, toolStripLabel11, convolutionButton, toolStripSeparator23, saltpepperButton, toolStripSeparator19, meanfilterButton, toolStripSeparator20, medianfilterButton, toolStripSeparator21, blurringButton, toolStripSeparator22, toolStripLabel12, sobelButton, toolStripSeparator25, toolStripLabel15, toolStripLabel14, dilationButton, toolStripSeparator27, erosionButton, toolStripSeparator28, openingButton, toolStripSeparator29, closingButton, toolStripSeparator30 });
             navbarMenu.LayoutStyle = ToolStripLayoutStyle.Flow;
             navbarMenu.Location = new Point(0, 0);
             navbarMenu.Name = "navbarMenu";
             navbarMenu.RenderMode = ToolStripRenderMode.System;
-            navbarMenu.Size = new Size(157, 688);
+            navbarMenu.Size = new Size(191, 688);
             navbarMenu.TabIndex = 0;
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.AutoSize = false;
-            toolStripLabel1.BackgroundImageLayout = ImageLayout.Center;
+            toolStripLabel1.BackgroundImageLayout = ImageLayout.None;
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripLabel1.Image = Properties.Resources.visimorph1;
             toolStripLabel1.ImageScaling = ToolStripItemImageScaling.None;
             toolStripLabel1.Margin = new Padding(0, 5, 0, 0);
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(155, 23);
-            // 
-            // toolStripLabel16
-            // 
-            toolStripLabel16.Name = "toolStripLabel16";
-            toolStripLabel16.Size = new Size(180, 24);
-            toolStripLabel16.Text = "                                  ";
+            toolStripLabel1.Size = new Size(155, 50);
             // 
             // toolStripLabel5
             // 
+            toolStripLabel5.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 162);
             toolStripLabel5.Name = "toolStripLabel5";
-            toolStripLabel5.Size = new Size(158, 24);
+            toolStripLabel5.Size = new Size(190, 22);
             toolStripLabel5.Text = "Geometrik İşlemler";
             // 
             // cropButton
@@ -211,9 +232,10 @@
             // 
             // toolStripLabel4
             // 
+            toolStripLabel4.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel4.Name = "toolStripLabel4";
-            toolStripLabel4.Size = new Size(153, 24);
-            toolStripLabel4.Text = "Aritmetik İşlemler ";
+            toolStripLabel4.Size = new Size(240, 22);
+            toolStripLabel4.Text = "Aritmetik İşlemler     ";
             // 
             // addButton
             // 
@@ -251,8 +273,9 @@
             // 
             // toolStripLabel3
             // 
+            toolStripLabel3.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel3.Name = "toolStripLabel3";
-            toolStripLabel3.Size = new Size(154, 24);
+            toolStripLabel3.Size = new Size(170, 22);
             toolStripLabel3.Text = "Renk Dönüşümleri";
             // 
             // grayButton
@@ -307,10 +330,29 @@
             toolStripSeparator11.Name = "toolStripSeparator11";
             toolStripSeparator11.Size = new Size(6, 32);
             // 
+            // RGBtoYCBCRButton
+            // 
+            RGBtoYCBCRButton.AutoSize = false;
+            RGBtoYCBCRButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            RGBtoYCBCRButton.ForeColor = SystemColors.ActiveCaptionText;
+            RGBtoYCBCRButton.Image = (Image)resources.GetObject("RGBtoYCBCRButton.Image");
+            RGBtoYCBCRButton.ImageTransparentColor = Color.Magenta;
+            RGBtoYCBCRButton.Name = "RGBtoYCBCRButton";
+            RGBtoYCBCRButton.Size = new Size(32, 32);
+            RGBtoYCBCRButton.Text = "RGD-YCBCR Dönüştür";
+            RGBtoYCBCRButton.Click += RGBtoYCBCRButton_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.AutoSize = false;
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(6, 32);
+            // 
             // toolStripLabel6
             // 
+            toolStripLabel6.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel6.Name = "toolStripLabel6";
-            toolStripLabel6.Size = new Size(153, 24);
+            toolStripLabel6.Size = new Size(260, 22);
             toolStripLabel6.Text = "Parlaklık                ";
             // 
             // brightnessButton
@@ -339,9 +381,10 @@
             // toolStripLabel7
             // 
             toolStripLabel7.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripLabel7.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel7.Name = "toolStripLabel7";
-            toolStripLabel7.Size = new Size(154, 24);
-            toolStripLabel7.Text = "Histogram            ";
+            toolStripLabel7.Size = new Size(230, 22);
+            toolStripLabel7.Text = "Histogram             ";
             toolStripLabel7.TextDirection = ToolStripTextDirection.Horizontal;
             // 
             // histogramButton
@@ -369,8 +412,9 @@
             // 
             // toolStripLabel9
             // 
+            toolStripLabel9.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel9.Name = "toolStripLabel9";
-            toolStripLabel9.Size = new Size(158, 24);
+            toolStripLabel9.Size = new Size(250, 22);
             toolStripLabel9.Text = "Eşikleme                ";
             // 
             // adaptiveThresholdButton
@@ -392,8 +436,9 @@
             // 
             // toolStripLabel11
             // 
+            toolStripLabel11.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel11.Name = "toolStripLabel11";
-            toolStripLabel11.Size = new Size(155, 24);
+            toolStripLabel11.Size = new Size(220, 22);
             toolStripLabel11.Text = "Filtre && Gürültü     ";
             // 
             // convolutionButton
@@ -481,16 +526,11 @@
             toolStripSeparator22.Name = "toolStripSeparator22";
             toolStripSeparator22.Size = new Size(6, 32);
             // 
-            // toolStripLabel13
-            // 
-            toolStripLabel13.Name = "toolStripLabel13";
-            toolStripLabel13.Size = new Size(40, 24);
-            toolStripLabel13.Text = "      ";
-            // 
             // toolStripLabel12
             // 
+            toolStripLabel12.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel12.Name = "toolStripLabel12";
-            toolStripLabel12.Size = new Size(159, 24);
+            toolStripLabel12.Size = new Size(240, 22);
             toolStripLabel12.Text = "Kenar Tespit           ";
             // 
             // sobelButton
@@ -518,8 +558,9 @@
             // 
             // toolStripLabel14
             // 
+            toolStripLabel14.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold | FontStyle.Underline);
             toolStripLabel14.Name = "toolStripLabel14";
-            toolStripLabel14.Size = new Size(163, 24);
+            toolStripLabel14.Size = new Size(260, 22);
             toolStripLabel14.Text = "Morfoloji                ";
             // 
             // dilationButton
@@ -644,9 +685,9 @@
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, toolStripSeparator31, toolStripDropDownButton2 });
-            toolStrip1.Location = new Point(157, 0);
+            toolStrip1.Location = new Point(191, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(818, 27);
+            toolStrip1.Size = new Size(784, 29);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -654,45 +695,47 @@
             // 
             toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { newFileButton, saveFileButton });
+            toolStripDropDownButton1.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
             toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            toolStripDropDownButton1.Size = new Size(64, 24);
+            toolStripDropDownButton1.Size = new Size(74, 26);
             toolStripDropDownButton1.Text = "Dosya";
             // 
             // newFileButton
             // 
             newFileButton.Name = "newFileButton";
-            newFileButton.Size = new Size(183, 26);
+            newFileButton.Size = new Size(214, 26);
             newFileButton.Text = "Yeni Dosya";
             newFileButton.Click += newFileButton_Click;
             // 
             // saveFileButton
             // 
             saveFileButton.Name = "saveFileButton";
-            saveFileButton.Size = new Size(183, 26);
+            saveFileButton.Size = new Size(214, 26);
             saveFileButton.Text = "Dosya Kaydet";
             saveFileButton.Click += saveFileButton_Click;
             // 
             // toolStripSeparator31
             // 
             toolStripSeparator31.Name = "toolStripSeparator31";
-            toolStripSeparator31.Size = new Size(6, 27);
+            toolStripSeparator31.Size = new Size(6, 29);
             // 
             // toolStripDropDownButton2
             // 
             toolStripDropDownButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { restartButton });
+            toolStripDropDownButton2.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             toolStripDropDownButton2.Image = (Image)resources.GetObject("toolStripDropDownButton2.Image");
             toolStripDropDownButton2.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            toolStripDropDownButton2.Size = new Size(69, 24);
+            toolStripDropDownButton2.Size = new Size(84, 26);
             toolStripDropDownButton2.Text = "Yardım";
             // 
             // restartButton
             // 
             restartButton.Name = "restartButton";
-            restartButton.Size = new Size(213, 26);
+            restartButton.Size = new Size(264, 26);
             restartButton.Text = "Uygulamayı Yenile";
             restartButton.Click += restartButton_Click;
             // 
@@ -700,14 +743,113 @@
             // 
             appPanel.AutoScroll = true;
             appPanel.BackColor = Color.FromArgb(64, 64, 64);
+            appPanel.Controls.Add(ycbcrPanel);
             appPanel.Controls.Add(brightnessTrackBar);
+            appPanel.Controls.Add(hsvPanel);
             appPanel.Controls.Add(panel1);
             appPanel.Dock = DockStyle.Fill;
-            appPanel.Location = new Point(157, 27);
+            appPanel.Location = new Point(191, 29);
             appPanel.Margin = new Padding(501, 500, 501, 500);
             appPanel.Name = "appPanel";
-            appPanel.Size = new Size(818, 661);
+            appPanel.Size = new Size(784, 659);
             appPanel.TabIndex = 11;
+            // 
+            // ycbcrPanel
+            // 
+            ycbcrPanel.BackColor = Color.Transparent;
+            ycbcrPanel.Controls.Add(ycbcrOkButton);
+            ycbcrPanel.Controls.Add(crLabel);
+            ycbcrPanel.Controls.Add(cbLabel);
+            ycbcrPanel.Controls.Add(crTrackBar);
+            ycbcrPanel.Controls.Add(yLabel);
+            ycbcrPanel.Controls.Add(cbTrackBar);
+            ycbcrPanel.Controls.Add(label6);
+            ycbcrPanel.Controls.Add(yTrackBar);
+            ycbcrPanel.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold | FontStyle.Underline);
+            ycbcrPanel.ForeColor = Color.White;
+            ycbcrPanel.Location = new Point(313, 230);
+            ycbcrPanel.Name = "ycbcrPanel";
+            ycbcrPanel.Size = new Size(245, 263);
+            ycbcrPanel.TabIndex = 1;
+            ycbcrPanel.Visible = false;
+            // 
+            // ycbcrOkButton
+            // 
+            ycbcrOkButton.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            ycbcrOkButton.ForeColor = Color.Black;
+            ycbcrOkButton.Location = new Point(3, 220);
+            ycbcrOkButton.Name = "ycbcrOkButton";
+            ycbcrOkButton.Size = new Size(112, 32);
+            ycbcrOkButton.TabIndex = 3;
+            ycbcrOkButton.Text = "Dönüştür";
+            ycbcrOkButton.UseVisualStyleBackColor = true;
+            // 
+            // crLabel
+            // 
+            crLabel.AutoSize = true;
+            crLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            crLabel.Location = new Point(0, 163);
+            crLabel.Name = "crLabel";
+            crLabel.Size = new Size(45, 23);
+            crLabel.TabIndex = 2;
+            crLabel.Text = "Cr: 0";
+            // 
+            // cbLabel
+            // 
+            cbLabel.AutoSize = true;
+            cbLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            cbLabel.Location = new Point(3, 101);
+            cbLabel.Name = "cbLabel";
+            cbLabel.Size = new Size(49, 23);
+            cbLabel.TabIndex = 2;
+            cbLabel.Text = "Cb: 0";
+            // 
+            // crTrackBar
+            // 
+            crTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            crTrackBar.Location = new Point(57, 163);
+            crTrackBar.Maximum = 100;
+            crTrackBar.Name = "crTrackBar";
+            crTrackBar.Size = new Size(185, 56);
+            crTrackBar.TabIndex = 0;
+            // 
+            // yLabel
+            // 
+            yLabel.AutoSize = true;
+            yLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            yLabel.Location = new Point(3, 39);
+            yLabel.Name = "yLabel";
+            yLabel.Size = new Size(42, 23);
+            yLabel.TabIndex = 2;
+            yLabel.Text = "Y:  0";
+            // 
+            // cbTrackBar
+            // 
+            cbTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            cbTrackBar.Location = new Point(57, 101);
+            cbTrackBar.Maximum = 100;
+            cbTrackBar.Name = "cbTrackBar";
+            cbTrackBar.Size = new Size(185, 56);
+            cbTrackBar.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label6.Location = new Point(12, 14);
+            label6.Name = "label6";
+            label6.Size = new Size(220, 22);
+            label6.TabIndex = 2;
+            label6.Text = "Y Cb Cr Değerleri Gir";
+            // 
+            // yTrackBar
+            // 
+            yTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            yTrackBar.Location = new Point(57, 39);
+            yTrackBar.Maximum = 100;
+            yTrackBar.Name = "yTrackBar";
+            yTrackBar.Size = new Size(185, 56);
+            yTrackBar.TabIndex = 0;
             // 
             // brightnessTrackBar
             // 
@@ -716,6 +858,102 @@
             brightnessTrackBar.Size = new Size(157, 56);
             brightnessTrackBar.TabIndex = 0;
             // 
+            // hsvPanel
+            // 
+            hsvPanel.BackColor = Color.Transparent;
+            hsvPanel.Controls.Add(hsvOkButton);
+            hsvPanel.Controls.Add(vLabel);
+            hsvPanel.Controls.Add(sLabel);
+            hsvPanel.Controls.Add(vTrackBar);
+            hsvPanel.Controls.Add(hLabel);
+            hsvPanel.Controls.Add(sTrackBar);
+            hsvPanel.Controls.Add(label2);
+            hsvPanel.Controls.Add(hTrackBar);
+            hsvPanel.ForeColor = Color.White;
+            hsvPanel.Location = new Point(15, 230);
+            hsvPanel.Name = "hsvPanel";
+            hsvPanel.Size = new Size(245, 263);
+            hsvPanel.TabIndex = 1;
+            hsvPanel.Visible = false;
+            // 
+            // hsvOkButton
+            // 
+            hsvOkButton.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            hsvOkButton.ForeColor = Color.Black;
+            hsvOkButton.Location = new Point(3, 220);
+            hsvOkButton.Name = "hsvOkButton";
+            hsvOkButton.Size = new Size(112, 32);
+            hsvOkButton.TabIndex = 3;
+            hsvOkButton.Text = "Dönüştür";
+            hsvOkButton.UseVisualStyleBackColor = true;
+            // 
+            // vLabel
+            // 
+            vLabel.AutoSize = true;
+            vLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            vLabel.Location = new Point(0, 163);
+            vLabel.Name = "vLabel";
+            vLabel.Size = new Size(39, 23);
+            vLabel.TabIndex = 2;
+            vLabel.Text = "V: 0";
+            // 
+            // sLabel
+            // 
+            sLabel.AutoSize = true;
+            sLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            sLabel.Location = new Point(3, 101);
+            sLabel.Name = "sLabel";
+            sLabel.Size = new Size(37, 23);
+            sLabel.TabIndex = 2;
+            sLabel.Text = "S: 0";
+            // 
+            // vTrackBar
+            // 
+            vTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            vTrackBar.Location = new Point(57, 163);
+            vTrackBar.Maximum = 100;
+            vTrackBar.Name = "vTrackBar";
+            vTrackBar.Size = new Size(185, 56);
+            vTrackBar.TabIndex = 0;
+            // 
+            // hLabel
+            // 
+            hLabel.AutoSize = true;
+            hLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            hLabel.Location = new Point(3, 39);
+            hLabel.Name = "hLabel";
+            hLabel.Size = new Size(40, 23);
+            hLabel.TabIndex = 2;
+            hLabel.Text = "H: 0";
+            // 
+            // sTrackBar
+            // 
+            sTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            sTrackBar.Location = new Point(57, 101);
+            sTrackBar.Maximum = 100;
+            sTrackBar.Name = "sTrackBar";
+            sTrackBar.Size = new Size(185, 56);
+            sTrackBar.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label2.Location = new Point(31, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(200, 22);
+            label2.TabIndex = 2;
+            label2.Text = "H S V Değerleri Gir";
+            // 
+            // hTrackBar
+            // 
+            hTrackBar.BackColor = Color.FromArgb(64, 64, 64);
+            hTrackBar.Location = new Point(57, 39);
+            hTrackBar.Maximum = 100;
+            hTrackBar.Name = "hTrackBar";
+            hTrackBar.Size = new Size(185, 56);
+            hTrackBar.TabIndex = 0;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
@@ -723,7 +961,7 @@
             panel1.Controls.Add(brightnessLabel);
             panel1.Controls.Add(brightnessTrack);
             panel1.ForeColor = Color.White;
-            panel1.Location = new Point(3, 32);
+            panel1.Location = new Point(15, 33);
             panel1.Name = "panel1";
             panel1.Size = new Size(191, 118);
             panel1.TabIndex = 1;
@@ -732,19 +970,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(31, 13);
+            label1.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(3, 14);
             label1.Name = "label1";
-            label1.Size = new Size(123, 23);
+            label1.Size = new Size(170, 22);
             label1.TabIndex = 2;
             label1.Text = "Parlaklık Ayarla";
             // 
             // brightnessLabel
             // 
             brightnessLabel.AutoSize = true;
-            brightnessLabel.Location = new Point(0, 98);
+            brightnessLabel.Font = new Font("Cascadia Code", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            brightnessLabel.Location = new Point(3, 88);
             brightnessLabel.Name = "brightnessLabel";
-            brightnessLabel.Size = new Size(104, 20);
+            brightnessLabel.Size = new Size(144, 20);
             brightnessLabel.TabIndex = 1;
             brightnessLabel.Text = "Seçili Değer: 0";
             // 
@@ -777,7 +1016,17 @@
             toolStrip1.PerformLayout();
             appPanel.ResumeLayout(false);
             appPanel.PerformLayout();
+            ycbcrPanel.ResumeLayout(false);
+            ycbcrPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)crTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)yTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)brightnessTrackBar).EndInit();
+            hsvPanel.ResumeLayout(false);
+            hsvPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)vTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)hTrackBar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)brightnessTrack).EndInit();
@@ -837,7 +1086,6 @@
         private ToolStripSeparator toolStripSeparator21;
         private ToolStripButton blurringButton;
         private ToolStripSeparator toolStripSeparator22;
-        private ToolStripLabel toolStripLabel13;
         private ToolStripLabel toolStripLabel12;
         private ToolStripButton sobelButton;
         private ToolStripSeparator toolStripSeparator25;
@@ -852,7 +1100,6 @@
         private ToolStripButton closingButton;
         private ToolStripSeparator toolStripSeparator30;
         private ToolStripDropDownMenu erosionButtona;
-        private ToolStripLabel toolStripLabel16;
         private ToolStripPanel BottomToolStripPanel;
         private ToolStripPanel TopToolStripPanel;
         private ToolStripPanel RightToolStripPanel;
@@ -871,5 +1118,25 @@
         private ToolStripSeparator toolStripSeparator31;
         private ToolStripDropDownButton toolStripDropDownButton2;
         private ToolStripMenuItem restartButton;
+        private ToolStripButton RGBtoYCBCRButton;
+        private ToolStripSeparator toolStripSeparator5;
+        private Panel hsvPanel;
+        private TrackBar hTrackBar;
+        private Label vLabel;
+        private Label sLabel;
+        private TrackBar vTrackBar;
+        private Label hLabel;
+        private TrackBar sTrackBar;
+        private Label label2;
+        private Panel ycbcrPanel;
+        private Label crLabel;
+        private Label cbLabel;
+        private TrackBar crTrackBar;
+        private Label yLabel;
+        private TrackBar cbTrackBar;
+        private Label label6;
+        private TrackBar yTrackBar;
+        private Button ycbcrOkButton;
+        private Button hsvOkButton;
     }
 }
