@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,55 @@ namespace VisiMorph
             return image;
         }
 
-        
+        public static (double, double, double) RGBtoYCbCr(int R, int G, int B)
+        {
+            double Y, Cb, Cr;
+            int delta = 128;
+            Y = 0.299 * R + 0.587 * G + 0.114 * B;
+            Cr = (R - Y) * 0.713 + delta;
+            Cb = (B - Y) * 0.564 + delta;
+
+            return (Y, Cb, Cr);
+        }
+
+        public static (int, int, int) YCbCrtoRGB(double Y, double Cb, double Cr)
+        {
+            int R, G, B;
+            int delta = 128;
+
+            R = (int)(Y + 1.403 * (Cr - delta));
+            G = (int)((Y - 0.714 * (Cr - delta)) - 0.344 * (Cb - delta));
+            B = (int)(Y + 1.773 * (Cb - delta));
+
+            return (R, G, B);
+        }
+
+        public static Bitmap imageRGBtoYCbCr(Bitmap image) 
+        {
+            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            using (Graphics g = Graphics.FromImage(newImage))
+            {
+                g.DrawImage(image, 0, 0);
+            }
+
+            for (int y = 0; y < newImage.Height; y++)
+            {
+                for (int x = 0; x < newImage.Width; x++)
+                {
+                    Color currentPixel = newImage.GetPixel(x, y);
+                    double curr_Y, curr_Cb, curr_Cr;
+                    (curr_Y, curr_Cb, curr_Cr) = RGBtoYCbCr(currentPixel.R, currentPixel.G, currentPixel.B);
+
+                    int new_R, new_G, new_B;
+                    (new_R, new_G, new_B) = YCbCrtoRGB(curr_Y, curr_Cb, curr_Cr);
+
+                    Color transformedPixel = Color.FromArgb(new_R, new_G, new_B);
+                    newImage.SetPixel(x, y, transformedPixel);
+                }
+            }
+            return newImage;
+        }
+
         public static (double, double, double) RGBtoHSV(int R, int G, int B)
         {
             double H = 0, S, V;
