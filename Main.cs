@@ -43,8 +43,6 @@ namespace VisiMorph
         bool returnModeActive;
         private List<Bitmap> zoomedImageList = new List<Bitmap>();
         private List<Bitmap> croppedImageList = new List<Bitmap>();
-        private List<Bitmap> hsvImageList = new List<Bitmap>();
-        private List<Bitmap> ycbcrImageList = new List<Bitmap>();
         private int prevVal;
         private int brightness;
         bool brightnessModeActive;
@@ -72,10 +70,6 @@ namespace VisiMorph
                     UndoCrop();
                 else if (zoomModeActive)
                     UndoZoom();
-                else if (hsvModeActive)
-                    UndoHSV();
-                else if (ycbcrModeActive)
-                    UndoYCbCr();
                 else
                     MessageBox.Show("Geri alma işlemi için geçerli bir modda değilsiniz.");
             }
@@ -411,18 +405,27 @@ namespace VisiMorph
                 if (hsvPanel.Visible)
                 {
                     DisableOtherButtons(clickedButton);
-                    hsvOkButton.MouseClick -= hsvOkButton_MouseUp;
-                    hsvOkButton.MouseClick += hsvOkButton_MouseUp;
-                    hTrackBar.Scroll -= hsvTrackBar_Scroll;
-                    hTrackBar.Scroll += hsvTrackBar_Scroll;
-                    sTrackBar.Scroll -= hsvTrackBar_Scroll;
-                    sTrackBar.Scroll += hsvTrackBar_Scroll;
-                    vTrackBar.Scroll -= hsvTrackBar_Scroll;
-                    vTrackBar.Scroll += hsvTrackBar_Scroll;
+                    hsvtorgbOkButton.MouseClick -= hsvtorgbOkButton_MouseUp;
+                    hsvtorgbOkButton.MouseClick += hsvtorgbOkButton_MouseUp;
+                    rgbtohsvOkButton.MouseClick -= rgbtohsvOkButton_MouseUp;
+                    rgbtohsvOkButton.MouseClick += rgbtohsvOkButton_MouseUp;
+                    hTrackBar.Scroll -= hsvtorgbTrackBar_Scroll;
+                    hTrackBar.Scroll += hsvtorgbTrackBar_Scroll;
+                    sTrackBar.Scroll -= hsvtorgbTrackBar_Scroll;
+                    sTrackBar.Scroll += hsvtorgbTrackBar_Scroll;
+                    vTrackBar.Scroll -= hsvtorgbTrackBar_Scroll;
+                    vTrackBar.Scroll += hsvtorgbTrackBar_Scroll;
+                    rTrackBarHSV.Scroll -= rgbtohsvTrackBar_Scroll;
+                    rTrackBarHSV.Scroll += rgbtohsvTrackBar_Scroll;
+                    gTrackBarHSV.Scroll -= rgbtohsvTrackBar_Scroll;
+                    gTrackBarHSV.Scroll += rgbtohsvTrackBar_Scroll;
+                    bTrackBarHSV.Scroll -= rgbtohsvTrackBar_Scroll;
+                    bTrackBarHSV.Scroll += rgbtohsvTrackBar_Scroll;
+                    
                 }
             }
             else
-            {
+            {               
                 EnableAllButtons();
                 hLabel.Text = "H: 0";
                 sLabel.Text = "S: 0";
@@ -459,12 +462,23 @@ namespace VisiMorph
                 if (ycbcrPanel.Visible)
                 {
                     DisableOtherButtons(clickedButton);
-                    yTrackBar.Scroll -= ycbcrTrackBar_Scroll;
-                    yTrackBar.Scroll += ycbcrTrackBar_Scroll;
-                    cbTrackBar.Scroll -= ycbcrTrackBar_Scroll;
-                    cbTrackBar.Scroll += ycbcrTrackBar_Scroll;
-                    crTrackBar.Scroll -= ycbcrTrackBar_Scroll;
-                    crTrackBar.Scroll += ycbcrTrackBar_Scroll;
+                    ycbcrtorgbOkButton.MouseClick -= ycbcrtorgbOkButton_MouseUp;
+                    ycbcrtorgbOkButton.MouseClick += ycbcrtorgbOkButton_MouseUp;
+                    rgbtoycbcrOkButton.MouseClick -= rgbtoycbcrOkButton_MouseUp;
+                    rgbtoycbcrOkButton.MouseClick += rgbtoycbcrOkButton_MouseUp;
+
+                    yTrackBar.Scroll -= ycbcrtorgbTrackBar_Scroll;
+                    yTrackBar.Scroll += ycbcrtorgbTrackBar_Scroll;
+                    cbTrackBar.Scroll -= ycbcrtorgbTrackBar_Scroll;
+                    cbTrackBar.Scroll += ycbcrtorgbTrackBar_Scroll;
+                    crTrackBar.Scroll -= ycbcrtorgbTrackBar_Scroll;
+                    crTrackBar.Scroll += ycbcrtorgbTrackBar_Scroll;
+                    rTrackBarYCbCr.Scroll -= rgbtoycbcrTrackBar_Scroll;
+                    rTrackBarYCbCr.Scroll += rgbtoycbcrTrackBar_Scroll;
+                    gTrackBarYCbCr.Scroll -= rgbtoycbcrTrackBar_Scroll;
+                    gTrackBarYCbCr.Scroll += rgbtoycbcrTrackBar_Scroll;
+                    bTrackBarYCbCr.Scroll -= rgbtoycbcrTrackBar_Scroll;
+                    bTrackBarYCbCr.Scroll += rgbtoycbcrTrackBar_Scroll;
                 }
             }
             else
@@ -998,45 +1012,6 @@ namespace VisiMorph
                 CenterPictureBoxInPanel();
             }
         }
-        //HSV İŞLEMİNİ GERİ ALMA
-        private void UndoHSV()
-        {
-            if (hsvImageList.Count == 0 || hsvImageList.Count == 1)
-            {
-                imageBox.Image = _originalImage;
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                CenterPictureBoxInPanel();
-                hsvImageList.Clear();
-                return;
-            }
-            else
-            {
-                imageBox.Image = hsvImageList[hsvImageList.Count - 2];
-                hsvImageList.RemoveAt(hsvImageList.Count - 2);
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                CenterPictureBoxInPanel();
-            }
-        }
-        //YCbCr İŞLEMİ GERİ ALMA
-        private void UndoYCbCr()
-        {
-            if (ycbcrImageList.Count == 0 || ycbcrImageList.Count == 1)
-            {
-                imageBox.Image = _originalImage;
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                CenterPictureBoxInPanel();
-                ycbcrImageList.Clear();
-                return;
-            }
-            else
-            {
-                imageBox.Image = ycbcrImageList[ycbcrImageList.Count - 2];
-                ycbcrImageList.RemoveAt(ycbcrImageList.Count - 2);
-                imageBox.SizeMode = PictureBoxSizeMode.Normal;
-                CenterPictureBoxInPanel();
-            }
-        }
-        //TIKLANMAMIŞ BUTONLARI DEVRE DIŞI BIRAKMA
         private void DisableOtherButtons(ToolStripButton activeButton)
         {
 
@@ -1056,20 +1031,75 @@ namespace VisiMorph
                 button.Enabled = true;
             }
         }
-        //HSV OK BUTONU
-        private void hsvOkButton_MouseUp(object? sender, MouseEventArgs e)
+        
+        
+        //BUTON EVENTLERİ
+        //HSV'DEN RGB'YE DÖNÜŞTÜRME
+        private void hsvtorgbOkButton_MouseUp(object? sender, MouseEventArgs e)
         {
-            double H, S, V;
-
-            H = (hTrackBar.Value / 100.0f);
-            S = (sTrackBar.Value / 100.0f);
-            V = (vTrackBar.Value / 100.0f);
-            imageBox.Image = ImageFunctions.imageRGBtoHSV(_originalImage, H, S, V);
-            hsvImageList.Add((Bitmap)imageBox.Image);
+            double R, G, B;
+            var values = ImageFunctions.HSVtoRGB(hTrackBar.Value / 100.0f , sTrackBar.Value / 100.0f, vTrackBar.Value / 100.0f);
+            R = values.Item1;
+            G = values.Item2;
+            B = values.Item3;
+            rTrackBarHSV.Value = (int)R;
+            gTrackBarHSV.Value = (int)G;
+            bTrackBarHSV.Value = (int)B;
+            rLabel.Text = $"R: {rTrackBarHSV.Value}";
+            gLabel.Text = $"G: {gTrackBarHSV.Value}";
+            bLabel.Text = $"B: {bTrackBarHSV.Value}";
 
         }
-        //HSV TRACKBAR DEĞERLERİ
-        private void hsvTrackBar_Scroll(object? sender, EventArgs e)
+        //RGB'DEN HSV'YE DÖNÜŞTÜRME
+        private void rgbtohsvOkButton_MouseUp(object? sender, MouseEventArgs e)
+        {
+            double H, S, V;
+            var values = ImageFunctions.RGBtoHSV(rTrackBarHSV.Value, gTrackBarHSV.Value, bTrackBarHSV.Value);
+            H = values.Item1;
+            S = values.Item2;
+            V = values.Item3;
+            hTrackBar.Value = (int)(H);
+            sTrackBar.Value = (int)(S);
+            vTrackBar.Value = (int)(V);
+            hLabel.Text = $"H: {H }";
+            sLabel.Text = $"S: {S}";
+            vLabel.Text = $"V: {V}";
+        }
+        //RGB'DEN YCbCr'YE DÖNÜŞTÜRME
+        private void ycbcrtorgbOkButton_MouseUp(object? sender, MouseEventArgs e)
+        {
+            double R, G, B;
+            var values = ImageFunctions.YCbCrtoRGB(yTrackBar.Value, cbTrackBar.Value, crTrackBar.Value);
+            R = values.Item1;
+            G = values.Item2;
+            B = values.Item3;
+            rTrackBarYCbCr.Value = (int)R;
+            gTrackBarYCbCr.Value = (int)G;
+            bTrackBarYCbCr.Value = (int)B;
+            rLabelYCbCr.Text = $"R: {rTrackBarYCbCr.Value}";
+            gLabelYCbCr.Text = $"G: {gTrackBarYCbCr.Value}";
+            bLabelYCbCr.Text = $"B: {bTrackBarYCbCr.Value}";
+
+        }
+        //YCbCr'DEN RGB'YE DÖNÜŞTÜRME
+        private void rgbtoycbcrOkButton_MouseUp(object? sender, MouseEventArgs e)
+        {
+            double Y, Cb, Cr;
+            var values = ImageFunctions.RGBtoYCbCr(rTrackBarYCbCr.Value, gTrackBarYCbCr.Value, bTrackBarYCbCr.Value);
+            Y = values.Item1;
+            Cb = values.Item2;
+            Cr = values.Item3;
+            yTrackBar.Value = (int)Y;
+            cbTrackBar.Value = (int)Cb;
+            crTrackBar.Value = (int)Cr;
+            yLabel.Text = $"Y: {yTrackBar.Value}";
+            cbLabel.Text = $"Cb: {cbTrackBar.Value}";
+            crLabel.Text = $"Cr: {crTrackBar.Value}";
+        }
+
+        //TRACKBAR DEĞERLERİ
+        //HSV'DEN RGB'YE TRACKBAR DEĞERLERİ
+        private void hsvtorgbTrackBar_Scroll(object? sender, EventArgs e)
         {
             if (image == null)
             {
@@ -1077,23 +1107,30 @@ namespace VisiMorph
             }
             else
             {
-                hLabel.Text = $"H: {hTrackBar.Value / 100.0f}";
-                sLabel.Text = $"S: {sTrackBar.Value / 100.0f}";
-                vLabel.Text = $"V: {vTrackBar.Value / 100.0f}";
+                hLabel.Text = $"H: {hTrackBar.Value}";
+                sLabel.Text = $"S: {sTrackBar.Value}";
+                vLabel.Text = $"V: {vTrackBar.Value}";
+
+
             }
         }
-        //YCbCr OK BUTONU
-        private void ycbcrOkButton_MouseUp(object? sender, MouseEventArgs e)
+        //RGB'DEN HSV'YE TRACKBAR DEĞERLERİ
+        private void rgbtohsvTrackBar_Scroll(object? sender, EventArgs e)
         {
-            double Y, Cb, Cr;
-            Y = (yTrackBar.Value);
-            Cb = (cbTrackBar.Value);
-            Cr = (crTrackBar.Value);
-            imageBox.Image = ImageFunctions.imageRGBtoYCbCr(_originalImage, Y, Cb, Cr);
-            ycbcrImageList.Add((Bitmap)imageBox.Image);
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                rLabel.Text = $"R: {rTrackBarHSV.Value}";
+                gLabel.Text = $"G: {gTrackBarHSV.Value}";
+                bLabel.Text = $"B: {bTrackBarHSV.Value}";
+            }
         }
-        //YCbCr TRACKBAR DEĞERLERİ
-        private void ycbcrTrackBar_Scroll(object? sender, EventArgs e)
+
+        //YCbCr'DEN RGB'YE TRACKBAR DEĞERLERİ
+        private void ycbcrtorgbTrackBar_Scroll(object? sender, EventArgs e)
         {
             if (image == null)
             {
@@ -1106,7 +1143,21 @@ namespace VisiMorph
                 crLabel.Text = $"Cr: {crTrackBar.Value}";
             }
         }
+        //RGB'DEN YCbCr'YE TRACKBAR DEĞERLERİ
+        private void rgbtoycbcrTrackBar_Scroll(object? sender, EventArgs e)
+        {
+            if (image == null)
+            {
+                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
+            }
+            else
+            {
+                rLabelYCbCr.Text = $"R: {rTrackBarYCbCr.Value}";
+                gLabelYCbCr.Text = $"G: {gTrackBarYCbCr.Value}";
+                bLabelYCbCr.Text = $"B: {bTrackBarYCbCr.Value}";
+            }
 
 
+        }
     }
 }
