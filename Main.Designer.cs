@@ -106,16 +106,30 @@
             restartButton = new ToolStripMenuItem();
             appPanel = new Panel();
             ycbcrPanel = new Panel();
-            ycbcrOkButton = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            bTrackBarYCbCr = new TrackBar();
+            label7 = new Label();
             crLabel = new Label();
+            gTrackBarYCbCr = new TrackBar();
             cbLabel = new Label();
+            label8 = new Label();
             crTrackBar = new TrackBar();
+            rTrackBarYCbCr = new TrackBar();
+            label9 = new Label();
             yLabel = new Label();
             cbTrackBar = new TrackBar();
             label6 = new Label();
             yTrackBar = new TrackBar();
             brightnessTrackBar = new TrackBar();
             hsvPanel = new Panel();
+            button1 = new Button();
+            bTrackBarHSV = new TrackBar();
+            label5 = new Label();
+            gTrackBarHSV = new TrackBar();
+            label4 = new Label();
+            rTrackBarHSV = new TrackBar();
+            label3 = new Label();
             hsvOkButton = new Button();
             vLabel = new Label();
             sLabel = new Label();
@@ -132,11 +146,17 @@
             toolStrip1.SuspendLayout();
             appPanel.SuspendLayout();
             ycbcrPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bTrackBarYCbCr).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gTrackBarYCbCr).BeginInit();
             ((System.ComponentModel.ISupportInitialize)crTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rTrackBarYCbCr).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)yTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)brightnessTrackBar).BeginInit();
             hsvPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bTrackBarHSV).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gTrackBarHSV).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rTrackBarHSV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)vTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)hTrackBar).BeginInit();
@@ -156,7 +176,7 @@
             navbarMenu.Location = new Point(0, 0);
             navbarMenu.Name = "navbarMenu";
             navbarMenu.RenderMode = ToolStripRenderMode.System;
-            navbarMenu.Size = new Size(191, 688);
+            navbarMenu.Size = new Size(191, 855);
             navbarMenu.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -339,7 +359,7 @@
             RGBtoYCBCRButton.ImageTransparentColor = Color.Magenta;
             RGBtoYCBCRButton.Name = "RGBtoYCBCRButton";
             RGBtoYCBCRButton.Size = new Size(32, 32);
-            RGBtoYCBCRButton.Text = "RGD-YCBCR Dönüştür";
+            RGBtoYCBCRButton.Text = "RGB-YCbCr Dönüştür";
             RGBtoYCBCRButton.Click += RGBtoYCBCRButton_Click;
             // 
             // toolStripSeparator5
@@ -751,16 +771,23 @@
             appPanel.Location = new Point(191, 29);
             appPanel.Margin = new Padding(501, 500, 501, 500);
             appPanel.Name = "appPanel";
-            appPanel.Size = new Size(784, 659);
+            appPanel.Size = new Size(784, 826);
             appPanel.TabIndex = 11;
             // 
             // ycbcrPanel
             // 
             ycbcrPanel.BackColor = Color.Transparent;
-            ycbcrPanel.Controls.Add(ycbcrOkButton);
+            ycbcrPanel.Controls.Add(button3);
+            ycbcrPanel.Controls.Add(button2);
+            ycbcrPanel.Controls.Add(bTrackBarYCbCr);
+            ycbcrPanel.Controls.Add(label7);
             ycbcrPanel.Controls.Add(crLabel);
+            ycbcrPanel.Controls.Add(gTrackBarYCbCr);
             ycbcrPanel.Controls.Add(cbLabel);
+            ycbcrPanel.Controls.Add(label8);
             ycbcrPanel.Controls.Add(crTrackBar);
+            ycbcrPanel.Controls.Add(rTrackBarYCbCr);
+            ycbcrPanel.Controls.Add(label9);
             ycbcrPanel.Controls.Add(yLabel);
             ycbcrPanel.Controls.Add(cbTrackBar);
             ycbcrPanel.Controls.Add(label6);
@@ -769,20 +796,50 @@
             ycbcrPanel.ForeColor = Color.White;
             ycbcrPanel.Location = new Point(313, 230);
             ycbcrPanel.Name = "ycbcrPanel";
-            ycbcrPanel.Size = new Size(245, 263);
+            ycbcrPanel.Size = new Size(245, 517);
             ycbcrPanel.TabIndex = 1;
             ycbcrPanel.Visible = false;
             // 
-            // ycbcrOkButton
+            // button3
             // 
-            ycbcrOkButton.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            ycbcrOkButton.ForeColor = Color.Black;
-            ycbcrOkButton.Location = new Point(3, 220);
-            ycbcrOkButton.Name = "ycbcrOkButton";
-            ycbcrOkButton.Size = new Size(112, 32);
-            ycbcrOkButton.TabIndex = 3;
-            ycbcrOkButton.Text = "Dönüştür";
-            ycbcrOkButton.UseVisualStyleBackColor = true;
+            button3.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            button3.ForeColor = Color.Black;
+            button3.Location = new Point(3, 452);
+            button3.Name = "button3";
+            button3.Size = new Size(239, 32);
+            button3.TabIndex = 16;
+            button3.Text = "RGB - YCbCr Dönüştür";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            button2.ForeColor = Color.Black;
+            button2.Location = new Point(3, 205);
+            button2.Name = "button2";
+            button2.Size = new Size(239, 32);
+            button2.TabIndex = 11;
+            button2.Text = "YCbCr - RGB Dönüştür";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // bTrackBarYCbCr
+            // 
+            bTrackBarYCbCr.BackColor = Color.FromArgb(64, 64, 64);
+            bTrackBarYCbCr.Location = new Point(57, 405);
+            bTrackBarYCbCr.Maximum = 100;
+            bTrackBarYCbCr.Name = "bTrackBarYCbCr";
+            bTrackBarYCbCr.Size = new Size(185, 56);
+            bTrackBarYCbCr.TabIndex = 15;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label7.Location = new Point(3, 405);
+            label7.Name = "label7";
+            label7.Size = new Size(38, 23);
+            label7.TabIndex = 14;
+            label7.Text = "B: 0";
             // 
             // crLabel
             // 
@@ -794,6 +851,15 @@
             crLabel.TabIndex = 2;
             crLabel.Text = "Cr: 0";
             // 
+            // gTrackBarYCbCr
+            // 
+            gTrackBarYCbCr.BackColor = Color.FromArgb(64, 64, 64);
+            gTrackBarYCbCr.Location = new Point(57, 344);
+            gTrackBarYCbCr.Maximum = 100;
+            gTrackBarYCbCr.Name = "gTrackBarYCbCr";
+            gTrackBarYCbCr.Size = new Size(185, 56);
+            gTrackBarYCbCr.TabIndex = 13;
+            // 
             // cbLabel
             // 
             cbLabel.AutoSize = true;
@@ -804,14 +870,43 @@
             cbLabel.TabIndex = 2;
             cbLabel.Text = "Cb: 0";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label8.Location = new Point(3, 344);
+            label8.Name = "label8";
+            label8.Size = new Size(40, 23);
+            label8.TabIndex = 12;
+            label8.Text = "G: 0";
+            // 
             // crTrackBar
             // 
             crTrackBar.BackColor = Color.FromArgb(64, 64, 64);
             crTrackBar.Location = new Point(57, 163);
-            crTrackBar.Maximum = 100;
+            crTrackBar.Maximum = 255;
             crTrackBar.Name = "crTrackBar";
             crTrackBar.Size = new Size(185, 56);
             crTrackBar.TabIndex = 0;
+            // 
+            // rTrackBarYCbCr
+            // 
+            rTrackBarYCbCr.BackColor = Color.FromArgb(64, 64, 64);
+            rTrackBarYCbCr.Location = new Point(57, 284);
+            rTrackBarYCbCr.Maximum = 100;
+            rTrackBarYCbCr.Name = "rTrackBarYCbCr";
+            rTrackBarYCbCr.Size = new Size(185, 56);
+            rTrackBarYCbCr.TabIndex = 11;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label9.Location = new Point(3, 284);
+            label9.Name = "label9";
+            label9.Size = new Size(38, 23);
+            label9.TabIndex = 10;
+            label9.Text = "R: 0";
             // 
             // yLabel
             // 
@@ -827,7 +922,7 @@
             // 
             cbTrackBar.BackColor = Color.FromArgb(64, 64, 64);
             cbTrackBar.Location = new Point(57, 101);
-            cbTrackBar.Maximum = 100;
+            cbTrackBar.Maximum = 255;
             cbTrackBar.Name = "cbTrackBar";
             cbTrackBar.Size = new Size(185, 56);
             cbTrackBar.TabIndex = 0;
@@ -846,7 +941,7 @@
             // 
             yTrackBar.BackColor = Color.FromArgb(64, 64, 64);
             yTrackBar.Location = new Point(57, 39);
-            yTrackBar.Maximum = 100;
+            yTrackBar.Maximum = 255;
             yTrackBar.Name = "yTrackBar";
             yTrackBar.Size = new Size(185, 56);
             yTrackBar.TabIndex = 0;
@@ -861,6 +956,13 @@
             // hsvPanel
             // 
             hsvPanel.BackColor = Color.Transparent;
+            hsvPanel.Controls.Add(button1);
+            hsvPanel.Controls.Add(bTrackBarHSV);
+            hsvPanel.Controls.Add(label5);
+            hsvPanel.Controls.Add(gTrackBarHSV);
+            hsvPanel.Controls.Add(label4);
+            hsvPanel.Controls.Add(rTrackBarHSV);
+            hsvPanel.Controls.Add(label3);
             hsvPanel.Controls.Add(hsvOkButton);
             hsvPanel.Controls.Add(vLabel);
             hsvPanel.Controls.Add(sLabel);
@@ -872,26 +974,94 @@
             hsvPanel.ForeColor = Color.White;
             hsvPanel.Location = new Point(15, 230);
             hsvPanel.Name = "hsvPanel";
-            hsvPanel.Size = new Size(245, 263);
+            hsvPanel.Size = new Size(245, 517);
             hsvPanel.TabIndex = 1;
             hsvPanel.Visible = false;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            button1.ForeColor = Color.Black;
+            button1.Location = new Point(3, 452);
+            button1.Name = "button1";
+            button1.Size = new Size(239, 32);
+            button1.TabIndex = 10;
+            button1.Text = "RGB - HSV Dönüştür";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // bTrackBarHSV
+            // 
+            bTrackBarHSV.BackColor = Color.FromArgb(64, 64, 64);
+            bTrackBarHSV.Location = new Point(57, 405);
+            bTrackBarHSV.Maximum = 100;
+            bTrackBarHSV.Name = "bTrackBarHSV";
+            bTrackBarHSV.Size = new Size(185, 56);
+            bTrackBarHSV.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label5.Location = new Point(3, 405);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 23);
+            label5.TabIndex = 8;
+            label5.Text = "B: 0";
+            // 
+            // gTrackBarHSV
+            // 
+            gTrackBarHSV.BackColor = Color.FromArgb(64, 64, 64);
+            gTrackBarHSV.Location = new Point(57, 344);
+            gTrackBarHSV.Maximum = 100;
+            gTrackBarHSV.Name = "gTrackBarHSV";
+            gTrackBarHSV.Size = new Size(185, 56);
+            gTrackBarHSV.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label4.Location = new Point(3, 344);
+            label4.Name = "label4";
+            label4.Size = new Size(40, 23);
+            label4.TabIndex = 6;
+            label4.Text = "G: 0";
+            // 
+            // rTrackBarHSV
+            // 
+            rTrackBarHSV.BackColor = Color.FromArgb(64, 64, 64);
+            rTrackBarHSV.Location = new Point(57, 284);
+            rTrackBarHSV.Maximum = 100;
+            rTrackBarHSV.Name = "rTrackBarHSV";
+            rTrackBarHSV.Size = new Size(185, 56);
+            rTrackBarHSV.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label3.Location = new Point(3, 284);
+            label3.Name = "label3";
+            label3.Size = new Size(38, 23);
+            label3.TabIndex = 4;
+            label3.Text = "R: 0";
             // 
             // hsvOkButton
             // 
             hsvOkButton.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             hsvOkButton.ForeColor = Color.Black;
-            hsvOkButton.Location = new Point(3, 220);
+            hsvOkButton.Location = new Point(3, 205);
             hsvOkButton.Name = "hsvOkButton";
-            hsvOkButton.Size = new Size(112, 32);
+            hsvOkButton.Size = new Size(239, 32);
             hsvOkButton.TabIndex = 3;
-            hsvOkButton.Text = "Dönüştür";
+            hsvOkButton.Text = "HSV - RGB Dönüştür";
             hsvOkButton.UseVisualStyleBackColor = true;
             // 
             // vLabel
             // 
             vLabel.AutoSize = true;
             vLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            vLabel.Location = new Point(0, 163);
+            vLabel.Location = new Point(4, 163);
             vLabel.Name = "vLabel";
             vLabel.Size = new Size(39, 23);
             vLabel.TabIndex = 2;
@@ -901,7 +1071,7 @@
             // 
             sLabel.AutoSize = true;
             sLabel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            sLabel.Location = new Point(3, 101);
+            sLabel.Location = new Point(4, 101);
             sLabel.Name = "sLabel";
             sLabel.Size = new Size(37, 23);
             sLabel.TabIndex = 2;
@@ -1001,7 +1171,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(975, 688);
+            ClientSize = new Size(975, 855);
             Controls.Add(appPanel);
             Controls.Add(toolStrip1);
             Controls.Add(navbarMenu);
@@ -1018,12 +1188,18 @@
             appPanel.PerformLayout();
             ycbcrPanel.ResumeLayout(false);
             ycbcrPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bTrackBarYCbCr).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gTrackBarYCbCr).EndInit();
             ((System.ComponentModel.ISupportInitialize)crTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rTrackBarYCbCr).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)yTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)brightnessTrackBar).EndInit();
             hsvPanel.ResumeLayout(false);
             hsvPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bTrackBarHSV).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gTrackBarHSV).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rTrackBarHSV).EndInit();
             ((System.ComponentModel.ISupportInitialize)vTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)sTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)hTrackBar).EndInit();
@@ -1136,7 +1312,21 @@
         private TrackBar cbTrackBar;
         private Label label6;
         private TrackBar yTrackBar;
-        private Button ycbcrOkButton;
         private Button hsvOkButton;
+        private TrackBar bTrackBarHSV;
+        private Label label5;
+        private TrackBar gTrackBarHSV;
+        private Label label4;
+        private TrackBar rTrackBarHSV;
+        private Label label3;
+        private TrackBar bTrackBarYCbCr;
+        private Label label7;
+        private TrackBar gTrackBarYCbCr;
+        private Label label8;
+        private TrackBar rTrackBarYCbCr;
+        private Label label9;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }

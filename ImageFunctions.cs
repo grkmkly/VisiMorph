@@ -73,11 +73,14 @@ namespace VisiMorph
             R = (int)(Y + 1.403 * (Cr - delta));
             G = (int)((Y - 0.714 * (Cr - delta)) - 0.344 * (Cb - delta));
             B = (int)(Y + 1.773 * (Cb - delta));
-
+            R = Math.Clamp(R, 0, 255);
+            G = Math.Clamp(G, 0, 255);
+            B = Math.Clamp(B, 0, 255);
             return (R, G, B);
         }
 
-        public static Bitmap imageRGBtoYCbCr(Bitmap image) 
+        /*
+        public static Bitmap imageRGBtoYCbCr(Bitmap image, double new_Y, double new_Cb, double new_Cr)
         {
             Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             using (Graphics g = Graphics.FromImage(newImage))
@@ -90,11 +93,10 @@ namespace VisiMorph
                 for (int x = 0; x < newImage.Width; x++)
                 {
                     Color currentPixel = newImage.GetPixel(x, y);
-                    double curr_Y, curr_Cb, curr_Cr;
-                    (curr_Y, curr_Cb, curr_Cr) = RGBtoYCbCr(currentPixel.R, currentPixel.G, currentPixel.B);
 
-                    int new_R, new_G, new_B;
-                    (new_R, new_G, new_B) = YCbCrtoRGB(curr_Y, curr_Cb, curr_Cr);
+                    (double curr_Y, double curr_Cb, double curr_Cr) = RGBtoYCbCr(currentPixel.R, currentPixel.G, currentPixel.B);
+
+                    (int new_R, int new_G, int new_B) = YCbCrtoRGB(new_Y, new_Cb, new_Cr);
 
                     Color transformedPixel = Color.FromArgb(new_R, new_G, new_B);
                     newImage.SetPixel(x, y, transformedPixel);
@@ -102,6 +104,7 @@ namespace VisiMorph
             }
             return newImage;
         }
+        */
 
         public static (double, double, double) RGBtoHSV(int R, int G, int B)
         {
@@ -198,7 +201,8 @@ namespace VisiMorph
 
             return ((int)((_R + m) * 255), (int)((_G + m) * 255), (int)((_B + m) * 255));
         }
-
+        
+        /*
         public static Bitmap imageRGBtoHSV(Bitmap image, double new_H, double new_S, double new_V)
         {
 
@@ -234,6 +238,8 @@ namespace VisiMorph
             }
             return newImage;
         }
+        */
+
         public static Bitmap Convolution(Bitmap image, double[,] kernel, bool isAddEdge)
         {
             int kernelWidth = kernel.GetLength(0);

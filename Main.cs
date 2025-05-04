@@ -451,7 +451,7 @@ namespace VisiMorph
             ycbcrModeActive = !ycbcrModeActive;
             if (ycbcrModeActive)
             {
-                DisableOtherButtons(clickedButton); 
+                DisableOtherButtons(clickedButton);
                 ycbcrPanel.Visible = !ycbcrPanel.Visible;
                 RGBtoYCBCRButton.BackColor = ycbcrPanel.Visible ? Color.LightGray : Color.Transparent;
                 ycbcrPanel.Dock = DockStyle.Left;
@@ -459,8 +459,6 @@ namespace VisiMorph
                 if (ycbcrPanel.Visible)
                 {
                     DisableOtherButtons(clickedButton);
-                    ycbcrOkButton.MouseClick -= ycbcrOkButton_MouseUp;
-                    ycbcrOkButton.MouseClick += ycbcrOkButton_MouseUp;
                     yTrackBar.Scroll -= ycbcrTrackBar_Scroll;
                     yTrackBar.Scroll += ycbcrTrackBar_Scroll;
                     cbTrackBar.Scroll -= ycbcrTrackBar_Scroll;
@@ -1088,10 +1086,10 @@ namespace VisiMorph
         private void ycbcrOkButton_MouseUp(object? sender, MouseEventArgs e)
         {
             double Y, Cb, Cr;
-            Y = (yTrackBar.Value / 100.0f);
-            Cb = (cbTrackBar.Value / 100.0f);
-            Cr = (crTrackBar.Value / 100.0f);
-            imageBox.Image = ImageFunctions.imageRGBtoYCbCr(_originalImage);
+            Y = (yTrackBar.Value);
+            Cb = (cbTrackBar.Value);
+            Cr = (crTrackBar.Value);
+            imageBox.Image = ImageFunctions.imageRGBtoYCbCr(_originalImage, Y, Cb, Cr);
             ycbcrImageList.Add((Bitmap)imageBox.Image);
         }
         //YCbCr TRACKBAR DEĞERLERİ
@@ -1103,12 +1101,12 @@ namespace VisiMorph
             }
             else
             {
-                yLabel.Text = $"Y: {yTrackBar.Value / 100.0f}";
-                cbLabel.Text = $"Cb: {cbTrackBar.Value / 100.0f}";
-                crLabel.Text = $"Cr: {crTrackBar.Value / 100.0f}";
+                yLabel.Text = $"Y: {yTrackBar.Value}";
+                cbLabel.Text = $"Cb: {cbTrackBar.Value}";
+                crLabel.Text = $"Cr: {crTrackBar.Value}";
             }
         }
 
-        
+
     }
 }
