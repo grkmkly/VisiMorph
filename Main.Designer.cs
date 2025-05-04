@@ -123,8 +123,10 @@
             yTrackBar = new TrackBar();
             brightnessTrackBar = new TrackBar();
             hsvPanel = new Panel();
+            rgbPanel = new Panel();
             rgbtohsvOkButton = new Button();
             bTrackBarHSV = new TrackBar();
+            label3 = new Label();
             bLabel = new Label();
             gTrackBarHSV = new TrackBar();
             gLabel = new Label();
@@ -142,6 +144,8 @@
             label1 = new Label();
             brightnessLabel = new Label();
             brightnessTrack = new TrackBar();
+            label4 = new Label();
+            rgbPanel2 = new Panel();
             navbarMenu.SuspendLayout();
             toolStrip1.SuspendLayout();
             appPanel.SuspendLayout();
@@ -777,9 +781,11 @@
             // ycbcrPanel
             // 
             ycbcrPanel.BackColor = Color.Transparent;
+            ycbcrPanel.Controls.Add(rgbPanel2);
             ycbcrPanel.Controls.Add(rgbtoycbcrOkButton);
             ycbcrPanel.Controls.Add(ycbcrtorgbOkButton);
             ycbcrPanel.Controls.Add(bTrackBarYCbCr);
+            ycbcrPanel.Controls.Add(label4);
             ycbcrPanel.Controls.Add(bLabelYCbCr);
             ycbcrPanel.Controls.Add(crLabel);
             ycbcrPanel.Controls.Add(gTrackBarYCbCr);
@@ -794,9 +800,9 @@
             ycbcrPanel.Controls.Add(yTrackBar);
             ycbcrPanel.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold | FontStyle.Underline);
             ycbcrPanel.ForeColor = Color.White;
-            ycbcrPanel.Location = new Point(313, 230);
+            ycbcrPanel.Location = new Point(502, 230);
             ycbcrPanel.Name = "ycbcrPanel";
-            ycbcrPanel.Size = new Size(245, 517);
+            ycbcrPanel.Size = new Size(245, 550);
             ycbcrPanel.TabIndex = 1;
             ycbcrPanel.Visible = false;
             // 
@@ -956,8 +962,10 @@
             // hsvPanel
             // 
             hsvPanel.BackColor = Color.Transparent;
+            hsvPanel.Controls.Add(rgbPanel);
             hsvPanel.Controls.Add(rgbtohsvOkButton);
             hsvPanel.Controls.Add(bTrackBarHSV);
+            hsvPanel.Controls.Add(label3);
             hsvPanel.Controls.Add(bLabel);
             hsvPanel.Controls.Add(gTrackBarHSV);
             hsvPanel.Controls.Add(gLabel);
@@ -974,9 +982,16 @@
             hsvPanel.ForeColor = Color.White;
             hsvPanel.Location = new Point(15, 230);
             hsvPanel.Name = "hsvPanel";
-            hsvPanel.Size = new Size(245, 517);
+            hsvPanel.Size = new Size(254, 550);
             hsvPanel.TabIndex = 1;
             hsvPanel.Visible = false;
+            // 
+            // rgbPanel
+            // 
+            rgbPanel.Location = new Point(81, 494);
+            rgbPanel.Name = "rgbPanel";
+            rgbPanel.Size = new Size(66, 23);
+            rgbPanel.TabIndex = 11;
             // 
             // rgbtohsvOkButton
             // 
@@ -997,6 +1012,16 @@
             bTrackBarHSV.Name = "bTrackBarHSV";
             bTrackBarHSV.Size = new Size(185, 56);
             bTrackBarHSV.TabIndex = 9;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold);
+            label3.Location = new Point(5, 494);
+            label3.Name = "label3";
+            label3.Size = new Size(70, 22);
+            label3.TabIndex = 8;
+            label3.Text = "Renk: ";
             // 
             // bLabel
             // 
@@ -1165,6 +1190,23 @@
             brightnessTrack.Size = new Size(185, 56);
             brightnessTrack.TabIndex = 0;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Cascadia Code", 10.2F, FontStyle.Bold);
+            label4.Location = new Point(12, 504);
+            label4.Name = "label4";
+            label4.Size = new Size(70, 22);
+            label4.TabIndex = 8;
+            label4.Text = "Renk: ";
+            // 
+            // rgbPanel2
+            // 
+            rgbPanel2.Location = new Point(88, 504);
+            rgbPanel2.Name = "rgbPanel2";
+            rgbPanel2.Size = new Size(66, 23);
+            rgbPanel2.TabIndex = 11;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1328,5 +1370,9 @@
         private Button rgbtoycbcrOkButton;
         private Button ycbcrtorgbOkButton;
         private Button rgbtohsvOkButton;
+        private Panel rgbPanel;
+        private Label label3;
+        private Panel rgbPanel2;
+        private Label label4;
     }
 }

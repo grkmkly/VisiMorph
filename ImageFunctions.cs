@@ -106,102 +106,82 @@ namespace VisiMorph
         }
         */
 
-        public static (double, double, double) RGBtoHSV(int R, int G, int B)
+        public static (double H, double S, double V) RGBtoHSV(int R, int G, int B)
         {
-            double H = 0, S, V;
-            double maxValue = Math.Max(R, Math.Max(G, B));
-            double minValue = Math.Min(R, Math.Min(G, B));
+            double r = R / 255.0;
+            double g = G / 255.0;
+            double b = B / 255.0;
 
-            double deltaValue = maxValue - minValue;
+            double max = Math.Max(r, Math.Max(g, b));
+            double min = Math.Min(r, Math.Min(g, b));
+            double delta = max - min;
 
-            if (deltaValue == 0)
+            double H = 0;
+
+            if (delta == 0)
             {
-                H = 360;
-                S = 0;
-                V = maxValue;
-                return (H, S, V);
+                H = 0;
             }
-
-            // Hue hesaplama
-            if (maxValue == R && G >= B)
+            else if (max == r)
             {
-                H = 60 * ((G-B) / deltaValue) + 0;
+                H = 60 * (((g - b) / delta) % 6);
             }
-
-            else if (maxValue == R && G < B)
+            else if (max == g)
             {
-                H = 60 * ((G - B) / deltaValue) + 360;
+                H = 60 * (((b - r) / delta) + 2);
             }
-
-            else if (maxValue == G)
+            else if (max == b)
             {
-                H = 60 * ((B - R) / deltaValue) + 120;
-            }
-
-            else if (maxValue == B)
-            {
-                H = 60 * ((R - G) / deltaValue) + 240;
+                H = 60 * (((r - g) / delta) + 4);
             }
 
             if (H < 0)
-            {
                 H += 360;
-            }
-            // Satürasyon hesaplama
-            S = (maxValue == 0) ? 0 : 1 - (deltaValue / maxValue);
 
-            // Değer (value) hesaplama
-            V = maxValue;
-
+            double S = (max == 0) ? 0 : delta / max;
+            double V = max;
 
             return (H, S, V);
         }
 
+
         public static (int, int, int) HSVtoRGB(double H, double S, double V)
         {
-            double _R = 0;
-            double _G = 0;
-            double _B = 0;
+            // Normalize S and V
+            S /= 100.0;
+            V /= 100.0;
 
-            double chromaValue = V * S;
-            double _H = H / 60;
-            double X = chromaValue * (1 - Math.Abs((_H / 60) % 2 - 1));
-            double m = V - chromaValue;
+            double C = V * S;
+            double hPrime = H / 60.0;
+            double X = C * (1 - Math.Abs(hPrime % 2 - 1));
+            double m = V - C;
 
-            if (_H >= 0 && _H < 60)
-            {
-                (_R, _G, _B) = (chromaValue, X, 0);
+            double r = 0, g = 0, b = 0;
 
-            }
+            if (hPrime >= 0 && hPrime < 1)
+                (r, g, b) = (C, X, 0);
+            else if (hPrime >= 1 && hPrime < 2)
+                (r, g, b) = (X, C, 0);
+            else if (hPrime >= 2 && hPrime < 3)
+                (r, g, b) = (0, C, X);
+            else if (hPrime >= 3 && hPrime < 4)
+                (r, g, b) = (0, X, C);
+            else if (hPrime >= 4 && hPrime < 5)
+                (r, g, b) = (X, 0, C);
+            else if (hPrime >= 5 && hPrime < 6)
+                (r, g, b) = (C, 0, X);
 
-            else if (_H >= 60 && _H < 120)
-            {
-                (_R, _G, _B) = (X, chromaValue, 0);
-            }
+            int R = (int)Math.Round((r + m) * 255);
+            int G = (int)Math.Round((g + m) * 255);
+            int B = (int)Math.Round((b + m) * 255);
 
-            else if (_H >= 120 && _H < 180)
-            {
-                (_R, _G, _B) = (0, chromaValue, X);
-            }
-
-            else if (_H >= 180 && _H < 240)
-            {
-                (_R, _G, _B) = (0, X, chromaValue);
-            }
-
-            else if (_H >= 240 && _H < 300)
-            {
-                (_R, _G, _B) = (X, 0, chromaValue);
-            }
-
-            else if (_H >= 300 && _H < 360)
-            {
-                (_R, _G, _B) = (chromaValue, 0, X);
-            }
-
-            return ((int)((_R + m) * 255), (int)((_G + m) * 255), (int)((_B + m) * 255));
+            return (R, G, B);
         }
-        
+
+
+
+
+
         /*
         public static Bitmap imageRGBtoHSV(Bitmap image, double new_H, double new_S, double new_V)
         {

@@ -388,11 +388,6 @@ namespace VisiMorph
         //RESİM RGB'DEN HSV'YE DÖNÜŞTÜRME
         private void RGBtoHSVButton_Click(object sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-                return;
-            }
             ToolStripButton clickedButton = sender as ToolStripButton;
             hsvModeActive = !hsvModeActive;
             if (hsvModeActive)
@@ -405,6 +400,7 @@ namespace VisiMorph
                 if (hsvPanel.Visible)
                 {
                     DisableOtherButtons(clickedButton);
+                    rgbPanel.BackColor = Color.White;
                     hsvtorgbOkButton.MouseClick -= hsvtorgbOkButton_MouseUp;
                     hsvtorgbOkButton.MouseClick += hsvtorgbOkButton_MouseUp;
                     rgbtohsvOkButton.MouseClick -= rgbtohsvOkButton_MouseUp;
@@ -427,12 +423,19 @@ namespace VisiMorph
             else
             {               
                 EnableAllButtons();
+                rgbPanel.BackColor = Color.White;
                 hLabel.Text = "H: 0";
-                sLabel.Text = "S: 0";
-                vLabel.Text = "V: 0";
+                sLabel.Text = "S: 0%";
+                vLabel.Text = "V: 0%";
+                rLabel.Text = "R: 0";
+                gLabel.Text = "G: 0";
+                bLabel.Text = "B: 0";
                 hTrackBar.Value = 0;
                 sTrackBar.Value = 0;
                 vTrackBar.Value = 0;
+                rTrackBarHSV.Value = 0;
+                gTrackBarHSV.Value = 0;
+                bTrackBarHSV.Value = 0;
                 hsvPanel.Visible = false;
                 image = (Bitmap)imageBox.Image;
                 RGBtoHSVButton.BackColor = Color.Transparent;
@@ -445,11 +448,6 @@ namespace VisiMorph
         //RESİM RGB'DEN YCBCR'YE DÖNÜŞTÜRME
         private void RGBtoYCBCRButton_Click(object sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-                return;
-            }
             ToolStripButton clickedButton = sender as ToolStripButton;
             ycbcrModeActive = !ycbcrModeActive;
             if (ycbcrModeActive)
@@ -462,6 +460,7 @@ namespace VisiMorph
                 if (ycbcrPanel.Visible)
                 {
                     DisableOtherButtons(clickedButton);
+                    rgbPanel2.BackColor = Color.White;
                     ycbcrtorgbOkButton.MouseClick -= ycbcrtorgbOkButton_MouseUp;
                     ycbcrtorgbOkButton.MouseClick += ycbcrtorgbOkButton_MouseUp;
                     rgbtoycbcrOkButton.MouseClick -= rgbtoycbcrOkButton_MouseUp;
@@ -484,12 +483,19 @@ namespace VisiMorph
             else
             {
                 EnableAllButtons();
+                rgbPanel2.BackColor = Color.White;
                 yLabel.Text = "Y: 0";
                 cbLabel.Text = "Cb: 0";
                 crLabel.Text = "Cr: 0";
+                rLabelYCbCr.Text = "R: 0";
+                gLabelYCbCr.Text = "G: 0";
+                bLabelYCbCr.Text = "B: 0";
                 yTrackBar.Value = 0;
                 cbTrackBar.Value = 0;
                 crTrackBar.Value = 0;
+                rTrackBarYCbCr.Value = 0;
+                gTrackBarYCbCr.Value = 0;
+                bTrackBarYCbCr.Value = 0;
                 ycbcrPanel.Visible = false;
                 image = (Bitmap)imageBox.Image;
                 RGBtoYCBCRButton.BackColor = Color.Transparent;
@@ -1038,10 +1044,11 @@ namespace VisiMorph
         private void hsvtorgbOkButton_MouseUp(object? sender, MouseEventArgs e)
         {
             double R, G, B;
-            var values = ImageFunctions.HSVtoRGB(hTrackBar.Value / 100.0f , sTrackBar.Value / 100.0f, vTrackBar.Value / 100.0f);
+            var values = ImageFunctions.HSVtoRGB(hTrackBar.Value , sTrackBar.Value  , vTrackBar.Value);
             R = values.Item1;
             G = values.Item2;
             B = values.Item3;
+            rgbPanel.BackColor = Color.FromArgb((int)R, (int)G, (int)B);
             rTrackBarHSV.Value = (int)R;
             gTrackBarHSV.Value = (int)G;
             bTrackBarHSV.Value = (int)B;
@@ -1058,12 +1065,13 @@ namespace VisiMorph
             H = values.Item1;
             S = values.Item2;
             V = values.Item3;
+            rgbPanel.BackColor = Color.FromArgb(rTrackBarHSV.Value, gTrackBarHSV.Value, bTrackBarHSV.Value);
             hTrackBar.Value = (int)(H);
-            sTrackBar.Value = (int)(S);
-            vTrackBar.Value = (int)(V);
-            hLabel.Text = $"H: {H }";
-            sLabel.Text = $"S: {S}";
-            vLabel.Text = $"V: {V}";
+            sTrackBar.Value = (int)(S *100);
+            vTrackBar.Value = (int)(V *100);
+            hLabel.Text = $"H: {H}";
+            sLabel.Text = $"S: {S}%";
+            vLabel.Text = $"V: {V}%";
         }
         //RGB'DEN YCbCr'YE DÖNÜŞTÜRME
         private void ycbcrtorgbOkButton_MouseUp(object? sender, MouseEventArgs e)
@@ -1073,6 +1081,7 @@ namespace VisiMorph
             R = values.Item1;
             G = values.Item2;
             B = values.Item3;
+            rgbPanel2.BackColor = Color.FromArgb((int)R, (int)G, (int)B);
             rTrackBarYCbCr.Value = (int)R;
             gTrackBarYCbCr.Value = (int)G;
             bTrackBarYCbCr.Value = (int)B;
@@ -1086,6 +1095,7 @@ namespace VisiMorph
         {
             double Y, Cb, Cr;
             var values = ImageFunctions.RGBtoYCbCr(rTrackBarYCbCr.Value, gTrackBarYCbCr.Value, bTrackBarYCbCr.Value);
+            rgbPanel2.BackColor = Color.FromArgb(rTrackBarYCbCr.Value, gTrackBarYCbCr.Value, bTrackBarYCbCr.Value);
             Y = values.Item1;
             Cb = values.Item2;
             Cr = values.Item3;
@@ -1101,61 +1111,36 @@ namespace VisiMorph
         //HSV'DEN RGB'YE TRACKBAR DEĞERLERİ
         private void hsvtorgbTrackBar_Scroll(object? sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            else
-            {
-                hLabel.Text = $"H: {hTrackBar.Value}";
-                sLabel.Text = $"S: {sTrackBar.Value}";
-                vLabel.Text = $"V: {vTrackBar.Value}";
-
-
-            }
+            hLabel.Text = $"H: {hTrackBar.Value}";
+            sLabel.Text = $"S: {sTrackBar.Value}%";
+            vLabel.Text = $"V: {vTrackBar.Value}%";
         }
         //RGB'DEN HSV'YE TRACKBAR DEĞERLERİ
         private void rgbtohsvTrackBar_Scroll(object? sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            else
-            {
-                rLabel.Text = $"R: {rTrackBarHSV.Value}";
-                gLabel.Text = $"G: {gTrackBarHSV.Value}";
-                bLabel.Text = $"B: {bTrackBarHSV.Value}";
-            }
+            rLabel.Text = $"R: {rTrackBarHSV.Value}";
+            gLabel.Text = $"G: {gTrackBarHSV.Value}";
+            bLabel.Text = $"B: {bTrackBarHSV.Value}";
+            
         }
 
         //YCbCr'DEN RGB'YE TRACKBAR DEĞERLERİ
         private void ycbcrtorgbTrackBar_Scroll(object? sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            else
-            {
-                yLabel.Text = $"Y: {yTrackBar.Value}";
-                cbLabel.Text = $"Cb: {cbTrackBar.Value}";
-                crLabel.Text = $"Cr: {crTrackBar.Value}";
-            }
+            
+            yLabel.Text = $"Y: {yTrackBar.Value}";
+            cbLabel.Text = $"Cb: {cbTrackBar.Value}";
+            crLabel.Text = $"Cr: {crTrackBar.Value}";
+            
         }
         //RGB'DEN YCbCr'YE TRACKBAR DEĞERLERİ
         private void rgbtoycbcrTrackBar_Scroll(object? sender, EventArgs e)
         {
-            if (image == null)
-            {
-                MessageBox.Show("Henüz bir resim yüklemediniz, işlem başarısız.");
-            }
-            else
-            {
-                rLabelYCbCr.Text = $"R: {rTrackBarYCbCr.Value}";
-                gLabelYCbCr.Text = $"G: {gTrackBarYCbCr.Value}";
-                bLabelYCbCr.Text = $"B: {bTrackBarYCbCr.Value}";
-            }
+            
+            rLabelYCbCr.Text = $"R: {rTrackBarYCbCr.Value}";
+            gLabelYCbCr.Text = $"G: {gTrackBarYCbCr.Value}";
+             bLabelYCbCr.Text = $"B: {bTrackBarYCbCr.Value}";
+            
 
 
         }
