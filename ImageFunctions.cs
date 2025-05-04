@@ -79,32 +79,7 @@ namespace VisiMorph
             return (R, G, B);
         }
 
-        /*
-        public static Bitmap imageRGBtoYCbCr(Bitmap image, double new_Y, double new_Cb, double new_Cr)
-        {
-            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            using (Graphics g = Graphics.FromImage(newImage))
-            {
-                g.DrawImage(image, 0, 0);
-            }
-
-            for (int y = 0; y < newImage.Height; y++)
-            {
-                for (int x = 0; x < newImage.Width; x++)
-                {
-                    Color currentPixel = newImage.GetPixel(x, y);
-
-                    (double curr_Y, double curr_Cb, double curr_Cr) = RGBtoYCbCr(currentPixel.R, currentPixel.G, currentPixel.B);
-
-                    (int new_R, int new_G, int new_B) = YCbCrtoRGB(new_Y, new_Cb, new_Cr);
-
-                    Color transformedPixel = Color.FromArgb(new_R, new_G, new_B);
-                    newImage.SetPixel(x, y, transformedPixel);
-                }
-            }
-            return newImage;
-        }
-        */
+       
 
         public static (double H, double S, double V) RGBtoHSV(int R, int G, int B)
         {
@@ -147,7 +122,6 @@ namespace VisiMorph
 
         public static (int, int, int) HSVtoRGB(double H, double S, double V)
         {
-            // Normalize S and V
             S /= 100.0;
             V /= 100.0;
 
@@ -182,43 +156,7 @@ namespace VisiMorph
 
 
 
-        /*
-        public static Bitmap imageRGBtoHSV(Bitmap image, double new_H, double new_S, double new_V)
-        {
-
-            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            using (Graphics g = Graphics.FromImage(newImage))
-            {
-                g.DrawImage(image, 0, 0);
-            }
-
-            for (int y = 0; y < newImage.Height; y++)
-            {
-                for (int x = 0; x < newImage.Width; x++)
-                {
-                    Color currentPixel = newImage.GetPixel(x, y);
-                    double curr_H, curr_S, curr_V;
-
-                    (curr_H, curr_S, curr_V) = RGBtoHSV(currentPixel.R, currentPixel.G, currentPixel.B);
-
-                    double weighted_H = (curr_H * new_H) % 360;
-                    double weighted_S = Math.Min(Math.Max(curr_S * new_S, 0), 1);
-                    double weighted_V = Math.Min(Math.Max(curr_V * new_V, 0), 1);
-
-                    int new_R, new_G, new_B;
-                    (new_R, new_G, new_B) = HSVtoRGB(weighted_H, weighted_S, weighted_V);
-
-                    new_R = Math.Min(Math.Max(new_R, 0), 255);
-                    new_G = Math.Min(Math.Max(new_G, 0), 255);
-                    new_B = Math.Min(Math.Max(new_B, 0), 255);
-
-                    Color transformedPixel = Color.FromArgb(new_R, new_G, new_B);
-                    newImage.SetPixel(x, y, transformedPixel);
-                }
-            }
-            return newImage;
-        }
-        */
+        
 
         public static Bitmap Convolution(Bitmap image, double[,] kernel, bool isAddEdge)
         {
@@ -266,7 +204,6 @@ namespace VisiMorph
                 }
                 return newImage;
             }
-            // Kenarları Doldur
             else
             {
                 Bitmap newImage = FillEdge(image);

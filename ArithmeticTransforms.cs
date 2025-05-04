@@ -80,28 +80,11 @@ namespace VisiMorph
         }
         public static Bitmap CropImage(Image image, Rectangle cropRect, Size displaySize)
         {
-            if(image == null || cropRect.Width <= 0 || cropRect.Height <= 0)
+            if (image == null || cropRect.Width <= 0 || cropRect.Height <= 0)
                 return null;
-            // Resim boyutunu kontrol et
-            if (image.Width < cropRect.X + cropRect.Width || image.Height < cropRect.Y + cropRect.Height )
-            {
-                cropRect.Width = Math.Min(cropRect.Width, image.Width - cropRect.X);
-                cropRect.Height = Math.Min(cropRect.Height, image.Height - cropRect.Y);
-            }
-            else
-            {
-                // Resim boyutunu kontrol et
-                if (cropRect.X < 0 || cropRect.Y < 0)
-                {
-                    cropRect.X = Math.Max(cropRect.X, 0);
-                    cropRect.Y = Math.Max(cropRect.Y, 0);
-                }
-            }
-
 
             Bitmap source = new Bitmap(image);
 
-            // Ölçekleme: Görüntü PictureBox’ta farklı boyutta olabilir
             float scaleX = (float)source.Width / displaySize.Width;
             float scaleY = (float)source.Height / displaySize.Height;
 
@@ -110,7 +93,13 @@ namespace VisiMorph
             int cropWidth = (int)(cropRect.Width * scaleX);
             int cropHeight = (int)(cropRect.Height * scaleY);
 
-            // Yeni bitmap oluştur
+            if (cropX < 0) cropX = 0;
+            if (cropY < 0) cropY = 0;
+            if (cropX + cropWidth > source.Width)
+                cropWidth = source.Width - cropX;
+            if (cropY + cropHeight > source.Height)
+                cropHeight = source.Height - cropY;
+
             Bitmap cropped = new Bitmap(cropWidth, cropHeight);
 
             for (int y = 0; y < cropHeight; y++)
